@@ -14,6 +14,7 @@ public class Employee {
     private String position;
     private String email;
     private String phoneNumber;
+    private Date birthDate;
     private String address;
     private String city;
     private String state;
@@ -22,16 +23,14 @@ public class Employee {
     private double salary;
     private boolean isActive;
 
-    public Employee() {
-    }
-
-    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber,String address, String city, String state, String department, Date hireDate, double salary, boolean isActive) {
+    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -87,6 +86,14 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getAddress() {
