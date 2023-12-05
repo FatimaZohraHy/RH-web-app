@@ -12,10 +12,10 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'Theme'
+    name: 'MAIN'
   },
   {
-    name: 'Colors',
+    name: 'Departement',
     url: '/theme/colors',
     iconComponent: { name: 'cil-drop' }
   },
@@ -26,20 +26,20 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-pencil' }
   },
   {
-    name: 'Components',
+    name: 'Employees',
     title: true
   },
   {
-    name: 'Base',
+    name: 'Gestion',
     url: '/base',
     iconComponent: { name: 'cil-puzzle' },
     children: [
       {
-        name: 'Accordion',
+        name: 'Ajouter employe',
         url: '/base/accordion'
       },
       {
-        name: 'Breadcrumbs',
+        name: 'Archiver emoloye',
         url: '/base/breadcrumbs'
       },
       {
@@ -97,7 +97,7 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Buttons',
+    name: 'Attendance',
     url: '/buttons',
     iconComponent: { name: 'cil-cursor' },
     children: [
@@ -116,7 +116,7 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Forms',
+    name: 'Salaire',
     url: '/forms',
     iconComponent: { name: 'cil-notes' },
     children: [
@@ -160,12 +160,12 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-chart-pie' }
   },
   {
-    name: 'Icons',
+    name: 'Demandes',
     iconComponent: { name: 'cil-star' },
     url: '/icons',
     children: [
       {
-        name: 'CoreUI Free',
+        name: 'Vacances',
         url: '/icons/coreui-icons',
         badge: {
           color: 'success',
@@ -173,11 +173,11 @@ export const navItems: INavData[] = [
         }
       },
       {
-        name: 'CoreUI Flags',
+        name: 'Demision',
         url: '/icons/flags'
       },
       {
-        name: 'CoreUI Brands',
+        name: 'Reclamation',
         url: '/icons/brands'
       }
     ]
