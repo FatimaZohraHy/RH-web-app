@@ -1,26 +1,42 @@
 package com.IT.SpringBootAngular.Entitys;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document(collection = "user")
 public class User {
 
     @Id
-    private int id;
+    private String _id;
+    private String username;
     private String email;
     private String password;
 
-    public User(int id, String email, String password) {
-        this.id = id;
+    public User() {
+
+    }
+    public User(String _id, String username,String email, String password) {
+        this._id = _id;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -31,8 +47,21 @@ public class User {
         this.email = email;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + _id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
