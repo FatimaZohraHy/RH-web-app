@@ -1,6 +1,7 @@
 package com.IT.SpringBootAngular.Entitys;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -22,6 +23,9 @@ public class Employee {
     private Date hireDate;
     private double salary;
     private boolean isActive;
+
+    @DBRef
+    private User user;
 
     public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive) {
         this._id = _id;

@@ -4,31 +4,33 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "user")
+@Document(collection = "users")
 public class User {
 
     @Id
-    private String _id;
+    private String id;
     private String username;
-    private String email;
     private String password;
+
+    // getters, setters, constructors
+
+
+    public User(String id, String username, String password, String s) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 
     public User() {
 
     }
-    public User(String _id, String username,String email, String password) {
-        this._id = _id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
 
     public String getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -39,14 +41,6 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -54,14 +48,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + _id +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }
+
