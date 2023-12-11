@@ -2,6 +2,7 @@ package com.IT.SpringBootAngular.Controllers;
 
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Service.EmpService;
+import com.IT.SpringBootAngular.Service.SalireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
     @Autowired
     private EmpService employeeService;
-
 
 
     @PostMapping(value = "/save")

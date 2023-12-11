@@ -26,8 +26,10 @@ public class Employee {
 
     @DBRef
     private User user;
+    @DBRef
+    private Salaire salaire;
 
-    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive) {
+    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive,Salaire salaire) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,6 +44,7 @@ public class Employee {
         this.hireDate = hireDate;
         this.salary = salary;
         this.isActive = isActive;
+        this.salaire = salaire;
     }
 
     public String get_id() {
@@ -154,5 +157,21 @@ public class Employee {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Salaire getSalaire() {
+        return salaire;
+    }
+
+    public void setSalaire(Salaire salaire) {
+        this.salaire = salaire;
     }
 }
