@@ -1,4 +1,5 @@
 package com.IT.SpringBootAngular.Entitys;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -30,9 +31,9 @@ public class Employee {
     @DBRef
     private Salaire salaire;
     @DBRef
-    private List<Reclamation> Reclamation;
+    private List<Reclamation> reclamation;
 
-    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire) {
+    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,6 +48,7 @@ public class Employee {
         this.hireDate = hireDate;
         this.isActive = isActive;
         this.salaire = salaire;
+        this.reclamation = reclamation;
     }
 
     public String get_id() {
@@ -70,11 +72,11 @@ public class Employee {
 
 
     public List<Reclamation> getReclamation() {
-        return Reclamation;
+        return reclamation;
     }
 
     public void setReclamation(List<Reclamation> reclamation) {
-        Reclamation = reclamation;
+        this.reclamation = reclamation;
     }
 
     public String getLastName() {
@@ -186,4 +188,10 @@ public class Employee {
     }
 
 
+    public void addReclamation(Reclamation r){
+        if (this.reclamation == null) {
+            this.reclamation = new ArrayList<>();
+        }
+        this.reclamation.add(r);
+    }
 }

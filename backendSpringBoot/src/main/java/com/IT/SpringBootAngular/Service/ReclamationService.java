@@ -1,9 +1,13 @@
 package com.IT.SpringBootAngular.Service;
 
+import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.Reclamation;
+import com.IT.SpringBootAngular.Repo.EmployeeRepo;
 import com.IT.SpringBootAngular.Repo.ReclamationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
@@ -11,6 +15,8 @@ import java.util.concurrent.RecursiveAction;
 public class ReclamationService {
     @Autowired
     private ReclamationRepo reclamationRepo;
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
     public List<Reclamation> getAllReclamations(){
         return reclamationRepo.findAll();
@@ -18,9 +24,19 @@ public class ReclamationService {
     public Reclamation getReclamationById(String id){
         return reclamationRepo.findById(id).orElse(null);
     }
-    public Reclamation saveReclamation(Reclamation reclamation){
-        return reclamationRepo.save(reclamation);
+    public String saveReclamation(String employee_id, Reclamation reclamation) {
+        Employee employee = employeeRepo.findById(employee_id).orElse(null);
+        if (employee != null) {
+            employee.addReclamation(reclamation);
+            employeeRepo.save(employee);
+            reclamationRepo.save(reclamation);
+            return "Reclamation added successfully";
+        } else {
+            return "Employee not found";
+        }
     }
+
+
     public Reclamation updateReclamation(String id , RecursiveAction updatedReclamation ){
         return null;
     }
