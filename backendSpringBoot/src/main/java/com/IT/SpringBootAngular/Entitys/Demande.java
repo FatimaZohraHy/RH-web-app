@@ -1,20 +1,30 @@
 package com.IT.SpringBootAngular.Entitys;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Demande")
 public class Demande {
     @Id
     private String id;
-    private String Type;
     private String descrepsion;
+    private boolean accepted = false;
 
     public Demande() {
     }
 
-    public Demande(String id, String type, String descrepsion) {
+    public Demande(String id, String descrepsion) {
         this.id = id;
-        Type = type;
+
         this.descrepsion = descrepsion;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 
     public String getId() {
@@ -25,13 +35,6 @@ public class Demande {
         this.id = id;
     }
 
-    public String getType() {
-        return Type;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
 
     public String getDescrepsion() {
         return descrepsion;

@@ -1,10 +1,11 @@
 package com.IT.SpringBootAngular.Entitys;
-
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.concurrent.RecursiveAction;
 
 @Document(collection = "employees")
 public class Employee {
@@ -21,15 +22,17 @@ public class Employee {
     private String state;
     private String department;
     private Date hireDate;
-    private double salary;
+
     private boolean isActive;
 
     @DBRef
     private User user;
     @DBRef
     private Salaire salaire;
+    @DBRef
+    private List<Reclamation> Reclamation;
 
-    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive,Salaire salaire) {
+    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,7 +45,6 @@ public class Employee {
         this.state = state;
         this.department = department;
         this.hireDate = hireDate;
-        this.salary = salary;
         this.isActive = isActive;
         this.salaire = salaire;
     }
@@ -61,6 +63,18 @@ public class Employee {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+
+
+
+
+    public List<Reclamation> getReclamation() {
+        return Reclamation;
+    }
+
+    public void setReclamation(List<Reclamation> reclamation) {
+        Reclamation = reclamation;
     }
 
     public String getLastName() {
@@ -143,13 +157,9 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public double getSalary() {
-        return salary;
-    }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+
+
 
     public boolean isActive() {
         return isActive;
@@ -174,4 +184,6 @@ public class Employee {
     public void setSalaire(Salaire salaire) {
         this.salaire = salaire;
     }
+
+
 }

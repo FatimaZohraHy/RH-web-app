@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 public class SalireService {
     @Autowired
     private SalaireRepo salaireRepo;
-    public void save_salary(Salaire salaire){
-        salaireRepo.save(salaire);
+    public Salaire save_salary(Salaire salaire){
+        return salaireRepo.save(salaire);
+
     }
 
 

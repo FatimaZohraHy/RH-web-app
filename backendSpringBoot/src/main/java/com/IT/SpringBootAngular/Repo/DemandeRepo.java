@@ -1,6 +1,4 @@
 package com.IT.SpringBootAngular.Repo;
-
-import com.IT.SpringBootAngular.Entitys.Attendance;
 import com.IT.SpringBootAngular.Entitys.Demande;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

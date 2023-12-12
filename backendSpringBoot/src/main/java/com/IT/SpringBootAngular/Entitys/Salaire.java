@@ -26,11 +26,23 @@ public class Salaire {
         this.salaire = salaire;
     }
 
-    public String getTime() {
+
+
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPay_day() {
         return pay_day;
     }
 
-    public void setTime(String pay_day) {
+    public void setPay_day(String pay_day) {
         this.pay_day = pay_day;
     }
 }
