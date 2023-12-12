@@ -18,10 +18,10 @@ public class EmpService {
     private SalaireRepo Srepo;
     @Autowired
     private UserRepo userRepo;
-
-   // private DemandeRepo demandeRepo;
     @Autowired
     private ReclamationRepo reclamationRepo;
+
+   // private DemandeRepo demandeRepo;
 
      public void save_update(Employee em) {
          User saveUser = userRepo.save(em.getUser());
@@ -46,6 +46,9 @@ public class EmpService {
              if (employee.getSalaire() != null) {
                  Srepo.deleteById(employee.getSalaire().getId());
                  userRepo.deleteById(employee.getUser().getId());
+                 for(Reclamation r : employee.getReclamation()){
+                     reclamationRepo.deleteById(r.getId());
+                 }
              }
              // Delete the employee
              repo.deleteById(id);
