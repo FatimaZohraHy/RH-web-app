@@ -2,7 +2,6 @@ package com.IT.SpringBootAngular.Entitys;
 
 public class Departement {
     private String departName;
-
     public Departement(String departName) {
         this.departName = departName;
     }
