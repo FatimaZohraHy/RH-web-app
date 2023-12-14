@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*") //frontend connection
 @RequestMapping("/employee")
@@ -24,9 +26,9 @@ public class EmployeeController {
 
     //empolyee transactions
     @PutMapping(value ="/edit/{id}")
-    private Employee updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
+    private String updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
         employee.set_id(_id);
-        employeeService.save_update(employee);return employee;
+        return employeeService.edit(employee,_id);
     }
 
 
@@ -44,5 +46,11 @@ public class EmployeeController {
     public ResponseEntity<String> saveReclamation(@PathVariable String id , @RequestBody Reclamation reclamation){
         String result = reclamationService.saveReclamation(id,reclamation);
         return ResponseEntity.ok(result);
+   }
+
+
+   @GetMapping("/reclamations/getReclamationof/{id}")
+    public List<Reclamation> getReclamationnOfEmployee(@PathVariable String id){
+        return reclamationService.getReclamationsOfEmployee(id);
    }
 }

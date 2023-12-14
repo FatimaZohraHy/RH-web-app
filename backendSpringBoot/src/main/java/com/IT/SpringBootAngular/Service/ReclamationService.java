@@ -36,8 +36,12 @@ public class ReclamationService {
         }
     }
 
+    public List<Reclamation> getReclamationsOfEmployee(String employee_id){
+        Employee employee = employeeRepo.findById(employee_id).orElse(null);
+        return employee.getReclamation();
+    }
 
-    public Reclamation updateReclamation(String id , RecursiveAction updatedReclamation ){
+    public Reclamation updateReclamation(String emp_id , RecursiveAction updatedReclamation ){
         return null;
     }
     public void deleteReclamation(String id){

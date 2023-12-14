@@ -28,10 +28,25 @@ public class EmpService {
          Salaire saveSalire = Srepo.save(em.getSalaire());
          //List<Reclamation> reclamations = em.getReclamation() != null ? em.getReclamation() : Collections.emptyList();
          //List<Reclamation> savedReclamations = reclamationRepo.saveAll(em.getReclamation());
+
          em.setUser(saveUser);
          em.setSalaire(saveSalire);
+
          //em.setReclamation(savedReclamations);
          repo.save(em);
+     }
+     public String edit(Employee updtatedemployee , String id){
+         Employee employee = repo.findById(id).orElse(null);
+         if(employee!=null){
+             updtatedemployee.setUser(employee.getUser());
+             updtatedemployee.setSalaire(employee.getSalaire());
+             updtatedemployee.setReclamation(employee.getReclamation());
+             repo.save(updtatedemployee);
+             return id;
+
+         }else{
+             return "employee does not exist";
+         }
      }
 
      public Iterable<Employee> getAll(){
@@ -63,6 +78,18 @@ public class EmpService {
      }
 
 
-    //Reclamation Part:
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
