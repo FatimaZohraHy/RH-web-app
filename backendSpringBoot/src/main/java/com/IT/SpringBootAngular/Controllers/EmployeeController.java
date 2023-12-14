@@ -19,18 +19,10 @@ public class EmployeeController {
     private ReclamationService reclamationService;
 
 
-    @PostMapping(value = "/save")
-    public String saveEmployee(@RequestBody Employee emp){
-        employeeService.save_update(emp);
-        return emp.get_id();
-    }
-
-    @GetMapping(value="/getAll")
-    public Iterable<Employee> getEmployee(){
-        return employeeService.getAll();
-    }
 
 
+
+    //empolyee transactions
     @PutMapping(value ="/edit/{id}")
     private Employee updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
         employee.set_id(_id);
@@ -38,16 +30,11 @@ public class EmployeeController {
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    private void deleteEmployee(@PathVariable(name="id")String _id){
-        employeeService.delete(_id);
-    }
+
     @RequestMapping("/employee/{id}")
     private Employee getEmployeeById(@PathVariable(name="id")String _id){
         return employeeService.getById(_id);
     }
-
-
 
 
 
