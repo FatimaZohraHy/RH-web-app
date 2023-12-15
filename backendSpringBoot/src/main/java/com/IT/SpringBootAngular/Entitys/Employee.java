@@ -194,4 +194,7 @@ public class Employee {
         }
         this.reclamation.add(r);
     }
+    public void removeReclamation(Reclamation r){
+        this.reclamation.remove(r);
+    }
 }

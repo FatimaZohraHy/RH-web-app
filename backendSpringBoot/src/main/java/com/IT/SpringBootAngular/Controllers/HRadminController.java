@@ -2,12 +2,15 @@ package com.IT.SpringBootAngular.Controllers;
 
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.HRadmin;
+import com.IT.SpringBootAngular.Entitys.Reclamation;
 import com.IT.SpringBootAngular.Service.EmpService;
 import com.IT.SpringBootAngular.Service.HRadminService;
+import com.IT.SpringBootAngular.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +21,8 @@ public class HRadminController {
     private HRadminService hrAdminService;
     @Autowired
     private EmpService employeeService;
+    @Autowired
+    private ReclamationService reclamationService;
     @GetMapping
     public List<HRadmin> getAllHRAdmins() {
         return hrAdminService.getAllHRAdmins();
@@ -72,6 +77,15 @@ public class HRadminController {
 
 
     //reclamations Part :
+    @GetMapping("reclamations/getAll")
+    public Map<String, Reclamation> getAllReclamationns(){
+        return reclamationService.getAllReclamations();
+    }
+
+
+
+    //demands Part :
+
 
 }
 
