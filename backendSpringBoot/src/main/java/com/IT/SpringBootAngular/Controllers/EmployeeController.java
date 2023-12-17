@@ -22,39 +22,4 @@ public class EmployeeController {
 
 
 
-    //empolyee transactions
-    @PutMapping(value ="/edit")
-    private String updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
-        employee.set_id(_id);
-        return employeeService.edit(employee,_id);
-    }
-
-    @GetMapping("")
-    private Employee getEmployeeById(@PathVariable(name="id")String _id){
-        return employeeService.getById(_id);
-    }
-
-
-    //Reclamation part
-
-   @PostMapping("/reclamations/saveReclamation")
-    public ResponseEntity<String> saveReclamation(@PathVariable String id , @RequestBody Reclamation reclamation){
-        String result = reclamationService.saveReclamation(id,reclamation);
-        return ResponseEntity.ok(result);
-   }
-
-   @GetMapping("/reclamations/getAll")
-    public List<Reclamation> getReclamationnOfEmployee(@PathVariable String id){
-        return reclamationService.getReclamationsOfEmployee(id);
-   }
-    //--------
-   @DeleteMapping("/reclamations/delete/{id2}")
-    public String deleteReclamation(@PathVariable(name = "id") String EId ,@PathVariable(name = "id2") String RId ){
-       try {
-           return reclamationService.deleteReclamationByEmployee(EId, RId);
-       } catch (Exception e) {
-           e.printStackTrace();  // Log the exception stack trace
-           return "Error deleting reclamation";
-       }
-   }
 }

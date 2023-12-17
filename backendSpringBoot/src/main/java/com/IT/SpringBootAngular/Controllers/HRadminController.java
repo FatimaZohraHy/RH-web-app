@@ -14,77 +14,29 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin")
+@CrossOrigin(origins = "*")
+@RequestMapping("/admin/{id}")
 public class HRadminController {
 
     @Autowired
-    private HRadminService hrAdminService;
+    private HRadminService adminService;
     @Autowired
     private EmpService employeeService;
     @Autowired
     private ReclamationService reclamationService;
-    @GetMapping
-    public List<HRadmin> getAllHRAdmins() {
-        return hrAdminService.getAllHRAdmins();
-    }
 
-    @GetMapping("/getAll{id}")
-    public Optional<HRadmin> getHRAdminById(@PathVariable String id) {
-        return hrAdminService.getHRAdminById(id);
-    }
+    //gestion des employees
 
-    @PostMapping("/saveAdmin")
-    public HRadmin saveHRAdmin(@RequestBody HRadmin hradmin) {
-        return hrAdminService.saveHRAdmin(hradmin);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteHRAdmin(@PathVariable String id) {
-        hrAdminService.deleteHRAdmin(id);
+    @PostMapping("/employee/save")
+    public String Save(@PathVariable String id , @RequestBody Employee employee){
+        return adminService.saveEmployee(id,employee);
     }
 
 
-
-    //employee manage
-
-    @PostMapping(value = "/employee/save")
-    public String saveEmployee(@RequestBody Employee emp){
-        employeeService.save_update(emp);
-        return emp.get_id();
+    @GetMapping("/employee/getAll")
+    public List<Employee> getAllEmployee(@PathVariable String id){
+        return adminService.getAllEmployees(id);
     }
-
-    @GetMapping(value="/employee/getAll")
-    public Iterable<Employee> getEmployee(){
-        return employeeService.getAll();
-    }
-
-
-    @PutMapping(value ="/employee/edit/{id}")
-    private Employee updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
-        employee.set_id(_id);
-        employeeService.save_update(employee);return employee;
-    }
-
-
-    @DeleteMapping("/employee/delete/{id}")
-    private void deleteEmployee(@PathVariable(name="id")String _id){
-        employeeService.delete(_id);
-    }
-    @RequestMapping("/employee/getOne/{id}")
-    private Employee getEmployeeById(@PathVariable(name="id")String _id){
-        return employeeService.getById(_id);
-    }
-
-
-    //reclamations Part :
-    @GetMapping("reclamations/getAll")
-    public Map<String, Reclamation> getAllReclamationns(){
-        return reclamationService.getAllReclamations();
-    }
-
-
-
-    //demands Part :
 
 
 }

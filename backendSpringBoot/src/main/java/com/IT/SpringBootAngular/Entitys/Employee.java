@@ -1,6 +1,9 @@
 package com.IT.SpringBootAngular.Entitys;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +14,7 @@ import java.util.concurrent.RecursiveAction;
 @Document(collection = "employees")
 public class Employee {
     @Id
-    private String _id;
+    private String _id =new ObjectId().toString();
     private String firstName;
     private String lastName;
     private String position;
@@ -32,9 +35,14 @@ public class Employee {
     private Salaire salaire;
     @DBRef
     private List<Reclamation> reclamation;
+    @DBRef
+    //bcz it is Many to one association -_-
+    @JsonIgnore
+    private HRadmin admin;
+    @DBRef
+    private Departement departement;
+    public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
 
-    public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation) {
-        this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -49,6 +57,8 @@ public class Employee {
         this.isActive = isActive;
         this.salaire = salaire;
         this.reclamation = reclamation;
+        this.admin = admin;
+        this.departement = departement;
     }
 
     public String get_id() {
@@ -196,5 +206,21 @@ public class Employee {
     }
     public void removeReclamation(Reclamation r){
         this.reclamation.remove(r);
+    }
+
+    public HRadmin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(HRadmin admin) {
+        this.admin = admin;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
     }
 }
