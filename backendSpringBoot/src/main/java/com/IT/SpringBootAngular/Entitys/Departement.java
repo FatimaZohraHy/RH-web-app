@@ -1,7 +1,9 @@
 package com.IT.SpringBootAngular.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -9,11 +11,16 @@ import java.util.List;
 @Document(collection = "Departement")
 public class Departement {
     @Id
-    private String id;
+    private String id = new ObjectId().toString();
     private String departName ;
-    private List<Employee> employeeList;
-    public Departement(String departName) {
+    private List<Employee> employeeList ;
+    @JsonIgnore
+    @DBRef
+    private HRadmin hRadmin;
+    public Departement(String departName , HRadmin hRadmin) {
+
         this.departName = departName;
+        this.hRadmin = hRadmin;
     }
 
     public Departement() {
@@ -33,6 +40,22 @@ public class Departement {
 
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public HRadmin gethRadmin() {
+        return hRadmin;
+    }
+
+    public void sethRadmin(HRadmin hRadmin) {
+        this.hRadmin = hRadmin;
     }
 
     public void addEmployee(Employee emp){

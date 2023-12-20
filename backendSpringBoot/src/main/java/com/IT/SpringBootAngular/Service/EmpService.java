@@ -4,6 +4,8 @@ import com.IT.SpringBootAngular.Entitys.*;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.zip.Adler32;
@@ -11,7 +13,7 @@ import java.util.zip.Adler32;
 @Service
 public class EmpService {
     @Autowired
-    private EmployeeRepo repo;
+    private EmployeeRepo employeeRepo;
     @Autowired
     private SalaireRepo Srepo;
     @Autowired
@@ -20,15 +22,77 @@ public class EmpService {
     private ReclamationRepo reclamationRepo;
     @Autowired
     private HRadminRepo adminRepo;
-
-   // private DemandeRepo demandeRepo;
-
-
-
+    @Autowired
+    private DepartementRepo departementRepo;
+    //action by the employee
 
 
 
+    //actions by the admin
 
+
+
+
+
+    //actions by admin and departements
+
+    public String addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "admin or departement not found";
+        employee.setAdmin(admin);
+        employee.setDepartement(departement);
+        departement.addEmployee(employee);
+        admin.addEmployee(employee);
+        adminRepo.save(admin);
+        departementRepo.save(departement);
+        employeeRepo.save(employee);
+        return "employee has been saved "+employee.get_id();
+    }
+
+    public String deleteEmployeeBydepartement(String admin_id, String departement_id , String empolyee_id){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "admin or departement not found";
+        Employee employee = employeeRepo.findById(empolyee_id).orElse(null);
+        if(employee==null)
+            return "no such an employee";
+        admin.removeEmployee(employee);
+        departement.removeEmployee(employee);
+        employeeRepo.delete(employee);
+        adminRepo.save(admin);
+        departementRepo.save(departement);
+        return "employee "+employee.get_id()+" has been deleted";
+    }
+
+    public List<Employee> getAllEmployeeByDepartement(String admin_id , String departement_id){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return null;
+        for(Departement d : admin.getDepartements()){
+            if(d==departement)
+                return d.getEmployeeList();
+        }
+            return null;
+
+    }
+
+    public String editEmployeeByDepartement(String admin_id , String departement_id , String employee_id , Employee updatedemployee) {
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "nà admin or departement found";
+        Employee employee = employeeRepo.findById(employee_id).orElse(null);
+        if(employee==null)
+            return "employe not found with such an id"+employee_id;
+        updatedemployee.setAdmin(admin);
+        updatedemployee.setDepartement(departement);
+
+        return null;
+    }
 
 
 

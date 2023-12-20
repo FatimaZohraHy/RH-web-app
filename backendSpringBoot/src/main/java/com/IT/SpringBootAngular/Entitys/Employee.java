@@ -36,10 +36,11 @@ public class Employee {
     @DBRef
     private List<Reclamation> reclamation;
     @DBRef
-    //bcz it is Many to one association -_-
+    //bcz it is Many to one association -_- and to skip the infinite loop
     @JsonIgnore
     private HRadmin admin;
     @DBRef
+    @JsonIgnore
     private Departement departement;
     public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
 

@@ -24,19 +24,30 @@ public class HRadminController {
     private EmpService employeeService;
     @Autowired
     private ReclamationService reclamationService;
-
-    //gestion des employees
-
-    @PostMapping("/employee/save")
-    public String Save(@PathVariable String id , @RequestBody Employee employee){
-        return adminService.saveEmployee(id,employee);
+    //handle admin profile
+    @GetMapping()
+    public HRadmin getAdminById(@PathVariable String id){
+        return adminService.getAdminById(id);
     }
+    //handle des departements
+
+
+
+
+
+
+
+
+
+    //imma remove it
+
 
 
     @GetMapping("/employee/getAll")
     public List<Employee> getAllEmployee(@PathVariable String id){
         return adminService.getAllEmployees(id);
     }
+    //can not edit departement here ?? idk yet
 
 
 }

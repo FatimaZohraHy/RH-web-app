@@ -18,7 +18,8 @@ public class HRadmin {
    private User user;
    @DBRef
    private List<Employee> employees;
-
+   @DBRef
+   private List<Departement> departements;
 
     public HRadmin() {
     }
@@ -73,7 +74,15 @@ public class HRadmin {
     }
 
     public List<Employee> getEmployees() {
-        return employees;
+        return this.employees;
+    }
+
+    public List<Departement> getDepartements() {
+        return this.departements;
+    }
+
+    public void setDepartements(List<Departement> departements) {
+        this.departements = departements;
     }
 
     public void setEmployees(List<Employee> employees) {
@@ -89,5 +98,16 @@ public class HRadmin {
 
     public void removeEmployee(Employee employee){
         this.employees.remove(employee);
+    }
+
+
+    public void addDepartement(Departement departement){
+        if(this.getDepartements()==null)
+            this.departements=new ArrayList<>();
+        this.departements.add(departement);
+    }
+    public void removeDepartement(Departement departement){
+
+        this.departements.remove(departement);
     }
 }

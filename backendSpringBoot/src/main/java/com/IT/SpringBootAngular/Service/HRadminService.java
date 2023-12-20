@@ -25,6 +25,20 @@ public class HRadminService {
 
 
 
+
+    public HRadmin getAdminById(String id){
+        return hrAdminRepo.findById(id).orElse(null);
+    }
+    public String deleteAdmin(String id){
+        HRadmin hRadmin = hrAdminRepo.findById(id).orElse(null);
+        if(hRadmin==null)
+            return "admin not found";
+        return null;
+    }
+
+
+
+
     public HRadmin saveHRAdmin(HRadmin hradmin) {
         User saveUser = userRepo.save(hradmin.getUser());
         hradmin.setUser(saveUser);
@@ -38,17 +52,34 @@ public class HRadminService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String saveEmployee(String admin_id , Employee employee){
         HRadmin hRadmin = hrAdminRepo.findById(admin_id).orElse(null);
+        Departement departement = employee.getDepartement();
         if(hRadmin != null) {
             User saveUser = userRepo.save(employee.getUser());
             Salaire saveSalire = salairerepo.save(employee.getSalaire());
-            Departement saveDepartement = departementRepo.save(employee.getDepartement());
+
+
             employee.setUser(saveUser);
             employee.setSalaire(saveSalire);
-            employee.setDepartement(saveDepartement);
+            employee.setDepartement(departement);
             employee.setAdmin(hRadmin);
+            departement.addEmployee(employee);
             hRadmin.addEmployee(employee);
+            departementRepo.save(departement);
             hrAdminRepo.save(hRadmin);
             employeeRepo.save(employee);
 
@@ -64,6 +95,25 @@ public class HRadminService {
         if(hRadmin==null)
             return null;
         return hRadmin.getEmployees();
+    }
+
+    public String editEmpoloyee(String Aid ,String Eid, Employee updatedemployee){
+        Employee employee = employeeRepo.findById(Eid).orElse(null);
+        if(employee==null)
+            return "employee not found";
+        HRadmin admin = hrAdminRepo.findById(Aid).orElse(null);
+        if(admin==null)
+            return "admin not found";
+
+        updatedemployee.setAdmin(admin);
+        updatedemployee.setSalaire(employee.getSalaire());
+        updatedemployee.setUser(employee.getUser());
+        updatedemployee.setReclamation(employee.getReclamation());
+        updatedemployee.setDepartement(employee.getDepartement());
+
+        employeeRepo.save(updatedemployee);
+        return updatedemployee.get_id() + "updated";
+
     }
 
 }
