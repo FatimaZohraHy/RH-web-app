@@ -31,26 +31,15 @@ public class HRadminController {
         return adminService.getAdminById(id);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/employee/getAll")
     public ResponseEntity<List<Employee>> getAllEmployee(@PathVariable String id){
 
         List<Employee>message = employeeService.getAllEmployee(id);
         return ResponseEntity.ok(message);
     }
-    //can not edit departement here ?? idk yet
 
+    //get all reclamation by employee name
+    //get all demandes by employee name
 
 }
 

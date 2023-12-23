@@ -20,6 +20,12 @@ public class EmployeeController {
     @Autowired
     private ReclamationService reclamationService;
 
+    //get employee by id
+    //edit his own info salary not included
+    //add reclamation
+    //delete reclamation
+    //add demand
+    //delete demand
 
 
 }
