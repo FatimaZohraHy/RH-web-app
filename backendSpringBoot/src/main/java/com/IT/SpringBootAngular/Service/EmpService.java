@@ -45,6 +45,10 @@ public class EmpService {
         employee.setDepartement(departement);
         departement.addEmployee(employee);
         admin.addEmployee(employee);
+        employee.setDepartement(departement);
+        employee.setAdmin(admin);
+        Srepo.save(employee.getSalaire());
+        userRepo.save(employee.getUser());
         adminRepo.save(admin);
         departementRepo.save(departement);
         employeeRepo.save(employee);
@@ -61,9 +65,11 @@ public class EmpService {
             return "no such an employee";
         admin.removeEmployee(employee);
         departement.removeEmployee(employee);
-        employeeRepo.delete(employee);
         adminRepo.save(admin);
         departementRepo.save(departement);
+        userRepo.delete(employee.getUser());
+        Srepo.delete(employee.getSalaire());
+        employeeRepo.delete(employee);
         return "employee "+employee.get_id()+" has been deleted";
     }
 
@@ -72,19 +78,18 @@ public class EmpService {
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
             return null;
-        for(Departement d : admin.getDepartements()){
-            if(d==departement)
-                return d.getEmployeeList();
-        }
-            return null;
+
+         return departement.getEmployeeList();
+
+
 
     }
-
+    //------------------------------
     public String editEmployeeByDepartement(String admin_id , String departement_id , String employee_id , Employee updatedemployee) {
         HRadmin admin = adminRepo.findById(admin_id).orElse(null);
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
-            return "nà admin or departement found";
+            return "no admin or departement found";
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         if(employee==null)
             return "employe not found with such an id"+employee_id;
@@ -93,6 +98,28 @@ public class EmpService {
 
         return null;
     }
+    //-----------admin controller------------------
+    public List<Employee> getAllEmployee(String id){
+        HRadmin admin = adminRepo.findById(id).orElse(null);
+        if(admin == null)
+            return null;
+        return admin.getEmployees();
+    }
+
+    //--------------employee controller
+
+    public Employee getEmployeeById(String id){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        return employee;
+    }
+
+    public String editEmployee(String id,Employee updatedemp){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        Salaire savedSalary = employee.getSalaire();
+        return null;
+
+    }
+
 
 
 

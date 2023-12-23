@@ -31,6 +31,7 @@ public class DepartementService {
         HRadmin admin = adminRepo.findById(id).orElse(null);
         if(admin==null)
             return null;
+        departement.sethRadmin(admin);
         departementRepo.save(departement);
         admin.addDepartement(departement);
         adminRepo.save(admin);
@@ -52,9 +53,10 @@ public class DepartementService {
         if (departement == null)
             return "departement not found";
         // Remove departement from admin's list before removing the departement so the ref still be valid
+
         admin.removeDepartement(departement);
-        adminRepo.save(admin);
         departementRepo.delete(departement);
+        adminRepo.save(admin);
         return departement.getDepartName() + " has been removed";
     }
 
@@ -82,7 +84,19 @@ public class DepartementService {
         return "depart "+updateddepartement.getDepartName()+"has been edited and saved";
 
     }
+    public String editDepartement2(String admin_id , String departement_id , Departement updateddepartement){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        if(admin==null)
+            return "admin not found";
 
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(departement==null)
+            return "departement not found";
+
+        departement.setDepartName(updateddepartement.getDepartName());
+        departementRepo.save(departement);
+        return departement.getDepartName() + "has been updated and saved successfully";
+    }
 
 
 }

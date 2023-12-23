@@ -45,6 +45,7 @@ public class DepartementController {
         String message =  departementService.deleteDepartement(admin_id,departement_id);
         return ResponseEntity.ok(message);
     }
+    //Still
     @PutMapping("/edit/{d_id}")
     public ResponseEntity<String> editDepartement(@PathVariable  (name="id") String  admin_id ,
                                        @PathVariable (name = "d_id") String departement_id,@RequestBody Departement departement ){
@@ -65,18 +66,22 @@ public class DepartementController {
 
 
     @DeleteMapping("/{d_id}/employee/delete/{e_id}")
-    public String deleteEmployee(@PathVariable (name="id") String admin_id ,
+    public ResponseEntity<String> deleteEmployee(@PathVariable (name="id") String admin_id ,
                                    @PathVariable (name = "d_id") String departement_id,
                                    @PathVariable (name ="e_id") String employee_id){
-       return empService.deleteEmployeeBydepartement(admin_id,departement_id,employee_id);
+       String message = empService.deleteEmployeeBydepartement(admin_id,departement_id,employee_id);
+       return ResponseEntity.ok(message);
     }
 
     @GetMapping("/{d_id}/employee/getALL")
-    public List<Employee> getAllEmpoyee(@PathVariable (name="id") String  admin_id ,
+    public ResponseEntity<List<Employee>> getAllEmpoyee(@PathVariable (name="id") String  admin_id ,
                                         @PathVariable (name = "d_id") String departement_id ){
-        return empService.getAllEmployeeByDepartement(admin_id,departement_id);
+        List<Employee> message = empService.getAllEmployeeByDepartement(admin_id,departement_id);
+        return ResponseEntity.ok(message);
     }
 
+
+    //still
     @PutMapping("/{d_id}/employee/edit/{e_id}")
     public String editEmployee(@PathVariable (name="id") String admin_id ,
                                  @PathVariable (name = "d_id") String departement_id,

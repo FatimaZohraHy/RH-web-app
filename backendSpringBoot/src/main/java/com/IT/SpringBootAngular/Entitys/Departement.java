@@ -11,8 +11,9 @@ import java.util.List;
 @Document(collection = "Departement")
 public class Departement {
     @Id
-    private String id = new ObjectId().toString();
+    private String id ;
     private String departName ;
+    @DBRef
     private List<Employee> employeeList ;
     @JsonIgnore
     @DBRef

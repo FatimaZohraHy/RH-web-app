@@ -1,5 +1,6 @@
 package com.IT.SpringBootAngular.Entitys;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
     @Id
-    private String id;
+    private String id=new ObjectId().toString();
     private String username;
     private String password;
 
