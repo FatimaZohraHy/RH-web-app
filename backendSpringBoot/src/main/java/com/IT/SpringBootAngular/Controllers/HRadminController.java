@@ -7,6 +7,7 @@ import com.IT.SpringBootAngular.Service.EmpService;
 import com.IT.SpringBootAngular.Service.HRadminService;
 import com.IT.SpringBootAngular.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,6 @@ public class HRadminController {
     public HRadmin getAdminById(@PathVariable String id){
         return adminService.getAdminById(id);
     }
-    //handle des departements
 
 
 
@@ -39,13 +39,15 @@ public class HRadminController {
 
 
 
-    //imma remove it
+
 
 
 
     @GetMapping("/employee/getAll")
-    public List<Employee> getAllEmployee(@PathVariable String id){
-        return adminService.getAllEmployees(id);
+    public ResponseEntity<List<Employee>> getAllEmployee(@PathVariable String id){
+
+        List<Employee>message = employeeService.getAllEmployee(id);
+        return ResponseEntity.ok(message);
     }
     //can not edit departement here ?? idk yet
 

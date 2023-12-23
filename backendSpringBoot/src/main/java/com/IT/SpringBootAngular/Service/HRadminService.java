@@ -46,7 +46,11 @@ public class HRadminService {
     }
 
     public void deleteHRAdmin(String id) {
-        hrAdminRepo.deleteById(id);
+        HRadmin hRadmin = hrAdminRepo.findById(id).orElse(null);
+        userRepo.delete(hRadmin.getUser());
+        employeeRepo.deleteAll(hRadmin.getEmployees());
+        departementRepo.deleteAll(hRadmin.getDepartements());
+        hrAdminRepo.delete(hRadmin);
     }
 
 
@@ -90,12 +94,7 @@ public class HRadminService {
 
 
     }
-    public List<Employee> getAllEmployees(String id){
-        HRadmin hRadmin = hrAdminRepo.findById(id).orElse(null);
-        if(hRadmin==null)
-            return null;
-        return hRadmin.getEmployees();
-    }
+
 
     public String editEmpoloyee(String Aid ,String Eid, Employee updatedemployee){
         Employee employee = employeeRepo.findById(Eid).orElse(null);
