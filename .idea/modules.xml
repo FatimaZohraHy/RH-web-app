@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RH-web-app.iml" filepath="$PROJECT_DIR$/.idea/RH-web-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/backendSpringBoot/SpringBootAngular.iml" filepath="$PROJECT_DIR$/backendSpringBoot/SpringBootAngular.iml" />
     </modules>
   </component>
 </project>
