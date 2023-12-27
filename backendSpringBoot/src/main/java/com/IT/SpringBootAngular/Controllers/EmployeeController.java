@@ -28,14 +28,30 @@ public class EmployeeController {
     }
 
     //edit his own info salary not included
-    @PutMapping
-    public ResponseEntity<String> editEmployee(@PathVariable String id){
+    @PutMapping("Reclamations/edit/{r_id}")
+    public ResponseEntity<String> editEmployee(@PathVariable (name = "id") String id,
+                                               @PathVariable (name = "r_id") String reclamation_id,
+                                               @RequestBody Reclamation reclamation){
         return null;
     }
     //add reclamation
-    //delete reclamation
-    //add demand
-    //delete demand
+    @PostMapping("/Reclamations/add")
+    public ResponseEntity<String> addRecalamation(@PathVariable String id,@RequestBody Reclamation reclamation){
+        String message = reclamationService.saveReclamation(id,reclamation);
+        return ResponseEntity.ok(message);
+    }
+    @GetMapping("/Reclamation/getAll")
+    public ResponseEntity<List<Reclamation>> getAllReclamations(@PathVariable String id){
+        List<Reclamation> message = reclamationService.getReclamationsOfEmployee(id);
+        return ResponseEntity.ok(message);
+    }
+    @DeleteMapping("/Reclamatons/delete/{r_id}")
+    public ResponseEntity<String> deleteReclamation(@PathVariable (name="id") String employee_id,@PathVariable (name="r_id") String reclamation_id ){
+        String message = reclamationService.deleteReclamationByEmployee(employee_id,reclamation_id);
+        return ResponseEntity.ok(message);
+    }
+    //-------demandes part---------------
+
 
 
 }

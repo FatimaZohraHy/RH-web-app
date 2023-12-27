@@ -43,6 +43,11 @@ public class HRadminController {
     }
 
     //get all reclamation by employee name
+    @GetMapping("/reclamations")
+    public ResponseEntity<Map<Employee,Reclamation>> getAllReclamations(@PathVariable String id){
+        Map<Employee,Reclamation> message = reclamationService.getAllReclamations(id);
+        return ResponseEntity.ok(message);
+    }
     //get all demandes by employee name
 
 }

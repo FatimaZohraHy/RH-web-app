@@ -97,7 +97,8 @@ public class HRadmin {
     }
 
     public void removeEmployee(Employee emp){
-        this.employees.remove(emp);
+        if(this.employees !=null)
+         this.employees.remove(emp);
     }
 
 
@@ -107,7 +108,7 @@ public class HRadmin {
         this.departements.add(departement);
     }
     public void removeDepartement(Departement departement){
-
-        this.departements.remove(departement);
+        if(this.departements!=null)
+         this.departements.remove(departement);
     }
 }
