@@ -96,8 +96,8 @@ public class HRadmin {
         this.employees.add(employee);
     }
 
-    public void removeEmployee(Employee employee){
-        this.employees.remove(employee);
+    public void removeEmployee(Employee emp){
+        this.employees.remove(emp);
     }
 
 

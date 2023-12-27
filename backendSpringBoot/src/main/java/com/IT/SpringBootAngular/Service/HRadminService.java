@@ -22,6 +22,10 @@ public class HRadminService {
     private DepartementRepo departementRepo;
     @Autowired
     private EmployeeRepo employeeRepo;
+    @Autowired
+    private EmpService empService;
+    @Autowired
+    private DepartementService departementService;
 
 
 
@@ -30,10 +34,17 @@ public class HRadminService {
         return hrAdminRepo.findById(id).orElse(null);
     }
     public String deleteAdmin(String id){
-        HRadmin hRadmin = hrAdminRepo.findById(id).orElse(null);
-        if(hRadmin==null)
-            return "admin not found";
-        return null;
+        HRadmin admin = hrAdminRepo.findById(id).orElse(null);
+        if(admin == null)
+            return "acc not found";
+        userRepo.deleteById(admin.getUser().getId());
+        if(admin.getDepartements()!=null)
+         for(Departement d : admin.getDepartements()){
+           departementService.deleteDepartement(id,d.getId());
+        }
+
+        hrAdminRepo.deleteById(id);
+        return admin.getFirstname()+" has been deleted";
     }
 
 

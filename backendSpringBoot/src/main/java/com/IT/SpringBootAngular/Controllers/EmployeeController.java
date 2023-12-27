@@ -21,7 +21,17 @@ public class EmployeeController {
     private ReclamationService reclamationService;
 
     //get employee by id
+    @GetMapping()
+    public ResponseEntity<Employee> getEmployeeByID(@PathVariable String id){
+        Employee message = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(message);
+    }
+
     //edit his own info salary not included
+    @PutMapping
+    public ResponseEntity<String> editEmployee(@PathVariable String id){
+        return null;
+    }
     //add reclamation
     //delete reclamation
     //add demand

@@ -24,12 +24,6 @@ public class EmpService {
     private HRadminRepo adminRepo;
     @Autowired
     private DepartementRepo departementRepo;
-    //action by the employee
-
-
-
-    //actions by the admin
-
 
 
 
@@ -41,16 +35,18 @@ public class EmpService {
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
             return "admin or departement not found";
+
         employee.setAdmin(admin);
         employee.setDepartement(departement);
+
         departement.addEmployee(employee);
         admin.addEmployee(employee);
-        employee.setDepartement(departement);
-        employee.setAdmin(admin);
+
         Srepo.save(employee.getSalaire());
         userRepo.save(employee.getUser());
         adminRepo.save(admin);
         departementRepo.save(departement);
+
         employeeRepo.save(employee);
         return "employee has been saved "+employee.get_id();
     }
@@ -60,13 +56,17 @@ public class EmpService {
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
             return "admin or departement not found";
+
         Employee employee = employeeRepo.findById(empolyee_id).orElse(null);
         if(employee==null)
             return "no such an employee";
+
         admin.removeEmployee(employee);
         departement.removeEmployee(employee);
+
         adminRepo.save(admin);
         departementRepo.save(departement);
+
         userRepo.delete(employee.getUser());
         Srepo.delete(employee.getSalaire());
         employeeRepo.delete(employee);

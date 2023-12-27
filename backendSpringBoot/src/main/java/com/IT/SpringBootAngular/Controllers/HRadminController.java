@@ -9,7 +9,6 @@ import com.IT.SpringBootAngular.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,11 +25,16 @@ public class HRadminController {
     @Autowired
     private ReclamationService reclamationService;
     //handle admin profile
-    @GetMapping()
-    public HRadmin getAdminById(@PathVariable String id){
-        return adminService.getAdminById(id);
+    @GetMapping("/get")
+    public ResponseEntity<HRadmin> getAdminById(@PathVariable String id){
+        HRadmin message = adminService.getAdminById(id);
+        return ResponseEntity.ok(message);
     }
-
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteAdmin(@PathVariable String id){
+        String message = adminService.deleteAdmin(id);
+        return ResponseEntity.ok(message);
+    }
     @GetMapping("/employee/getAll")
     public ResponseEntity<List<Employee>> getAllEmployee(@PathVariable String id){
 

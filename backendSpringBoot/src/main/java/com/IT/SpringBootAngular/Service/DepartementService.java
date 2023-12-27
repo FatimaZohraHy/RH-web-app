@@ -24,6 +24,9 @@ public class DepartementService {
     private HRadminRepo adminRepo;
     @Autowired
     private DepartementRepo departementRepo;
+    @Autowired
+    private EmpService empService;
+
 
 
 
@@ -52,11 +55,20 @@ public class DepartementService {
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if (departement == null)
             return "departement not found";
-        // Remove departement from admin's list before removing the departement so the ref still be valid
 
         admin.removeDepartement(departement);
-        departementRepo.delete(departement);
         adminRepo.save(admin);
+        if(departement.getEmployeeList()!=null){
+         for(Employee emp : departement.getEmployeeList()){
+            admin.removeEmployee(emp);
+            Srepo.delete(emp.getSalaire());
+            userRepo.delete(emp.getUser());
+            repo.delete(emp);
+        }
+            adminRepo.save(admin);
+        }
+        departementRepo.delete(departement);
+
         return departement.getDepartName() + " has been removed";
     }
 
