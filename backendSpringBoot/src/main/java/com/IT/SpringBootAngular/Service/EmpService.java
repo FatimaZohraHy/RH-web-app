@@ -1,68 +1,144 @@
 package com.IT.SpringBootAngular.Service;
 
-import com.IT.SpringBootAngular.Entitys.Employee;
-import com.IT.SpringBootAngular.Entitys.Reclamation;
-import com.IT.SpringBootAngular.Entitys.Demande;
-import com.IT.SpringBootAngular.Entitys.User;
-import com.IT.SpringBootAngular.Entitys.Salaire;
+import com.IT.SpringBootAngular.Entitys.*;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.zip.Adler32;
+
 @Service
 public class EmpService {
     @Autowired
-    private EmployeeRepo repo;
+    private EmployeeRepo employeeRepo;
     @Autowired
     private SalaireRepo Srepo;
     @Autowired
     private UserRepo userRepo;
     @Autowired
     private ReclamationRepo reclamationRepo;
-
-   // private DemandeRepo demandeRepo;
-
-     public void save_update(Employee em) {
-         User saveUser = userRepo.save(em.getUser());
-         Salaire saveSalire = Srepo.save(em.getSalaire());
-         //List<Reclamation> reclamations = em.getReclamation() != null ? em.getReclamation() : Collections.emptyList();
-         //List<Reclamation> savedReclamations = reclamationRepo.saveAll(em.getReclamation());
-         em.setUser(saveUser);
-         em.setSalaire(saveSalire);
-         //em.setReclamation(savedReclamations);
-         repo.save(em);
-     }
-
-     public Iterable<Employee> getAll(){
-         return this.repo.findAll();
-     }
-
-
-     public void delete(String id){
-         Employee employee = repo.findById(id).orElse(null);//get the employee by its ID
-         if (employee != null) {
-             // Delete associated Salary
-             if (employee.getSalaire() != null) {
-                 Srepo.deleteById(employee.getSalaire().getId());
-                 userRepo.deleteById(employee.getUser().getId());
-                 for(Reclamation r : employee.getReclamation()){
-                     reclamationRepo.deleteById(r.getId());
-                 }
-             }
-             // Delete the employee
-             repo.deleteById(id);
-         }
-     }
+    @Autowired
+    private HRadminRepo adminRepo;
+    @Autowired
+    private DepartementRepo departementRepo;
 
 
 
 
-     public Employee getById(String id){
-         return repo.findById(id).get();
-     }
+    //actions by admin and departements
+
+    public String addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "admin or departement not found";
+
+        employee.setAdmin(admin);
+        employee.setDepartement(departement);
+
+        departement.addEmployee(employee);
+        admin.addEmployee(employee);
+
+        Srepo.save(employee.getSalaire());
+        userRepo.save(employee.getUser());
+        adminRepo.save(admin);
+        departementRepo.save(departement);
+
+        employeeRepo.save(employee);
+        return "employee has been saved "+employee.get_id();
+    }
+
+    public String deleteEmployeeBydepartement(String admin_id, String departement_id , String empolyee_id){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "admin or departement not found";
+
+        Employee employee = employeeRepo.findById(empolyee_id).orElse(null);
+        if(employee==null)
+            return "no such an employee";
+
+        admin.removeEmployee(employee);
+        departement.removeEmployee(employee);
+
+        adminRepo.save(admin);
+        departementRepo.save(departement);
+
+        userRepo.delete(employee.getUser());
+        Srepo.delete(employee.getSalaire());
+        employeeRepo.delete(employee);
+        return "employee "+employee.get_id()+" has been deleted";
+    }
+
+    public List<Employee> getAllEmployeeByDepartement(String admin_id , String departement_id){
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return null;
+
+         return departement.getEmployeeList();
 
 
-    //Reclamation Part:
+
+    }
+    //------------------------------
+    public String editEmployeeByDepartement(String admin_id , String departement_id , String employee_id , Employee updatedemployee) {
+        HRadmin admin = adminRepo.findById(admin_id).orElse(null);
+        Departement departement = departementRepo.findById(departement_id).orElse(null);
+        if(admin==null || departement==null)
+            return "no admin or departement found";
+        Employee employee = employeeRepo.findById(employee_id).orElse(null);
+        if(employee==null)
+            return "employe not found with such an id"+employee_id;
+        updatedemployee.setAdmin(admin);
+        updatedemployee.setDepartement(departement);
+
+        return null;
+    }
+    //-----------admin controller------------------
+    public List<Employee> getAllEmployee(String id){
+        HRadmin admin = adminRepo.findById(id).orElse(null);
+        if(admin == null)
+            return null;
+        return admin.getEmployees();
+    }
+
+    //--------------employee controller
+
+    public Employee getEmployeeById(String id){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        return employee;
+    }
+
+    public String editEmployee(String id,Employee updatedemp){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        Salaire savedSalary = employee.getSalaire();
+        return null;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

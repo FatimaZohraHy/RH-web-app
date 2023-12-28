@@ -9,53 +9,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*") //frontend connection
-@RequestMapping("/employee")
+@RequestMapping("/employee/{id}")
 public class EmployeeController {
     @Autowired
     private EmpService employeeService;
     @Autowired
     private ReclamationService reclamationService;
 
-
-    @PostMapping(value = "/save")
-    public String saveEmployee(@RequestBody Employee emp){
-        employeeService.save_update(emp);
-        return emp.get_id();
+    //get employee by id
+    @GetMapping()
+    public ResponseEntity<Employee> getEmployeeByID(@PathVariable String id){
+        Employee message = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(message);
     }
 
-    @GetMapping(value="/getAll")
-    public Iterable<Employee> getEmployee(){
-        return employeeService.getAll();
+    //edit his own info salary not included
+    @PutMapping("Reclamations/edit/{r_id}")
+    public ResponseEntity<String> editEmployee(@PathVariable (name = "id") String id,
+                                               @PathVariable (name = "r_id") String reclamation_id,
+                                               @RequestBody Reclamation reclamation){
+        return null;
     }
-
-
-    @PutMapping(value ="/edit/{id}")
-    private Employee updateEmployee(@RequestBody Employee employee ,  @PathVariable(name="id")String _id){
-        employee.set_id(_id);
-        employeeService.save_update(employee);return employee;
+    //add reclamation
+    @PostMapping("/Reclamations/add")
+    public ResponseEntity<String> addRecalamation(@PathVariable String id,@RequestBody Reclamation reclamation){
+        String message = reclamationService.saveReclamation(id,reclamation);
+        return ResponseEntity.ok(message);
     }
-
-
-    @DeleteMapping("/delete/{id}")
-    private void deleteEmployee(@PathVariable(name="id")String _id){
-        employeeService.delete(_id);
+    @GetMapping("/Reclamation/getAll")
+    public ResponseEntity<List<Reclamation>> getAllReclamations(@PathVariable String id){
+        List<Reclamation> message = reclamationService.getReclamationsOfEmployee(id);
+        return ResponseEntity.ok(message);
     }
-    @RequestMapping("/employee/{id}")
-    private Employee getEmployeeById(@PathVariable(name="id")String _id){
-        return employeeService.getById(_id);
+    @DeleteMapping("/Reclamatons/delete/{r_id}")
+    public ResponseEntity<String> deleteReclamation(@PathVariable (name="id") String employee_id,@PathVariable (name="r_id") String reclamation_id ){
+        String message = reclamationService.deleteReclamationByEmployee(employee_id,reclamation_id);
+        return ResponseEntity.ok(message);
     }
+    //-------demandes part---------------
 
 
 
-
-
-    //Reclamation part
-
-   @PostMapping("/reclamations/saveReclamation/{id}")
-    public ResponseEntity<String> saveReclamation(@PathVariable String id , @RequestBody Reclamation reclamation){
-        String result = reclamationService.saveReclamation(id,reclamation);
-        return ResponseEntity.ok(result);
-   }
 }

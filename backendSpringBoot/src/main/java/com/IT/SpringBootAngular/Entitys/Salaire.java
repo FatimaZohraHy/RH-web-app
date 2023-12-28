@@ -1,12 +1,13 @@
 package com.IT.SpringBootAngular.Entitys;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Salaire")
 public class Salaire {
     @Id
-    private String id;
+    private String id = new ObjectId().toString();
     private  float salaire;
     private String pay_day;
 
