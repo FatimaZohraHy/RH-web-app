@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/singup")
-public class HomePageController {
+public class    HomePageController {
     @Autowired
     private HRadminService hrAdminService;
     @PostMapping("/saveadmin")

@@ -1,4 +1,4 @@
-package com.IT.SpringBootAngular;
+package com.IT.SpringBootAngular.filters;
 
 import com.IT.SpringBootAngular.Service.jwt.UserServiceImpl;
 import com.IT.SpringBootAngular.utils.JwtUtil;
@@ -30,7 +30,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain
+    ) throws ServletException, IOException {
         String authHeader= request.getHeader("Bearer");
         String token=null;
         String username=null;

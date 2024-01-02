@@ -1,5 +1,6 @@
 package com.IT.SpringBootAngular.Service;
 
+import com.IT.SpringBootAngular.Entitys.Role;
 import com.IT.SpringBootAngular.Entitys.User;
 import com.IT.SpringBootAngular.Repo.UserRepo;
 import com.IT.SpringBootAngular.dto.SignupRequest;
@@ -7,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Service
 public class AuthServiceImpl implements AuthService{
@@ -30,6 +33,9 @@ public class AuthServiceImpl implements AuthService{
         BeanUtils.copyProperties(signupRequest,user);
 //        user.setEmail(signupRequest.getEmail());
 //        user.setUsername(signupRequest.getUsername());
+
+        Role userRole = signupRequest.getRole();
+        user.setRoles(Collections.singleton(userRole));
 
         //Hash the password before saving
         String hashPassword = passwordEncoder.encode(signupRequest.getPassword());

@@ -10,13 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final UserServiceImpl userService;
@@ -45,7 +48,13 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        String jwt = jwtUtil.generateToken(userDetails.getUsername());
-        return ResponseEntity.ok(new LoginResponse(jwt));
+        String jwt = jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new LoginResponse(jwt,getRolesFromUserDetails(userDetails)));
 }
+
+    private List<String> getRolesFromUserDetails(UserDetails userDetails) {
+        return userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+    }
 }

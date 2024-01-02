@@ -1,6 +1,6 @@
 package com.IT.SpringBootAngular.config;
 
-import com.IT.SpringBootAngular.JwtRequestFilter;
+import com.IT.SpringBootAngular.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +32,7 @@ public class WebSecurityConfiguration {
         return security.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers( "/signup","/login").permitAll()
+                        .requestMatchers("/logout").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
