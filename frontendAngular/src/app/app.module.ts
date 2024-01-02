@@ -5,20 +5,35 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { NavbarComponent } from './admin/navbar/navbar.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
-import { ArchiveEmployeeComponent } from './employees/archive-employee/archive-employee.component';
-import { DepartmentComponent } from './department/department.component';
-import { CardComponent } from './department/card/card.component';
-import { AttendanceComponent } from './attendance/attendance.component';
-import { LeavesComponent } from './requests/leaves/leaves.component';
-import { ResignationsComponent } from './requests/resignations/resignations.component';
-import { ClaimsComponent } from './claims/claims.component';
-import { PayrollComponent } from './payroll/payroll.component';
+import { EmployeesComponent } from './admin/employees/employees.component';
+import { AddEmployeeComponent } from './admin/employees/add-employee/add-employee.component';
+import { ArchiveEmployeeComponent } from './admin/employees/archive-employee/archive-employee.component';
+
+import { AttendanceComponent } from './admin/attendance/attendance.component';
+import { ClaimsComponent } from './admin/claims/claims.component';
+import { PayrollComponent } from './admin/payroll/payroll.component';
+import { AdminComponent } from './admin/admin.component';
+import { CardComponent } from './admin/department/card/card.component';
+import { DepartmentComponent } from './admin/department/department.component';
+import { UserComponent } from './user/user.component';
+import { ProfilComponent } from './user/profil/profil.component';
+import { CheckinComponent } from './user/userattendance/checkin/checkin.component';
+import { CheckoutComponent } from './user/userattendance/checkout/checkout.component';
+import { UserRequestsComponent } from './user/user-requests/user-requests.component';
+import { UserClaimsComponent } from './user/user-claims/user-claims.component';
+import { UserPayrollComponent } from './user/user-payroll/user-payroll.component';
+import { HomeComponent } from './user/home/home.component';
+import { EditprofilimageComponent } from './user/profil/editprofilimage/editprofilimage.component';
+import { UserinfoComponent } from './user/profil/userinfo/userinfo.component';
+import { WorkinfoComponent } from './user/profil/workinfo/workinfo.component';
+import { HeaderComponent } from './user/header/header.component';
+import { UserLeaveComponent } from './user/user-requests/user-leave/user-leave.component';
+import { UserResignComponent } from './user/user-requests/user-resign/user-resign.component';
+
 
 @NgModule({
   declarations: [
@@ -33,12 +48,30 @@ import { PayrollComponent } from './payroll/payroll.component';
     DepartmentComponent,
     CardComponent,
     AttendanceComponent,
-    LeavesComponent,
-    ResignationsComponent,
     ClaimsComponent,
     PayrollComponent,
+    AdminComponent,
+    UserComponent,
+    ProfilComponent,
+    CheckinComponent,
+    CheckoutComponent,
+    UserRequestsComponent,
+    UserClaimsComponent,
+    UserPayrollComponent,
+    HomeComponent,
+    EditprofilimageComponent,
+    UserinfoComponent,
+    WorkinfoComponent,
+    HeaderComponent,
+    UserLeaveComponent,
+    UserResignComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

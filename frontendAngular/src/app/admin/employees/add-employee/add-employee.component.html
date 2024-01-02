@@ -1,0 +1,165 @@
+<!-- MAIN -->
+<main>
+  <div class="head-title">
+    <div class="left">
+      <h1>Employees Managment</h1>
+      <ul class="breadcrumb">
+        <li>
+          <a href="#">Employees</a>
+        </li>
+        <li><i class="bx bx-chevron-right"></i></li>
+        <li>
+          <a class="active" href="#">Add</a>
+        </li>
+      </ul>
+    </div>
+    <a href="#" class="btn-download">
+      <i class="bx bxs-cloud-download"></i>
+      <span class="text">Download PDF</span>
+    </a>
+  </div>
+
+  <div class="table-data">
+    <div class="order">
+      <div class="head">
+        <h3>Add Employee</h3>
+        <i class="bx bx-search"></i>
+        <i class="bx bx-filter"></i>
+      </div>
+      <form>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                placeholder="Enter first name"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                placeholder="Enter last name"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="code">Employee code</label>
+              <input
+                type="text"
+                class="form-control"
+                id="code"
+                placeholder="Enter code"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="dept">Department</label>
+              <input
+                type="text"
+                class="form-control"
+                id="dept"
+                placeholder="Specify Department"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="bdate">Date of Birth</label>
+              <input
+                type="date"
+                class="form-control"
+                id="bdate"
+                placeholder="Enter Birth Date"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="jdate">Date of Joining</label>
+              <input
+                type="date"
+                class="form-control"
+                id="jdate"
+                placeholder="Enter Joining Date"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="user">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="user"
+                placeholder="Enter Username"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter Email"
+                required
+              />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="role">Gender</label>
+              <select class="form-control" id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="role">Designation</label>
+              <select class="form-control" id="designation" required>
+                <option value="" disabled selected>Select Designation</option>
+                <option value="manager">Manager</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="role">Role</label>
+              <select class="form-control" id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="num">Contact Number</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="num"
+                placeholder="Enter Phone Number"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-3">
+            <div class=" text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</main>
+<!-- MAIN -->

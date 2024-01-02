@@ -2,17 +2,17 @@
 <section id="sidebar">
   <a href="#" class="brand">
     <i class="bx bxs-smile"></i>
-    <span class="text">HRMS</span>
+    <span class="text">USER_TEST</span>
   </a>
   <ul class="side-menu top">
     <li [routerLinkActive]="'active'">
-      <a routerLink="/dashboard">
+      <a routerLink="/user/home">
         <i class="bx bxs-dashboard"></i>
-        <span class="text">Dashboard</span>
+        <span class="text">Home</span>
       </a>
     </li>
     <li [routerLinkActive]="'active'">
-      <a routerLink="/department">
+      <a routerLink="/admin/department">
         <i class="bx bxs-buildings"></i>
         <span class="text">Departments</span>
       </a>
@@ -29,20 +29,20 @@
       </a>
       <ul class="submenu" *ngIf="isEmployeesDropdownOpen">
         <li>
-          <a routerLink="/employees/add-employee">
+          <a routerLink="/admin/employees/add-employee">
             <i class="bx bx-plus-circle"></i>
             <span class="nav-text">Add Employee</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a routerLink="/admin/employees/archive-employee">
             <i class="bx bx-minus-circle"></i>
             <span class="nav-text">Archive Employee</span>
           </a>
         </li>
       </ul>
     </li>
-    <li class="dropdown" (click)="toggleAttendanceDropdown()" >
+    <li class="dropdown" (click)="toggleAttendanceDropdown()">
       <a>
         <i class="bx bx-clipboard"></i>
         <span class="text">Attendance</span>
@@ -50,8 +50,13 @@
       </a>
       <ul class="submenu" *ngIf="isAttendanceDropdownOpen">
         <li>
-          <a routerLink="attendance">
-            <span class="nav-text">Employees Attendance</span>
+          <a routerLink="/user/checkin">
+            <span class="nav-text">CheckIn</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/user/checkout">
+            <span class="nav-text">CheckOut</span>
           </a>
         </li>
       </ul>
@@ -64,25 +69,25 @@
       </a>
       <ul class="submenu" *ngIf="isRequestsDropdownOpen">
         <li>
-          <a routerLink="requests/leaves">
-            <span class="nav-text">Leaves</span>
+          <a routerLink="/user/requests/leave">
+            <span class="nav-text">Leave</span>
           </a>
         </li>
         <li>
-          <a routerLink="requests/resignations">
-            <span class="nav-text">Resignation</span>
+          <a routerLink="/user/requests/resign">
+            <span class="nav-text">Resign</span>
           </a>
         </li>
       </ul>
     </li>
     <li [routerLinkActive]="'active'">
-      <a routerLink="/claims">
+      <a routerLink="/user/claims">
         <i class="bx bxs-doughnut-chart"></i>
         <span class="text">Claims</span>
       </a>
     </li>
     <li [routerLinkActive]="'active'">
-      <a routerLink="/payroll">
+      <a routerLink="/user/payroll">
         <i class="bx bxs-wallet-alt"></i>
         <span class="text">Payroll</span>
       </a>
@@ -90,15 +95,12 @@
   </ul>
   <ul class="side-menu">
     <li>
-      <a href="#">
-        <i class="bx bxs-cog"></i>
-        <span class="text">Settings</span>
-      </a>
+      
     </li>
-    <li>
-      <a routerLink="/login" class="logout">
+    <li (click)="logout()">
+      <a class="logout">
         <i class="bx bxs-log-out-circle"></i>
-        <span class="text">Logout</span>
+        <span class="text" >Logout</span>
       </a>
     </li>
   </ul>

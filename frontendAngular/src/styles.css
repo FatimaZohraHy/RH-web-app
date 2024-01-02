@@ -50,7 +50,6 @@ body {
 
 
 
-
 /* SIDEBAR */
 /* Style for the dropdown */
 .dropdown {
@@ -188,11 +187,6 @@ body {
 	justify-content: center;
 }
 /* SIDEBAR */
-
-
-
-
-
 /* CONTENT */
 #content {
 	position: relative;
@@ -204,9 +198,6 @@ body {
 	width: calc(100% - 60px);
 	left: 60px;
 }
-
-
-
 
 /* NAVBAR */
 #content nav {
@@ -331,11 +322,6 @@ body {
 	left: calc(100% - (25px - 4px) - 2px);
 }
 /* NAVBAR */
-
-
-
-
-
 /* MAIN */
 #content main {
 	width: 100%;
@@ -387,8 +373,6 @@ body {
 }
 
 
-
-
 #content main .box-info {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -432,10 +416,6 @@ body {
 #content main .box-info li .text p {
 	color: var(--dark);	
 }
-
-
-
-
 
 #content main .table-data {
 	display: flex;
@@ -570,11 +550,6 @@ body {
 		display: none;
 	}
 }
-
-
-
-
-
 
 @media screen and (max-width: 576px) {
 	#content nav form .form-input input {

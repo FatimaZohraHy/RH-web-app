@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
+
 const BASE_URL = ['http://localhost:8087/'];
 
 @Injectable({
@@ -17,6 +19,9 @@ export class JwtService {
   login(loginRequest: any): Observable<any> {
     return this.http.post(BASE_URL + 'login', loginRequest);
   }
+  // getUserRoles(): string[] {
+  //   return this.tokenService.getRoles();
+  // }
 
   // hello(): Observable<any> {
   //   return this.http.get(BASE_URL + 'api/hello', {

@@ -1,10 +1,8 @@
 /* login.component.css */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
+.login {
+  position: fixed;
+  top: 200px; /* Adjust as needed */
+  left: 570px; /* Adjust as needed */
 }
 
 .login-box {

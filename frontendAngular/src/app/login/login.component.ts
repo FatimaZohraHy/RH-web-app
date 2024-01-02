@@ -27,12 +27,31 @@ export class LoginComponent implements OnInit {
   submitForm() {
     this.service.login(this.loginForm.value).subscribe((response) => {
       console.log(response);
-      if (response.jwt != null) {
-        alert('Hello, Your token is ' + response.jwt);
-        const jwtToken = response.jwt;
+      if (response.jwToken != null) {
+        alert('Hello, Your token is ' + response.jwToken);
+        const jwtToken = response.jwToken;
         localStorage.setItem('jwt', jwtToken);
-        this.router.navigateByUrl('/dashboard');
+
+        // Decode the JWT token to get user roles
+        const decodedToken = this.decodeJwt(jwtToken);
+
+        // Check if ROLE_ADMIN exists in the roles
+        if (decodedToken.roles && decodedToken.roles.includes('ROLE_ADMIN')) {
+          this.router.navigateByUrl('/admin/dashboard');
+        } else {
+          this.router.navigateByUrl('/user/home');
+        }
       }
     });
+  }
+
+  decodeJwt(token: string): any {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(atob(base64));
+    } catch (e) {
+      return {};
+    }
   }
 }
