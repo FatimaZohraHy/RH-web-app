@@ -52,8 +52,11 @@ public class HRadminService {
 
     public HRadmin saveHRAdmin(HRadmin hradmin) {
         User saveUser = userRepo.save(hradmin.getUser());
+
+
         hradmin.setUser(saveUser);
-        return hrAdminRepo.save(hradmin);
+        hrAdminRepo.save(hradmin);
+        return hradmin;
     }
 
     public void deleteHRAdmin(String id) {

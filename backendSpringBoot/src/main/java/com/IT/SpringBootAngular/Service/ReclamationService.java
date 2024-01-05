@@ -24,20 +24,18 @@ public class ReclamationService {
     @Autowired
     private HRadminRepo adminRepo;
 
-    public Map<Employee ,Reclamation > getAllReclamations(String id){
-        HRadmin admin = adminRepo.findById(id).orElse(null);
-        if(admin==null)
+    public Map<String,List<Reclamation>> getAllReclamations(String id){
+        HRadmin hRadmin = adminRepo.findById(id).orElse(null);
+        if(hRadmin== null)
             return null;
-        Map<Employee, Reclamation> reclamationsMap = new HashMap<>();
-       List<Employee> employees = admin.getEmployees();
-        for(Employee emp : employees){
-            if(emp.getReclamation()!=null){
-                for(Reclamation r : emp.getReclamation()){
-                    reclamationsMap.put(emp,r);
-                }
-            }
+        if(hRadmin.getEmployees()==null)
+            return null;
+        Map<String,List<Reclamation>> reclamationMap = new HashMap<>();
+        for(Employee emp : hRadmin.getEmployees()){
+            reclamationMap.put(emp.getFirstName(),emp.getReclamation());
         }
-        return reclamationsMap;
+        return reclamationMap;
+
     }
     public Reclamation getReclamationById(String id){
         return reclamationRepo.findById(id).orElse(null);
@@ -55,11 +53,12 @@ public class ReclamationService {
         }
     }
 
-    public List<Reclamation> getReclamationsOfEmployee(String employee_id){
-        Employee employee = employeeRepo.findById(employee_id).orElse(null);
+    public List<Reclamation> getreclamations(String id){
+        Employee employee = employeeRepo.findById(id).orElse(null);
+        if(employee == null)
+            return null;
         return employee.getReclamation();
     }
-
 
 
     public String deleteReclamationByEmployee(String  employee_id, String reclamation_id){

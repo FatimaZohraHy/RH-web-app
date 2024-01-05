@@ -24,7 +24,6 @@ public class Employee {
     private String address;
     private String city;
     private String state;
-    private String department;
     private Date hireDate;
 
     private boolean isActive;
@@ -42,7 +41,7 @@ public class Employee {
     @DBRef
     @JsonIgnore
     private Departement departement;
-    public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
+    public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,7 +52,6 @@ public class Employee {
         this.address = address;
         this.city = city;
         this.state = state;
-        this.department = department;
         this.hireDate = hireDate;
         this.isActive = isActive;
         this.salaire = salaire;
@@ -83,7 +81,7 @@ public class Employee {
 
 
     public List<Reclamation> getReclamation() {
-        return reclamation;
+        return this.reclamation;
     }
 
     public void setReclamation(List<Reclamation> reclamation) {
@@ -154,13 +152,7 @@ public class Employee {
         this.state = state;
     }
 
-    public String getDepartment() {
-        return department;
-    }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 
     public Date getHireDate() {
         return hireDate;

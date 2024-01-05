@@ -40,12 +40,12 @@ public class EmployeeController {
         String message = reclamationService.saveReclamation(id,reclamation);
         return ResponseEntity.ok(message);
     }
-    @GetMapping("/Reclamation/getAll")
+    @GetMapping("/Reclamations/getAll")
     public ResponseEntity<List<Reclamation>> getAllReclamations(@PathVariable String id){
-        List<Reclamation> message = reclamationService.getReclamationsOfEmployee(id);
+        List<Reclamation> message = reclamationService.getreclamations(id);
         return ResponseEntity.ok(message);
     }
-    @DeleteMapping("/Reclamatons/delete/{r_id}")
+    @DeleteMapping("/Reclamations/delete/{r_id}")
     public ResponseEntity<String> deleteReclamation(@PathVariable (name="id") String employee_id,@PathVariable (name="r_id") String reclamation_id ){
         String message = reclamationService.deleteReclamationByEmployee(employee_id,reclamation_id);
         return ResponseEntity.ok(message);
