@@ -30,7 +30,7 @@ public class AttendanceController {
         return attendanceService.getAttendancesByEmployeeId(employeeId);
     }
 
-    @PostMapping
+    @PostMapping("/checkin")
     public Attendance saveAttendance(@RequestBody Attendance attendance) {
         return attendanceService.saveAttendance(attendance);
     }

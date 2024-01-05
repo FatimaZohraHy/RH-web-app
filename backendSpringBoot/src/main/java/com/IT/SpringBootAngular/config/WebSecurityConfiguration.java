@@ -32,7 +32,7 @@ public class WebSecurityConfiguration {
         return security.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers( "/signup","/login").permitAll()
-                        .requestMatchers("/logout").permitAll()
+                        .requestMatchers("/singup/saveadmin").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

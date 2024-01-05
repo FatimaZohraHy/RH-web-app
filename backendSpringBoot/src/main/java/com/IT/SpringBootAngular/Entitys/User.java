@@ -27,7 +27,6 @@ public class User implements UserDetails {
 
     @Id
     private String id=new ObjectId().toString();
-    private String name;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
