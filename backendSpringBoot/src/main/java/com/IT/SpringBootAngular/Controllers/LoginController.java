@@ -1,5 +1,6 @@
 package com.IT.SpringBootAngular.Controllers;
 
+import com.IT.SpringBootAngular.Repo.HRadminRepo;
 import com.IT.SpringBootAngular.Service.jwt.UserServiceImpl;
 import com.IT.SpringBootAngular.dto.LoginRequest;
 import com.IT.SpringBootAngular.dto.LoginResponse;
@@ -24,12 +25,14 @@ public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final UserServiceImpl userService;
     private final JwtUtil jwtUtil;
+    private final HRadminRepo hRadminRepo;
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager, UserServiceImpl userService, JwtUtil jwtUtil) {
+    public LoginController(AuthenticationManager authenticationManager, UserServiceImpl userService, JwtUtil jwtUtil, HRadminRepo hRadminRepo) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.jwtUtil = jwtUtil;
+        this.hRadminRepo = hRadminRepo;
     }
 
     @PostMapping(produces = "application/json")
