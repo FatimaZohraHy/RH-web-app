@@ -36,7 +36,7 @@ public class AuthServiceImpl implements AuthService{
         //check if user already existe
         if (userRepo.existsByEmail(signupRequest.getEmail())) {
             return false;
-        }
+        }g
         User user = new User();
         BeanUtils.copyProperties(signupRequest,user);
 //        user.setEmail(signupRequest.getEmail());
