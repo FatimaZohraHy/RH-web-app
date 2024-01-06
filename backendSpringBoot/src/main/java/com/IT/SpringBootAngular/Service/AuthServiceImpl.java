@@ -11,14 +11,17 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
 @Service
 public class AuthServiceImpl implements AuthService{
-
+    @Autowired
     private final UserRepo userRepo;
+    @Autowired
     private final HRadminRepo hRadminRepo;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -51,6 +54,7 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
+    @Transactional
     public boolean createHRAdmin(HRAdminRequest hrAdminRequest) {
         // Check if HR admin already exists by email
         if (userRepo.existsByEmail(hrAdminRequest.getEmail())) {
@@ -69,8 +73,7 @@ public class AuthServiceImpl implements AuthService{
         String hashedPassword = passwordEncoder.encode(hrAdminRequest.getPassword());
         user.setPassword(hashedPassword);
 
-        // Save the user
-        userRepo.save(user);
+
 
         // Create an associated HRadmin
         HRadmin hradmin = new HRadmin();
@@ -79,7 +82,9 @@ public class AuthServiceImpl implements AuthService{
         hradmin.setFirstname(hrAdminRequest.getFirstname());
         hradmin.setLastname(hrAdminRequest.getLastname());
         hradmin.setEntreprise(hrAdminRequest.getEntreprise());
-
+        // Save the user
+        user.sethRadmin(hradmin);
+        userRepo.save(user);
         // Save the HRadmin
         hRadminRepo.save(hradmin);
 
@@ -87,5 +92,7 @@ public class AuthServiceImpl implements AuthService{
         // return user.getId();
         return true;
     }
+
+
 
 }

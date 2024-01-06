@@ -1,5 +1,6 @@
 package com.IT.SpringBootAngular.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,6 +15,7 @@ public class HRadmin {
    private String firstname;
    private String lastname;
    private String entreprise;
+   @JsonIgnore
    @DBRef
    private User user;
    @DBRef
@@ -111,4 +113,5 @@ public class HRadmin {
         if(this.departements!=null)
          this.departements.remove(departement);
     }
+
 }

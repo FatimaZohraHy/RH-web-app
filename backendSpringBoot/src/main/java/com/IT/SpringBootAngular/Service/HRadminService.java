@@ -3,6 +3,7 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.*;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class HRadminService {
 
 
 
+
     public HRadmin getAdminById(String id){
         return hrAdminRepo.findById(id).orElse(null);
     }
@@ -50,13 +52,16 @@ public class HRadminService {
 
 
 
-    public HRadmin saveHRAdmin(HRadmin hradmin) {
-        User saveUser = userRepo.save(hradmin.getUser());
+    public boolean saveHRAdmin(HRadmin hradmin) {
+        // Check if HR admin already exists by email
+        if (userRepo.existsByEmail(hradmin.getUser().getEmail())) {
+            return false;
+        }
+        User user = hradmin.getUser();
 
 
-        hradmin.setUser(saveUser);
-        hrAdminRepo.save(hradmin);
-        return hradmin;
+
+       return true;
     }
 
     public void deleteHRAdmin(String id) {

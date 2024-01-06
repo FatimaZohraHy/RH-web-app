@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,8 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+    @DBRef
+    private HRadmin hRadmin;
 
 
     @Override
@@ -39,6 +42,8 @@ public class User implements UserDetails {
                 .map(role->new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .collect(Collectors.toList());
     }
+
+
 
     @Override
     public String getPassword() {
@@ -96,6 +101,21 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public HRadmin gethRadmin() {
+        return hRadmin;
+    }
+
+    public void sethRadmin(HRadmin hRadmin) {
+        this.hRadmin = hRadmin;
+    }
+    public void addRole(Role r){
+        if (this.roles == null) {
+            this.roles = new HashSet<>();
+        }
+        this.roles.add(r);
     }
 }
 
