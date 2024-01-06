@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.concurrent.RecursiveAction;
 
 @Document(collection = "employees")
 public class Employee {
@@ -30,7 +29,7 @@ public class Employee {
     private boolean isActive;
 
     @DBRef
-    private User user;
+    private GUser GUser;
     @DBRef
     private Salaire salaire;
     @DBRef
@@ -182,12 +181,12 @@ public class Employee {
         isActive = active;
     }
 
-    public User getUser() {
-        return user;
+    public GUser getUser() {
+        return GUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(GUser GUser) {
+        this.GUser = GUser;
     }
 
     public Salaire getSalaire() {

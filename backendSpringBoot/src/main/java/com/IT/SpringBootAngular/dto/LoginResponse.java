@@ -6,6 +6,8 @@ public class LoginResponse {
     private String jwToken;
     private List<String> roles;
 
+
+
     public LoginResponse(String jwToken, List<String> roles) {
         this.jwToken = jwToken;
         this.roles=roles;

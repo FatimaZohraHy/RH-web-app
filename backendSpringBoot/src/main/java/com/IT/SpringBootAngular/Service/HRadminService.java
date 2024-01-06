@@ -5,9 +5,6 @@ import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class HRadminService {
     @Autowired
@@ -37,7 +34,7 @@ public class HRadminService {
         HRadmin admin = hrAdminRepo.findById(id).orElse(null);
         if(admin == null)
             return "acc not found";
-        userRepo.deleteById(admin.getUser().getId());
+//        userRepo.deleteById(admin.getUser().getId());
         if(admin.getDepartements()!=null)
          for(Departement d : admin.getDepartements()){
            departementService.deleteDepartement(id,d.getId());
@@ -51,14 +48,14 @@ public class HRadminService {
 
 
     public HRadmin saveHRAdmin(HRadmin hradmin) {
-        User saveUser = userRepo.save(hradmin.getUser());
-        hradmin.setUser(saveUser);
+//        GUser saveGUser = userRepo.save(hradmin.getUser());
+//        hradmin.setUser(saveGUser);
         return hrAdminRepo.save(hradmin);
     }
 
     public void deleteHRAdmin(String id) {
         HRadmin hRadmin = hrAdminRepo.findById(id).orElse(null);
-        userRepo.delete(hRadmin.getUser());
+//        userRepo.delete(hRadmin.getUser());
         employeeRepo.deleteAll(hRadmin.getEmployees());
         departementRepo.deleteAll(hRadmin.getDepartements());
         hrAdminRepo.delete(hRadmin);
@@ -84,11 +81,11 @@ public class HRadminService {
         HRadmin hRadmin = hrAdminRepo.findById(admin_id).orElse(null);
         Departement departement = employee.getDepartement();
         if(hRadmin != null) {
-            User saveUser = userRepo.save(employee.getUser());
+            GUser saveGUser = userRepo.save(employee.getUser());
             Salaire saveSalire = salairerepo.save(employee.getSalaire());
 
 
-            employee.setUser(saveUser);
+            employee.setUser(saveGUser);
             employee.setSalaire(saveSalire);
             employee.setDepartement(departement);
             employee.setAdmin(hRadmin);
