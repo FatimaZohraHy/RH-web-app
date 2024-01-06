@@ -17,8 +17,6 @@ public class EmpService {
     @Autowired
     private SalaireRepo Srepo;
     @Autowired
-    private UserRepo userRepo;
-    @Autowired
     private ReclamationRepo reclamationRepo;
     @Autowired
     private HRadminRepo adminRepo;
@@ -43,7 +41,6 @@ public class EmpService {
         admin.addEmployee(employee);
 
         Srepo.save(employee.getSalaire());
-        userRepo.save(employee.getUser());
         adminRepo.save(admin);
         departementRepo.save(departement);
 
@@ -67,7 +64,6 @@ public class EmpService {
         adminRepo.save(admin);
         departementRepo.save(departement);
 
-        userRepo.delete(employee.getUser());
         Srepo.delete(employee.getSalaire());
         employeeRepo.delete(employee);
         return "employee "+employee.get_id()+" has been deleted";

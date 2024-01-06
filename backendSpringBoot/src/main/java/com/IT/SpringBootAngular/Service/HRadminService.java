@@ -3,15 +3,12 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.*;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HRadminService {
     @Autowired
     private HRadminRepo hrAdminRepo;
-    @Autowired
-    private UserRepo userRepo;
     @Autowired
     private ReclamationRepo reclamationRepo;
     @Autowired
@@ -28,7 +25,6 @@ public class HRadminService {
 
 
 
-
     public HRadmin getAdminById(String id){
         return hrAdminRepo.findById(id).orElse(null);
     }
@@ -38,9 +34,9 @@ public class HRadminService {
             return "acc not found";
 //        userRepo.deleteById(admin.getUser().getId());
         if(admin.getDepartements()!=null)
-         for(Departement d : admin.getDepartements()){
-           departementService.deleteDepartement(id,d.getId());
-        }
+            for(Departement d : admin.getDepartements()){
+                departementService.deleteDepartement(id,d.getId());
+            }
 
         hrAdminRepo.deleteById(id);
         return admin.getFirstname()+" has been deleted";
@@ -49,23 +45,10 @@ public class HRadminService {
 
 
 
-<<<<<<< HEAD
-    public boolean saveHRAdmin(HRadmin hradmin) {
-        // Check if HR admin already exists by email
-        if (userRepo.existsByEmail(hradmin.getUser().getEmail())) {
-            return false;
-        }
-        User user = hradmin.getUser();
-
-
-
-       return true;
-=======
     public HRadmin saveHRAdmin(HRadmin hradmin) {
 //        GUser saveGUser = userRepo.save(hradmin.getUser());
 //        hradmin.setUser(saveGUser);
         return hrAdminRepo.save(hradmin);
->>>>>>> 139b8f46542ae272d53950903216730d9f6cdb55
     }
 
     public void deleteHRAdmin(String id) {
@@ -96,11 +79,8 @@ public class HRadminService {
         HRadmin hRadmin = hrAdminRepo.findById(admin_id).orElse(null);
         Departement departement = employee.getDepartement();
         if(hRadmin != null) {
-            GUser saveGUser = userRepo.save(employee.getUser());
             Salaire saveSalire = salairerepo.save(employee.getSalaire());
 
-
-            employee.setUser(saveGUser);
             employee.setSalaire(saveSalire);
             employee.setDepartement(departement);
             employee.setAdmin(hRadmin);
@@ -129,7 +109,6 @@ public class HRadminService {
 
         updatedemployee.setAdmin(admin);
         updatedemployee.setSalaire(employee.getSalaire());
-        updatedemployee.setUser(employee.getUser());
         updatedemployee.setReclamation(employee.getReclamation());
         updatedemployee.setDepartement(employee.getDepartement());
 
@@ -139,4 +118,3 @@ public class HRadminService {
     }
 
 }
-
