@@ -10,8 +10,6 @@ public class HRadminService {
     @Autowired
     private HRadminRepo hrAdminRepo;
     @Autowired
-    private UserRepo userRepo;
-    @Autowired
     private ReclamationRepo reclamationRepo;
     @Autowired
     private SalaireRepo salairerepo;
@@ -43,9 +41,6 @@ public class HRadminService {
         hrAdminRepo.deleteById(id);
         return admin.getFirstname()+" has been deleted";
     }
-
-
-
 
     public HRadmin saveHRAdmin(HRadmin hradmin) {
 //        GUser saveGUser = userRepo.save(hradmin.getUser());
@@ -81,11 +76,11 @@ public class HRadminService {
         HRadmin hRadmin = hrAdminRepo.findById(admin_id).orElse(null);
         Departement departement = employee.getDepartement();
         if(hRadmin != null) {
-            GUser saveGUser = userRepo.save(employee.getUser());
+//            GUser saveGUser = userRepo.save(employee.getUser());
             Salaire saveSalire = salairerepo.save(employee.getSalaire());
 
 
-            employee.setUser(saveGUser);
+//            employee.setUser(saveGUser);
             employee.setSalaire(saveSalire);
             employee.setDepartement(departement);
             employee.setAdmin(hRadmin);
@@ -114,7 +109,7 @@ public class HRadminService {
 
         updatedemployee.setAdmin(admin);
         updatedemployee.setSalaire(employee.getSalaire());
-        updatedemployee.setUser(employee.getUser());
+//        updatedemployee.setUser(employee.getUser());
         updatedemployee.setReclamation(employee.getReclamation());
         updatedemployee.setDepartement(employee.getDepartement());
 

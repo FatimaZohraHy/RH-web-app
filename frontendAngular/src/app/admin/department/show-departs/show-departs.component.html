@@ -1,0 +1,21 @@
+<main>
+  <div class="table-data">
+    <div class="order">
+      <div class="head">
+        <h3>Departments List</h3>
+        <i class="bx bx-search"></i>
+        <i class="bx bx-filter"></i>
+      </div>
+      <div class="card-container">
+        <app-card
+          *ngFor="let dept of departments"
+          [deptId]="dept.id"
+          [name]="dept.departName"
+          color="#3498db"
+          details="Department 1 details go here."
+        >
+      </app-card>
+      </div>
+    </div>
+  </div>
+</main>

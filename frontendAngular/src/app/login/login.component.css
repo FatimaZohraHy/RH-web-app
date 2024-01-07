@@ -1,8 +1,9 @@
 /* login.component.css */
 .login {
-  position: fixed;
-  top: 200px; /* Adjust as needed */
-  left: 570px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .login-box {
@@ -12,6 +13,7 @@
   width: 300px;
   text-align: center;
   border-radius: 8px;
+  margin-left: calc(-10% - 150px);
 }
 
 h2 {

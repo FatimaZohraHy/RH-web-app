@@ -44,9 +44,6 @@ public class AuthServiceImpl implements AuthService{
 
         // Save the user
         hRadminRepo.save(hRadmin);
-
-        // Optionally, you can return the created user or its ID if needed
-        // return user.getId();
         return true;
     }
     @Override

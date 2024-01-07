@@ -29,8 +29,6 @@ public class Employee {
     private boolean isActive;
 
     @DBRef
-    private GUser GUser;
-    @DBRef
     private Salaire salaire;
     @DBRef
     private List<Reclamation> reclamation;
@@ -42,7 +40,6 @@ public class Employee {
     @JsonIgnore
     private Departement departement;
     public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
-
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -179,14 +176,6 @@ public class Employee {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public GUser getUser() {
-        return GUser;
-    }
-
-    public void setUser(GUser GUser) {
-        this.GUser = GUser;
     }
 
     public Salaire getSalaire() {

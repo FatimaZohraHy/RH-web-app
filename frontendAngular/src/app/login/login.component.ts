@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtService } from 'src/app/service/jwt.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,13 @@ import { JwtService } from 'src/app/service/jwt.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  @Output() adminLoggedIn: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private service: JwtService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -33,25 +36,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwt', jwtToken);
 
         // Decode the JWT token to get user roles
-        const decodedToken = this.decodeJwt(jwtToken);
+        const decodedToken = this.authService.decodeJwt(jwtToken);
 
-        // Check if ROLE_ADMIN exists in the roles
-        if (decodedToken.roles && decodedToken.roles.includes('ROLE_ADMIN')) {
-          this.router.navigateByUrl('/admin/dashboard');
-        } else {
-          this.router.navigateByUrl('/user/home');
-        }
+        const adminId = decodedToken.adminId;
+        this.authService.setAdminId(adminId);
+        this.adminLoggedIn.emit(adminId);
+        console.log('Admin ID:',adminId);
+        this.router.navigateByUrl(`/admin/${adminId}/dashboard`);
       }
     });
-  }
-
-  decodeJwt(token: string): any {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(atob(base64));
-    } catch (e) {
-      return {};
-    }
   }
 }

@@ -17,8 +17,6 @@ public class DepartementService {
     @Autowired
     private SalaireRepo Srepo;
     @Autowired
-    private UserRepo userRepo;
-    @Autowired
     private ReclamationRepo reclamationRepo;
     @Autowired
     private HRadminRepo adminRepo;
@@ -62,7 +60,6 @@ public class DepartementService {
          for(Employee emp : departement.getEmployeeList()){
             admin.removeEmployee(emp);
             Srepo.delete(emp.getSalaire());
-            userRepo.delete(emp.getUser());
             repo.delete(emp);
         }
             adminRepo.save(admin);

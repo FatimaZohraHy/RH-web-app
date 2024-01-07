@@ -24,14 +24,15 @@ import { UserLeaveComponent } from './user/user-requests/user-leave/user-leave.c
 import { UserResignComponent } from './user/user-requests/user-resign/user-resign.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path: 'admin',
+    path: 'admin/:adminId',
     component: AdminComponent,
-    canActivate: [AuthGuard, RoleGuard],
+    // canActivate: [AuthGuard, RoleGuard],
     data: { expectedRole: 'ROLE_ADMIN' },
     children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
         component: ArchiveEmployeeComponent,
       },
       { path: 'department', component: DepartmentComponent },
+      { path:'show-departments',component:ShowDepartsComponent},
       { path: 'attendance', component: AttendanceComponent },
       { path: 'requests/leaves', component: LeavesComponent },
       { path: 'requests/resignations', component: ResignationsComponent },
@@ -51,7 +53,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
-    canActivate:[AuthGuard],
+    // canActivate:[AuthGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'claims', component: UserClaimsComponent },

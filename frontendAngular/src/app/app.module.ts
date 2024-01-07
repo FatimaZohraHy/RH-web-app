@@ -33,6 +33,7 @@ import { WorkinfoComponent } from './user/profil/workinfo/workinfo.component';
 import { HeaderComponent } from './user/header/header.component';
 import { UserLeaveComponent } from './user/user-requests/user-leave/user-leave.component';
 import { UserResignComponent } from './user/user-requests/user-resign/user-resign.component';
+import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { UserResignComponent } from './user/user-requests/user-resign/user-resig
     HeaderComponent,
     UserLeaveComponent,
     UserResignComponent,
+    ShowDepartsComponent,
   ],
   imports: [
     BrowserModule,

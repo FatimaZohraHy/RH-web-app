@@ -7,8 +7,21 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router) { }
+  private adminIdKey = 'adminId';
+  constructor(private router: Router) {}
   token = localStorage.getItem('jwt');
+
+  setAdminId(adminId: string): void {
+    if (adminId) {
+      localStorage.setItem(this.adminIdKey, adminId);
+    } else {
+      localStorage.removeItem(this.adminIdKey);
+    }
+  }
+
+  getAdminId(): string | null {
+    return localStorage.getItem(this.adminIdKey);
+  }
 
   isAuthenticated(): boolean {
     if (this.token) {
@@ -27,6 +40,14 @@ export class AuthService {
       return {};
     }
   }
+
+  // setAdminId(id: string) {
+  //   this.adminId = id;
+  // }
+
+  // getAdminId(): string | null {
+  //   return this.adminId;
+  // }
 
   logout(): void {
     localStorage.removeItem('jwt');

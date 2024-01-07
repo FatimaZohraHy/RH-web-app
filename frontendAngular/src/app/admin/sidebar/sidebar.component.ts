@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { LogoutService } from 'src/app/service/logout.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,8 +10,14 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class SidebarComponent {
   http: any;
-  constructor(private logoutService: LogoutService, private authService: AuthService) {}
-  // constructor(private logoutService: LogoutService) {}
+  constructor(
+    private logoutService: LogoutService,
+    private authService: AuthService
+  ) {}
+
+  get adminId(): string | null {
+    return this.authService.getAdminId();
+  }
 
   isEmployeesDropdownOpen = false;
   isAttendanceDropdownOpen = false;
