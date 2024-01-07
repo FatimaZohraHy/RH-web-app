@@ -34,9 +34,9 @@ public class HRadminService {
             return "acc not found";
 //        userRepo.deleteById(admin.getUser().getId());
         if(admin.getDepartements()!=null)
-         for(Departement d : admin.getDepartements()){
-           departementService.deleteDepartement(id,d.getId());
-        }
+            for(Departement d : admin.getDepartements()){
+                departementService.deleteDepartement(id,d.getId());
+            }
 
         hrAdminRepo.deleteById(id);
         return admin.getFirstname()+" has been deleted";
@@ -76,11 +76,16 @@ public class HRadminService {
         HRadmin hRadmin = hrAdminRepo.findById(admin_id).orElse(null);
         Departement departement = employee.getDepartement();
         if(hRadmin != null) {
+<<<<<<< HEAD
 //            GUser saveGUser = userRepo.save(employee.getUser());
             Salaire saveSalire = salairerepo.save(employee.getSalaire());
 
 
 //            employee.setUser(saveGUser);
+=======
+            Salaire saveSalire = salairerepo.save(employee.getSalaire());
+
+>>>>>>> origin/HRMS-web-app
             employee.setSalaire(saveSalire);
             employee.setDepartement(departement);
             employee.setAdmin(hRadmin);
@@ -109,7 +114,10 @@ public class HRadminService {
 
         updatedemployee.setAdmin(admin);
         updatedemployee.setSalaire(employee.getSalaire());
+<<<<<<< HEAD
 //        updatedemployee.setUser(employee.getUser());
+=======
+>>>>>>> origin/HRMS-web-app
         updatedemployee.setReclamation(employee.getReclamation());
         updatedemployee.setDepartement(employee.getDepartement());
 
@@ -119,4 +127,3 @@ public class HRadminService {
     }
 
 }
-

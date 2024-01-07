@@ -18,7 +18,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class WebSecurityConfiguration {
+public class
+WebSecurityConfiguration {
 
     private final JwtRequestFilter jwtRequestFilter;
 
@@ -32,7 +33,10 @@ public class WebSecurityConfiguration {
         return security.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers( "/signup","/login").permitAll()
+<<<<<<< HEAD
                         .requestMatchers("/singup").permitAll()
+=======
+>>>>>>> origin/HRMS-web-app
                         .requestMatchers("/admin/**").permitAll()
                         .anyRequest().authenticated()
                 )

@@ -18,25 +18,25 @@ import java.util.stream.Collectors;
 
 @Document(collection = "HRadmin")
 public class HRadmin implements UserDetails {
-   @Id
-   private String id;
-   private String firstname;
-   private String lastname;
-   private String entreprise;
-   private String email;
-   private String password;
-   @Enumerated(EnumType.STRING)
-   private Set<Role> roles;
-   @DBRef
-   private List<Employee> employees;
-   @DBRef
-   private List<Departement> departements;
+    @Id
+    private String id;
+    private String firstname;
+    private String lastname;
+    private String entreprise;
+    private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+    @DBRef
+    private List<Employee> employees;
+    @DBRef
+    private List<Departement> departements;
 
-   public HRadmin() {
+    public HRadmin() {
 
-   }
+    }
 
-   public HRadmin(String id, String firstname, String lastname, String entreprise, String email, String password, List<Employee> employees, List<Departement> departements) {
+    public HRadmin(String id, String firstname, String lastname, String entreprise, String email, String password, List<Employee> employees, List<Departement> departements) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -45,7 +45,7 @@ public class HRadmin implements UserDetails {
         this.password = password;
         this.employees = employees;
         this.departements = departements;
-   }
+    }
 
     public HRadmin(String email, String password, Set<GrantedAuthority> authorities, String id) {
         this.email=email;
@@ -58,111 +58,111 @@ public class HRadmin implements UserDetails {
 
     public String getId() {
         return id;
-   }
+    }
 
-   public void setId(String id) {
+    public void setId(String id) {
         this.id = id;
-   }
+    }
 
-   public String getFirstname() {
+    public String getFirstname() {
         return firstname;
-   }
+    }
 
-   public void setFirstname(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
-   }
+    }
 
-   public String getLastname() {
+    public String getLastname() {
         return lastname;
-   }
+    }
 
-   public void setLastname(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
-   }
+    }
 
-   public String getEntreprise() {
+    public String getEntreprise() {
         return entreprise;
-   }
+    }
 
-   public void setEntreprise(String entreprise) {
+    public void setEntreprise(String entreprise) {
         this.entreprise = entreprise;
-   }
+    }
 
-   public String getEmail() {
+    public String getEmail() {
         return email;
-   }
+    }
 
-   public void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-   }
+    }
 
-   public void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-   }
+    }
 
-   public Set<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
-   }
+    }
 
-   public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
-   }
+    }
 
-   public List<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return this.employees;
-   }
+    }
 
-   public List<Departement> getDepartements() {
+    public List<Departement> getDepartements() {
         return this.departements;
-   }
+    }
 
-   public void setDepartements(List<Departement> departements) {
+    public void setDepartements(List<Departement> departements) {
         this.departements = departements;
-   }
+    }
 
-   public void setEmployees(List<Employee> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
-   }
+    }
 
-   public void addEmployee(Employee employee){
+    public void addEmployee(Employee employee){
         if(this.getEmployees()==null){
             this.employees = new ArrayList<>();
         }
         this.employees.add(employee);
-   }
+    }
 
-   public void removeEmployee(Employee emp){
+    public void removeEmployee(Employee emp){
         if(this.employees !=null)
-         this.employees.remove(emp);
-   }
+            this.employees.remove(emp);
+    }
 
 
-   public void addDepartement(Departement departement){
+    public void addDepartement(Departement departement){
         if(this.getDepartements()==null)
             this.departements=new ArrayList<>();
         this.departements.add(departement);
-   }
-   public void removeDepartement(Departement departement){
+    }
+    public void removeDepartement(Departement departement){
         if(this.departements!=null)
-         this.departements.remove(departement);
-   }
+            this.departements.remove(departement);
+    }
 
-   @Override
-   public Collection<? extends GrantedAuthority> getAuthorities() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
                 .map(role->new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .collect(Collectors.toList());
-   }
+    }
 
-   @Override
-   public String getPassword() {
+    @Override
+    public String getPassword() {
         return password;
-   }
+    }
 
-   @Override
-   public String getUsername() {
+    @Override
+    public String getUsername() {
         return email;
-   }
+    }
 
     @Override
     public boolean isAccountNonExpired() {

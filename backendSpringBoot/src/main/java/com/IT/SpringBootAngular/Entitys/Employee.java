@@ -28,12 +28,16 @@ public class Employee {
 
     private boolean isActive;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/HRMS-web-app
     @DBRef
     private Salaire salaire;
     @DBRef
     private List<Reclamation> reclamation;
     @DBRef
-    //bcz it is Many to one association -_- and to skip the infinite loop
+    //bcz there is Many to one association -_- and to skip the infinite loop
     @JsonIgnore
     private HRadmin admin;
     @DBRef
@@ -178,6 +182,13 @@ public class Employee {
         isActive = active;
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> origin/HRMS-web-app
     public Salaire getSalaire() {
         return salaire;
     }

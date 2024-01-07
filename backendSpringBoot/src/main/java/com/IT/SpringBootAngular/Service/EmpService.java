@@ -41,7 +41,10 @@ public class EmpService {
         admin.addEmployee(employee);
 
         Srepo.save(employee.getSalaire());
+<<<<<<< HEAD
 //        userRepo.save(employee.getUser());
+=======
+>>>>>>> origin/HRMS-web-app
         adminRepo.save(admin);
         departementRepo.save(departement);
 
@@ -65,7 +68,10 @@ public class EmpService {
         adminRepo.save(admin);
         departementRepo.save(departement);
 
+<<<<<<< HEAD
 //        userRepo.delete(employee.getUser());
+=======
+>>>>>>> origin/HRMS-web-app
         Srepo.delete(employee.getSalaire());
         employeeRepo.delete(employee);
         return "employee "+employee.get_id()+" has been deleted";
