@@ -1,5 +1,6 @@
 package com.IT.SpringBootAngular.utils;
 
+import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.HRadmin;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -48,9 +49,16 @@ public class JwtUtil {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    public String generateToken(UserDetails userDetails) {       Map<String, Object> claims = new HashMap<>();
-        claims.put("adminId",((HRadmin) userDetails).getId());
-        claims.put("roles",userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("roles",userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
+        if(userDetails instanceof HRadmin){
+            claims.put("userId",((HRadmin) userDetails).getId());
+        } else if (userDetails instanceof Employee) {
+            claims.put("userId",((Employee) userDetails).get_id());
+        }
         return createToken(claims, userDetails.getUsername());
     }
 

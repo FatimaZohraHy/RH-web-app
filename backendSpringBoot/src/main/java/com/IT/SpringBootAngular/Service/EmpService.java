@@ -3,6 +3,7 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.*;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,12 +24,15 @@ public class EmpService {
     @Autowired
     private DepartementRepo departementRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
 
 
     //actions by admin and departements
 
-    public String addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
+    public String   addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
         HRadmin admin = adminRepo.findById(admin_id).orElse(null);
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
@@ -36,15 +40,15 @@ public class EmpService {
 
         employee.setAdmin(admin);
         employee.setDepartement(departement);
+        employee.setRoles(Collections.singleton(Role.USER));
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 
         departement.addEmployee(employee);
         admin.addEmployee(employee);
 
         Srepo.save(employee.getSalaire());
-<<<<<<< HEAD
 //        userRepo.save(employee.getUser());
-=======
->>>>>>> origin/HRMS-web-app
+
         adminRepo.save(admin);
         departementRepo.save(departement);
 
@@ -68,10 +72,7 @@ public class EmpService {
         adminRepo.save(admin);
         departementRepo.save(departement);
 
-<<<<<<< HEAD
 //        userRepo.delete(employee.getUser());
-=======
->>>>>>> origin/HRMS-web-app
         Srepo.delete(employee.getSalaire());
         employeeRepo.delete(employee);
         return "employee "+employee.get_id()+" has been deleted";

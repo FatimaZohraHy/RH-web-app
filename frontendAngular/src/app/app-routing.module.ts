@@ -25,6 +25,7 @@ import { UserResignComponent } from './user/user-requests/user-resign/user-resig
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
+import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-employees.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,11 @@ const routes: Routes = [
         component: ArchiveEmployeeComponent,
       },
       { path: 'department', component: DepartmentComponent },
-      { path:'show-departments',component:ShowDepartsComponent},
+      { path: 'show-departments', component: ShowDepartsComponent },
+      {
+        path: 'show-departments/:departmentId/employees/getALL',
+        component: DeptEmployeesComponent,
+      },
       { path: 'attendance', component: AttendanceComponent },
       { path: 'requests/leaves', component: LeavesComponent },
       { path: 'requests/resignations', component: ResignationsComponent },

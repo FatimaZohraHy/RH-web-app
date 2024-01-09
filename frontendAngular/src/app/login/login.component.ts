@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
         // Decode the JWT token to get user roles
         const decodedToken = this.authService.decodeJwt(jwtToken);
 
-        const adminId = decodedToken.adminId;
-        this.authService.setAdminId(adminId);
+        const adminId = decodedToken.userId;
+        this.authService.setUserId(adminId);
         this.adminLoggedIn.emit(adminId);
         console.log('Admin ID:',adminId);
         this.router.navigateByUrl(`/admin/${adminId}/dashboard`);

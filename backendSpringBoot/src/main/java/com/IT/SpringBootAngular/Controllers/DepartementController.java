@@ -2,9 +2,12 @@ package com.IT.SpringBootAngular.Controllers;
 
 import com.IT.SpringBootAngular.Entitys.Departement;
 import com.IT.SpringBootAngular.Entitys.Employee;
+import com.IT.SpringBootAngular.Service.AuthServiceImpl;
 import com.IT.SpringBootAngular.Service.DepartementService;
 import com.IT.SpringBootAngular.Service.EmpService;
+import com.IT.SpringBootAngular.dto.EmployeeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +19,11 @@ import java.util.List;
 public class DepartementController {
     @Autowired
     private DepartementService departementService;
-
     @Autowired
     private EmpService empService;
 
+    @Autowired
+    private AuthServiceImpl authService;
 
 
     //handle Departements
@@ -63,6 +67,20 @@ public class DepartementController {
         String message =  empService.addEmployeeByDepartemnt(admin_id,departement_id,employee);
         return ResponseEntity.ok(message);
     }
+
+//    @PostMapping("/{d_id}/employee/add")
+//    public ResponseEntity<String> addEmployee(@PathVariable (name="id") String admin_id,
+//                                              @PathVariable (name = "d_id") String departement_id,
+//                                              @RequestBody EmployeeRequest employeeRequest){
+////        employeeRequest.getAdmin();
+////        employeeRequest.setDepartment();
+//        boolean isEmployeeAdded = authService.addEmployeeByadmin(admin_id,departement_id,employeeRequest);
+//        if(isEmployeeAdded){
+//            return ResponseEntity.status(HttpStatus.CREATED).body("Employee added");
+//        }else{
+//            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Employee not added");
+//        }
+//    }
 
 
     @DeleteMapping("/{d_id}/employee/delete/{e_id}")

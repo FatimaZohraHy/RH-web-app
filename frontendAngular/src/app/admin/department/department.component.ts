@@ -20,7 +20,7 @@ export class DepartmentComponent {
     this.departName = this.fb.group({
       departName: ['', Validators.required,],
     });
-    this.adminId = this.authService.getAdminId()!;
+    this.adminId = this.authService.getUserId()!;
   }
 
   onSubmit() {

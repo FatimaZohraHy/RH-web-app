@@ -1,7 +1,7 @@
 <!-- app.component.html -->
 <section id="content">
   <!-- Display login component if user is not logged in -->
-  <app-login *ngIf="!isLoggedIn" (adminLoggedIn)="onAdminLoggedIn($event)"></app-login>
+  <app-login *ngIf="!isLoggedIn" (adminLoggedIn)="onUserLoggedIn($event)"></app-login>
 
   <!-- Display router outlet for other components -->
   <router-outlet *ngIf="isLoggedIn"></router-outlet>

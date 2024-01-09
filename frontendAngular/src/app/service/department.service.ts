@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class DepartmentService {
   private apiUrl = 'http://localhost:8087/admin';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   addDepartment(adminId: string, data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${adminId}/departement/add`, data);
@@ -24,6 +24,19 @@ export class DepartmentService {
       'Content-Type': 'application/json',
       // Add any other required headers here
     });
-    return this.http.delete(url, { headers});
+    return this.http.delete(url, { headers });
+  }
+  showdepartEmployees(adminId: string, departmentId: string): Observable<any> {
+    const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/getALL`;
+    return this.http.get<any[]>(url);
+  }
+  deleteEmployee(adminId: string, departmentId: string, emplId: string): Observable<any> {
+    const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/delete/${emplId}`;
+    return this.http.delete(url).pipe(
+      catchError((error) => {
+        console.error('Error deleting employee:', error);
+        return throwError(error);
+      })
+    );
   }
 }

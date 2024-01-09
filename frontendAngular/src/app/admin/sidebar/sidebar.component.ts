@@ -16,7 +16,7 @@ export class SidebarComponent {
   ) {}
 
   get adminId(): string | null {
-    return this.authService.getAdminId();
+    return this.authService.getUserId();
   }
 
   isEmployeesDropdownOpen = false;

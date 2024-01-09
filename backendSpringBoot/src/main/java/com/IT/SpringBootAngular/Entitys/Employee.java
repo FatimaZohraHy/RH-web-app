@@ -1,17 +1,21 @@
 package com.IT.SpringBootAngular.Entitys;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Date;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.util.stream.Collectors;
 
 @Document(collection = "employees")
-public class Employee {
+public class Employee implements UserDetails {
     @Id
     private String _id =new ObjectId().toString();;
     private String firstName;
@@ -25,25 +29,31 @@ public class Employee {
     private String state;
     private String department;
     private Date hireDate;
-
     private boolean isActive;
-
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/HRMS-web-app
+    private String password;
+    @JsonIgnore
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
     @DBRef
     private Salaire salaire;
     @DBRef
     private List<Reclamation> reclamation;
     @DBRef
-    //bcz there is Many to one association -_- and to skip the infinite loop
     @JsonIgnore
     private HRadmin admin;
     @DBRef
     @JsonIgnore
     private Departement departement;
-    public Employee(String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate,  boolean isActive,Salaire salaire , List<Reclamation> reclamation ,Departement departement ,HRadmin admin) {
+
+    public Employee() {
+
+    }
+    public Employee(String firstName, String lastName, String position, String email,
+                    String phoneNumber, Date birthDate, String address, String city,
+                    String state, String department, Date hireDate,  boolean isActive,
+                    Salaire salaire , List<Reclamation> reclamation ,Departement departement ,
+                    HRadmin admin, String password, Set<Role> roles) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -60,6 +70,17 @@ public class Employee {
         this.reclamation = reclamation;
         this.admin = admin;
         this.departement = departement;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public Employee(String email, String password, Set<GrantedAuthority> authorities, String id) {
+        this.email = email;
+        this.password = password;
+        this.roles = authorities.stream()
+                .map(role-> Role.valueOf(role.getAuthority().replace("ROLE_","")))
+                .collect(Collectors.toSet());
+        this._id = id;
     }
 
     public String get_id() {
@@ -77,10 +98,6 @@ public class Employee {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-
-
-
 
     public List<Reclamation> getReclamation() {
         return reclamation;
@@ -171,9 +188,6 @@ public class Employee {
     }
 
 
-
-
-
     public boolean isActive() {
         return isActive;
     }
@@ -182,13 +196,6 @@ public class Employee {
         isActive = active;
     }
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> origin/HRMS-web-app
     public Salaire getSalaire() {
         return salaire;
     }
@@ -197,6 +204,13 @@ public class Employee {
         this.salaire = salaire;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public void addReclamation(Reclamation r){
         if (this.reclamation == null) {
@@ -222,5 +236,47 @@ public class Employee {
 
     public void setDepartement(Departement departement) {
         this.departement = departement;
+    }
+
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role->new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .collect(Collectors.toList());
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

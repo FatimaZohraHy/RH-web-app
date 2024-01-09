@@ -9,22 +9,22 @@ import { AuthService } from './service/auth.service';
 export class AppComponent implements OnInit{
   title = 'HRMS-app';
   isLoggedIn : boolean = false;
-  adminId: string| null=null;
+  userId: string| null=null;
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
     if (this.isLoggedIn) {
-      const adminId = this.authService.getAdminId();
-      if (adminId) {
-        this.authService.setAdminId(adminId);
+      const userId = this.authService.getUserId();
+      if (userId) {
+        this.authService.setUserId(userId);
       }
     }
       
   }
 
-  onAdminLoggedIn(adminId: string) {
+  onUserLoggedIn(userId: string) {
     // Update adminId when the login component emits the event
-    this.adminId = adminId;
+    this.userId = userId;
     this.isLoggedIn = true;
   }
 }

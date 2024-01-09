@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { DepartmentService } from 'src/app/service/department.service';
+import { DeptEmployeesComponent } from '../dept-employees/dept-employees.component';
+import { EmployeesDataService } from 'src/app/service/employees-data.service';
 
 @Component({
   selector: 'app-show-departs',
@@ -11,16 +13,19 @@ import { DepartmentService } from 'src/app/service/department.service';
 export class ShowDepartsComponent implements OnInit {
   adminId: string = '';
   departments: any[] = [];
+  employees: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private deptService: DepartmentService,
-    private authService: AuthService
+    private authService: AuthService,
+    private employeesDataService: EmployeesDataService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const adminId = this.authService.getAdminId();
+      const adminId = this.authService.getUserId();
       if (adminId) {
         this.adminId = adminId;
       }
@@ -45,5 +50,18 @@ export class ShowDepartsComponent implements OnInit {
         console.error('Error deleting department', error);
       }
     );
+  }
+
+  redirectToEmployeeList(deptId: string): void {
+
+    this.router.navigate(['admin', this.adminId, 'show-departments', deptId, 'employees', 'getALL']);
+    this.getEmployees(deptId);
+  }
+
+    getEmployees(deptId:string) {
+      this.deptService.showdepartEmployees(this.adminId, deptId).subscribe((data) => {
+        this.employeesDataService.setEmployees(data)
+        console.log(data);
+      });
   }
 }

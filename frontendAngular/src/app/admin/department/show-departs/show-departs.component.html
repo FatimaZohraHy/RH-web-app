@@ -11,6 +11,7 @@
           *ngFor="let dept of departments"
           [deptId]="dept.id"
           [name]="dept.departName"
+          (click)="redirectToEmployeeList(dept.id)"
           color="#3498db"
           details="Department 1 details go here."
         >

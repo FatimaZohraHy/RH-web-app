@@ -7,20 +7,20 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private adminIdKey = 'adminId';
+  private userIdKey = 'userId';
   constructor(private router: Router) {}
   token = localStorage.getItem('jwt');
 
-  setAdminId(adminId: string): void {
-    if (adminId) {
-      localStorage.setItem(this.adminIdKey, adminId);
+  setUserId(userId: string): void {
+    if (userId) {
+      localStorage.setItem(this.userIdKey, userId);
     } else {
-      localStorage.removeItem(this.adminIdKey);
+      localStorage.removeItem(this.userIdKey);
     }
   }
 
-  getAdminId(): string | null {
-    return localStorage.getItem(this.adminIdKey);
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey);
   }
 
   isAuthenticated(): boolean {
@@ -51,6 +51,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('userId');
     this.router.navigateByUrl('/login');
   }
 
