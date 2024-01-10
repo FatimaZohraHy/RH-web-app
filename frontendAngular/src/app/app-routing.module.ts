@@ -23,9 +23,10 @@ import { ProfilComponent } from './user/profil/profil.component';
 import { UserLeaveComponent } from './user/user-requests/user-leave/user-leave.component';
 import { UserResignComponent } from './user/user-requests/user-resign/user-resign.component';
 import { AuthGuard } from './guards/auth.guard';
-import { RoleGuard } from './guards/role.guard';
 import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
 import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-employees.component';
+import { AdminRoleGuard } from './guards/admin-role.guard';
+import { EmployeeRoleGuard } from './guards/employee-role.guard';
 
 
 const routes: Routes = [
@@ -33,7 +34,7 @@ const routes: Routes = [
   {
     path: 'admin/:adminId',
     component: AdminComponent,
-    // canActivate: [AuthGuard, RoleGuard],
+    canActivate: [AuthGuard, AdminRoleGuard],
     data: { expectedRole: 'ROLE_ADMIN' },
     children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -56,9 +57,9 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'user',
+    path: 'employee/:employeeId',
     component: UserComponent,
-    // canActivate:[AuthGuard],
+    canActivate:[AuthGuard, EmployeeRoleGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'claims', component: UserClaimsComponent },

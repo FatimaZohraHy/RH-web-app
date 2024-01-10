@@ -26,7 +26,7 @@
         <i class="bx bx-search"></i>
         <i class="bx bx-filter"></i>
       </div>
-      <form [formGroup]="departName" (ngSubmit)="onSubmit()">
+      <form [formGroup]="departForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="departName">Department Name</label>
@@ -36,6 +36,17 @@
               id="departName"
               placeholder="Enter department name"
               formControlName="departName"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="departDetails">Department Details</label>
+            <input
+              type="text"
+              class="form-control"
+              id="departDetails"
+              placeholder="Enter department details"
+              formControlName="departDetails"
               required
             />
           </div>

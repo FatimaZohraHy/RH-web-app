@@ -32,11 +32,11 @@ public class EmpService {
 
     //actions by admin and departements
 
-    public String   addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
+    public Response addEmployeeByDepartemnt(String admin_id , String departement_id , Employee employee){
         HRadmin admin = adminRepo.findById(admin_id).orElse(null);
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
-            return "admin or departement not found";
+            return new Response("admin or departement not found");
 
         employee.setAdmin(admin);
         employee.setDepartement(departement);
@@ -53,18 +53,18 @@ public class EmpService {
         departementRepo.save(departement);
 
         employeeRepo.save(employee);
-        return "employee has been saved "+employee.get_id();
+        return new Response("employee has been saved",employee.get_id());
     }
 
-    public String deleteEmployeeBydepartement(String admin_id, String departement_id , String empolyee_id){
+    public Response deleteEmployeeBydepartement(String admin_id, String departement_id , String empolyee_id){
         HRadmin admin = adminRepo.findById(admin_id).orElse(null);
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if(admin==null || departement==null)
-            return "admin or departement not found";
+            return new Response("admin or departement not found");
 
         Employee employee = employeeRepo.findById(empolyee_id).orElse(null);
         if(employee==null)
-            return "no such an employee";
+            return new Response("no such an employee");
 
         admin.removeEmployee(employee);
         departement.removeEmployee(employee);
@@ -75,7 +75,7 @@ public class EmpService {
 //        userRepo.delete(employee.getUser());
         Srepo.delete(employee.getSalaire());
         employeeRepo.delete(employee);
-        return "employee "+employee.get_id()+" has been deleted";
+        return new Response("employee ",employee.get_id()," has been deleted");
     }
 
     public List<Employee> getAllEmployeeByDepartement(String admin_id , String departement_id){

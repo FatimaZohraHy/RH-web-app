@@ -40,7 +40,12 @@ export class AuthService {
       return {};
     }
   }
-
+  
+  logout(): void {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('userId');
+    this.router.navigateByUrl('/login');
+  }
   // setAdminId(id: string) {
   //   this.adminId = id;
   // }
@@ -48,12 +53,6 @@ export class AuthService {
   // getAdminId(): string | null {
   //   return this.adminId;
   // }
-
-  logout(): void {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('userId');
-    this.router.navigateByUrl('/login');
-  }
 
   // hasRole(expectedRole: string): boolean {
   //   // Example: Check if the user has the expected role

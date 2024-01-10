@@ -6,7 +6,7 @@
   </a>
   <ul class="side-menu top">
     <li [routerLinkActive]="'active'">
-      <a routerLink="/user/home">
+      <a [routerLink]="['/employee', employeeId, 'home']">
         <i class="bx bxs-dashboard"></i>
         <span class="text">Home</span>
       </a>
@@ -50,12 +50,12 @@
       </a>
       <ul class="submenu" *ngIf="isAttendanceDropdownOpen">
         <li>
-          <a routerLink="/user/checkin">
+          <a [routerLink]="['/employee', employeeId, 'checkin']">
             <span class="nav-text">CheckIn</span>
           </a>
         </li>
         <li>
-          <a routerLink="/user/checkout">
+          <a [routerLink]="['/employee', employeeId, 'checkout']">
             <span class="nav-text">CheckOut</span>
           </a>
         </li>
@@ -69,25 +69,25 @@
       </a>
       <ul class="submenu" *ngIf="isRequestsDropdownOpen">
         <li>
-          <a routerLink="/user/requests/leave">
+          <a [routerLink]="['/employee', employeeId, 'requests','leave']">
             <span class="nav-text">Leave</span>
           </a>
         </li>
         <li>
-          <a routerLink="/user/requests/resign">
+          <a [routerLink]="['/employee', employeeId, 'requests','resign']">
             <span class="nav-text">Resign</span>
           </a>
         </li>
       </ul>
     </li>
     <li [routerLinkActive]="'active'">
-      <a routerLink="/user/claims">
+      <a [routerLink]="['/employee', employeeId, 'claims']">
         <i class="bx bxs-doughnut-chart"></i>
         <span class="text">Claims</span>
       </a>
     </li>
     <li [routerLinkActive]="'active'">
-      <a routerLink="/user/payroll">
+      <a [routerLink]="['/employee', employeeId, 'payroll']">
         <i class="bx bxs-wallet-alt"></i>
         <span class="text">Payroll</span>
       </a>

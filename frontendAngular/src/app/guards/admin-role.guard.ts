@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtService } from '../service/jwt.service';
 import { AuthService } from '../service/auth.service';
+
 @Injectable({
   providedIn: 'root',
 })
-export class RoleGuard implements CanActivate {
+export class AdminRoleGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private authService: AuthService,
@@ -27,7 +22,6 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    
     const tokenRole = localStorage.getItem('jwt');
     if (tokenRole) {
       const decodedToken = this.authService.decodeJwt(tokenRole);
@@ -35,7 +29,7 @@ export class RoleGuard implements CanActivate {
         return true;
       } else {
         alert('You do not have permission to access this page');
-        this.router.navigate(['/user/home']);
+        this.authService.logout();
         return false;
       }
     }

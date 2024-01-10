@@ -26,139 +26,184 @@
         <i class="bx bx-search"></i>
         <i class="bx bx-filter"></i>
       </div>
-      <form>
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <label for="firstName">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="firstName"
-                placeholder="Enter first name"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="lastName">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                placeholder="Enter last name"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="code">Employee code</label>
-              <input
-                type="text"
-                class="form-control"
-                id="code"
-                placeholder="Enter code"
-                required
-              />
-            </div>
+      <form [formGroup]="addEmployeeForm" (ngSubmit)="addEmployee()">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              formControlName="firstName"
+              placeholder="Enter first name"
+              required
+            />
           </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+              placeholder="Enter last name"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="post">Position</label>
+            <input
+              type="text"
+              class="form-control"
+              id="post"
+              formControlName="post"
+              placeholder="Enter Designation"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4 mb-3">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              placeholder="Enter Email"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="bdate">Date of Birth</label>
+            <input
+              type="date"
+              class="form-control"
+              id="bdate"
+              formControlName="bdate"
+              placeholder="Enter Birth Date"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="jdate">Date of Joining</label>
+            <input
+              type="date"
+              class="form-control"
+              id="jdate"
+              formControlName="jdate"
+              placeholder="Enter Joining Date"
+              required
+            />
+          </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <label for="dept">Department</label>
-              <input
-                type="text"
-                class="form-control"
-                id="dept"
-                placeholder="Specify Department"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="bdate">Date of Birth</label>
-              <input
-                type="date"
-                class="form-control"
-                id="bdate"
-                placeholder="Enter Birth Date"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="jdate">Date of Joining</label>
-              <input
-                type="date"
-                class="form-control"
-                id="jdate"
-                placeholder="Enter Joining Date"
-                required
-              />
-            </div>
+        <div class="row mt-3">
+          <div class="col-md-4 mb-3">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              formControlName="phone"
+              placeholder="Enter Phone Number"
+              required
+            />
           </div>
-
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <label for="user">Username</label>
-              <input
-                type="text"
-                class="form-control"
-                id="user"
-                placeholder="Enter Username"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Enter Email"
-                required
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="role">Gender</label>
-              <select class="form-control" id="gender" required>
-                <option value="" disabled selected>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
+          <div class="col-md-4 mb-3">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              formControlName="address"
+              placeholder="Enter Address"
+              required
+            />
           </div>
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <label for="role">Designation</label>
-              <select class="form-control" id="designation" required>
-                <option value="" disabled selected>Select Designation</option>
-                <option value="manager">Manager</option>
-                <option value="developer">Developer</option>
-                <option value="designer">Designer</option>
-              </select>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="role">Role</label>
-              <select class="form-control" id="role" required>
-                <option value="" disabled selected>Select Role</option>
-                <option value="Admin">Admin</option>
-                <option value="Employee">Employee</option>
-              </select>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="num">Contact Number</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="num"
-                placeholder="Enter Phone Number"
-                required
-              />
-            </div>
+          <div class="col-md-4 mb-3">
+            <label for="city">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              formControlName="city"
+              placeholder="Enter City"
+              required
+            />
           </div>
-
-          <div class="row justify-content-center mt-3">
-            <div class=" text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4 mb-3">
+            <label for="role">Gender</label>
+            <select class="form-control" id="gender" formControlName="gender" required>
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
           </div>
-        </form>
+          <div class="col-md-4 mb-3">
+            <label for="departement">Departement</label>
+            <select class="form-control" 
+            id="department" 
+            formControlName="department" 
+            required>
+              <option value="" disabled selected>Select Departement</option>
+              <option *ngFor="let dept of departments" 
+              [value]="dept.id"
+              >{{dept.departName}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="isActive">isActive</label>
+            <select class="form-control" id="isActive" formControlName="isActive" required>
+              <option value="" disabled selected>Select Status</option>
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4 mb-3">
+            <label for="salaire">Salaire</label>
+            <input
+              type="text"
+              class="form-control"
+              id="salaire"
+              formControlName="salaire"
+              placeholder="Enter Amount in $"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="pay_day">Pay Day</label>
+            <input
+              type="date"
+              class="form-control"
+              id="pay_day"
+              formControlName="pay_day"
+              placeholder="Enter Pay-Day"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="Set default password"
+              required
+            />
+          </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </main>

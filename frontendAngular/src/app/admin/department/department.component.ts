@@ -9,7 +9,7 @@ import { DepartmentService } from 'src/app/service/department.service';
   styleUrls: ['./department.component.css'],
 })
 export class DepartmentComponent {
-  departName: FormGroup;
+  departForm: FormGroup;
   adminId: string;
 
   constructor(
@@ -17,16 +17,17 @@ export class DepartmentComponent {
     private departmentService: DepartmentService,
     private authService: AuthService
   ) {
-    this.departName = this.fb.group({
+    this.departForm = this.fb.group({
       departName: ['', Validators.required,],
+      departDetails:['',Validators.required,],
     });
     this.adminId = this.authService.getUserId()!;
   }
 
   onSubmit() {
-    if (this.departName.valid) {
+    if (this.departForm.valid) {
       // Perform form submission logic here
-      const formData = this.departName.value;
+      const formData = this.departForm.value;
 
       this.departmentService.addDepartment(this.adminId, formData).subscribe(
         (response) => {
@@ -34,12 +35,12 @@ export class DepartmentComponent {
           console.log('Department added successfully:', response);
 
           // You can reset the form or perform other actions here
-          this.departName.reset();
+          this.departForm.reset();
         },
         (error) => {
           // Handle error (optional)
           alert('Department added')
-          this.departName.reset();
+          this.departForm.reset();
           console.error('Error adding department:', error);
         }
       );

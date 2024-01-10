@@ -38,12 +38,30 @@ export class LoginComponent implements OnInit {
         // Decode the JWT token to get user roles
         const decodedToken = this.authService.decodeJwt(jwtToken);
 
-        const adminId = decodedToken.userId;
-        this.authService.setUserId(adminId);
-        this.adminLoggedIn.emit(adminId);
-        console.log('Admin ID:',adminId);
-        this.router.navigateByUrl(`/admin/${adminId}/dashboard`);
+        const userId = decodedToken.userId;
+        this.authService.setUserId(userId);
+
+        if (decodedToken.roles.includes('ROLE_ADMIN')) {
+          // Admin login
+          
+          this.adminLoggedIn.emit(userId);
+          console.log('Admin ID:', userId);
+          this.router.navigateByUrl(`/admin/${userId}/dashboard`);
+        } else if (decodedToken.roles.includes('ROLE_USER')) {
+          // Employee login
+          console.log('Employee ID:', userId);
+          this.router.navigateByUrl(`/employee/${userId}/home`);
+        }
+
+        // const adminId = decodedToken.userId;
+        // this.authService.setUserId(adminId);
+        // this.adminLoggedIn.emit(adminId);
+        // console.log('Admin ID:',adminId);
+        // this.router.navigateByUrl(`/admin/${adminId}/dashboard`);
       }
+    },
+      (error) => {
+      console.error('Error logging in:', error);
     });
   }
 }

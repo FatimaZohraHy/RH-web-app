@@ -36,6 +36,10 @@ export class HomeComponent {
     this.isEmployeesDropdownOpen = false;
   }
 
+  get employeeId(): string | null {
+    return this.authService.getUserId();
+  }
+
   logout(): void {
     this.authService.logout();
   }

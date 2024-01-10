@@ -12,7 +12,7 @@ import { EmployeesDataService } from 'src/app/service/employees-data.service';
 export class DeptEmployeesComponent implements OnInit {
   employees: any[] = [];
   adminId: string = '';
-  deptId: string = '659a0887cccc5638ead29276';
+  deptId: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,16 +31,18 @@ export class DeptEmployeesComponent implements OnInit {
     this.employeesDataService.employees$.subscribe((employees) => {
       this.employees = employees;
     });
+
+    this.employeesDataService.deptId$.subscribe((id) => {
+      this.deptId = id;
+    })
   }
   deleteEmployee(EmplId: string):void {
-    this.deptService
-      .deleteEmployee(this.adminId, this.deptId, EmplId)
-      .subscribe(
-        () => {
-          console.log('Employee deleted successfully');
+    this.deptService.deleteEmployee(this.adminId, this.deptId, EmplId).subscribe(
+        (response) => {
+          console.log('Employee deleted successfully',response);
+          alert('Employee deleted successfully');
         },
         (error) => {
-          // Handle error (e.g., show an error message)
           console.error('Error deleting employee:', error);
         }
       );

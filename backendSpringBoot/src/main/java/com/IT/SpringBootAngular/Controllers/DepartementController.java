@@ -2,6 +2,7 @@ package com.IT.SpringBootAngular.Controllers;
 
 import com.IT.SpringBootAngular.Entitys.Departement;
 import com.IT.SpringBootAngular.Entitys.Employee;
+import com.IT.SpringBootAngular.Entitys.Response;
 import com.IT.SpringBootAngular.Service.AuthServiceImpl;
 import com.IT.SpringBootAngular.Service.DepartementService;
 import com.IT.SpringBootAngular.Service.EmpService;
@@ -61,10 +62,10 @@ public class DepartementController {
     //handle employees by departements
 
     @PostMapping("/{d_id}/employee/add")
-    public ResponseEntity<String> addEmployee(@PathVariable (name="id") String admin_id ,
+    public ResponseEntity<Response> addEmployee(@PathVariable (name="id") String admin_id ,
                             @PathVariable (name = "d_id") String departement_id,
                             @RequestBody Employee employee){
-        String message =  empService.addEmployeeByDepartemnt(admin_id,departement_id,employee);
+        Response message =  empService.addEmployeeByDepartemnt(admin_id,departement_id,employee);
         return ResponseEntity.ok(message);
     }
 
@@ -84,10 +85,10 @@ public class DepartementController {
 
 
     @DeleteMapping("/{d_id}/employee/delete/{e_id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable (name="id") String admin_id ,
+    public ResponseEntity<Response> deleteEmployee(@PathVariable (name="id") String admin_id ,
                                    @PathVariable (name = "d_id") String departement_id,
                                    @PathVariable (name ="e_id") String employee_id){
-       String message = empService.deleteEmployeeBydepartement(admin_id,departement_id,employee_id);
+       Response message = empService.deleteEmployeeBydepartement(admin_id,departement_id,employee_id);
        return ResponseEntity.ok(message);
     }
 

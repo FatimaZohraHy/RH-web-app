@@ -53,14 +53,14 @@ export class ShowDepartsComponent implements OnInit {
   }
 
   redirectToEmployeeList(deptId: string): void {
-
     this.router.navigate(['admin', this.adminId, 'show-departments', deptId, 'employees', 'getALL']);
     this.getEmployees(deptId);
   }
 
     getEmployees(deptId:string) {
       this.deptService.showdepartEmployees(this.adminId, deptId).subscribe((data) => {
-        this.employeesDataService.setEmployees(data)
+        this.employeesDataService.setEmployees(data);
+        this.employeesDataService.setDeptId(deptId)
         console.log(data);
       });
   }

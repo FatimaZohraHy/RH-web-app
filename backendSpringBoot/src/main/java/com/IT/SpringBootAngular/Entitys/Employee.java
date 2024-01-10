@@ -30,6 +30,7 @@ public class Employee implements UserDetails {
     private String department;
     private Date hireDate;
     private boolean isActive;
+    private String gender;
     private String password;
     @JsonIgnore
     @Enumerated(EnumType.STRING)
@@ -51,7 +52,7 @@ public class Employee implements UserDetails {
     public Employee(String firstName, String lastName, String position, String email,
                     String phoneNumber, Date birthDate, String address, String city,
                     String state, String department, Date hireDate,  boolean isActive,
-                    Salaire salaire , List<Reclamation> reclamation ,Departement departement ,
+                    Salaire salaire , String gender, List<Reclamation> reclamation ,Departement departement ,
                     HRadmin admin, String password, Set<Role> roles) {
 
         this.firstName = firstName;
@@ -62,10 +63,10 @@ public class Employee implements UserDetails {
         this.birthDate = birthDate;
         this.address = address;
         this.city = city;
-        this.state = state;
         this.department = department;
         this.hireDate = hireDate;
         this.isActive = isActive;
+        this.gender = gender;
         this.salaire = salaire;
         this.reclamation = reclamation;
         this.admin = admin;
@@ -194,6 +195,14 @@ public class Employee implements UserDetails {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Salaire getSalaire() {
