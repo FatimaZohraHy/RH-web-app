@@ -10,7 +10,6 @@
         <table>
           <thead>
             <tr>
-              <th>Department</th>
               <th>Employees</th>
               <th>Position</th>
               <th>Email</th>
@@ -19,12 +18,11 @@
               <th>Action</th>
             </tr>
             <tr *ngFor="let employee of employees">
-              <td class="mt-3">{{ employee.department }}</td>
               <td>{{ employee.firstName + " " + employee.lastName }}</td>
               <td>{{ employee.position }}</td>
               <td>{{ employee.email }}</td>
               <td>{{ employee.phoneNumber}}</td>
-              <th class="mt-30">{{employee.address}}</th>
+              <th>{{employee.address}}</th>
               <td>
                 <button class="btn btn-primary"><i class='bx bxs-edit'></i></button>
                 <button class="btn btn-danger m-2" (click)="deleteEmployee(employee._id)"><i class='bx bxs-trash'></i></button>

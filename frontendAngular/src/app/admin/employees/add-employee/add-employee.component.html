@@ -23,8 +23,6 @@
     <div class="order">
       <div class="head">
         <h3>Add Employee</h3>
-        <i class="bx bx-search"></i>
-        <i class="bx bx-filter"></i>
       </div>
       <form [formGroup]="addEmployeeForm" (ngSubmit)="addEmployee()">
         <div class="row">
@@ -51,12 +49,12 @@
             />
           </div>
           <div class="col-md-4 mb-3">
-            <label for="post">Position</label>
+            <label for="position">Position</label>
             <input
               type="text"
               class="form-control"
-              id="post"
-              formControlName="post"
+              id="position"
+              formControlName="position"
               placeholder="Enter Designation"
               required
             />
@@ -100,12 +98,12 @@
 
         <div class="row mt-3">
           <div class="col-md-4 mb-3">
-            <label for="phone">Phone Number</label>
+            <label for="phoneNumber">Phone Number</label>
             <input
               type="tel"
               class="form-control"
-              id="phone"
-              formControlName="phone"
+              id="phoneNumber"
+              formControlName="phoneNumber"
               placeholder="Enter Phone Number"
               required
             />
@@ -156,16 +154,12 @@
           </div>
           <div class="col-md-4 mb-3">
             <label for="isActive">isActive</label>
-            <select class="form-control" id="isActive" formControlName="isActive" required>
-              <option value="" disabled selected>Select Status</option>
-              <option value="true">True</option>
-              <option value="false">False</option>
-            </select>
+            <input class="form-control roly" type="text" formControlName="isActive" value="false" readonly>
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-md-4 mb-3">
-            <label for="salaire">Salaire</label>
+            <label for="salaire">Salary</label>
             <input
               type="text"
               class="form-control"

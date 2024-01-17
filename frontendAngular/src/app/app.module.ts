@@ -36,8 +36,6 @@ import { UserResignComponent } from './user/user-requests/user-resign/user-resig
 import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
 import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-employees.component';
 
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -78,8 +76,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

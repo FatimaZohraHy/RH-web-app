@@ -1,58 +1,36 @@
 package com.IT.SpringBootAngular.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Document(collection = "attendances")
 public class Attendance {
 
     @Id
-    private String id;
+    private String id = new ObjectId().toString();
 
-    private String employeeId;
-    private LocalDateTime checkInTime;
-    private LocalDateTime checkOutTime;
+    private LocalDateTime time;
 
-    // Constructors, getters, setters
+    public Attendance(){
 
-    public Attendance(String id, String employeeId, LocalDateTime checkInTime, LocalDateTime checkOutTime) {
+    }
+    public Attendance(String id, LocalDateTime time) {
+
         this.id = id;
-        this.employeeId = employeeId;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
+        this.time = time;
     }
 
-    public String getId() {
-        return id;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public LocalDateTime getCheckInTime() {
-        return checkInTime;
-    }
-
-    public void setCheckInTime(LocalDateTime checkInTime) {
-        this.checkInTime = checkInTime;
-    }
-
-    public LocalDateTime getCheckOutTime() {
-        return checkOutTime;
-    }
-
-    public void setCheckOutTime(LocalDateTime checkOutTime) {
-        this.checkOutTime = checkOutTime;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }

@@ -34,8 +34,8 @@ WebSecurityConfiguration {
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers( "/signup","/login").permitAll()
                         .requestMatchers("/singup").permitAll()
-                        .requestMatchers("/admin/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/admin/**","/employee/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )

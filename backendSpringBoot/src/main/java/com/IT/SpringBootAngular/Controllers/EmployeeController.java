@@ -1,7 +1,10 @@
 package com.IT.SpringBootAngular.Controllers;
 
+import com.IT.SpringBootAngular.Entitys.Attendance;
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.Reclamation;
+import com.IT.SpringBootAngular.Entitys.Response;
+import com.IT.SpringBootAngular.Service.AttendanceService;
 import com.IT.SpringBootAngular.Service.EmpService;
 import com.IT.SpringBootAngular.Service.ReclamationService;
 import com.IT.SpringBootAngular.Service.SalireService;
@@ -19,6 +22,8 @@ public class EmployeeController {
     private EmpService employeeService;
     @Autowired
     private ReclamationService reclamationService;
+    @Autowired
+    private AttendanceService attendanceService;
 
     //get employee by id
     @GetMapping()
@@ -52,6 +57,19 @@ public class EmployeeController {
     }
     //-------demandes part---------------
 
+
+
+    //--------------attendance part-----------------
+    @PutMapping("/attendance/checkin")
+    public ResponseEntity<Response> checkin(@PathVariable (name = "id") String id, @RequestBody Attendance attendance){
+        Response message = attendanceService.checkin(id,attendance);
+        return ResponseEntity.ok(message);
+    }
+    @PutMapping("/attendance/checkout")
+    public ResponseEntity<Response> checkout(@PathVariable (name = "id") String id , @RequestBody Attendance attendance){
+        Response message = attendanceService.checkout(id,attendance);
+        return ResponseEntity.ok(message);
+    }
 
 
 }

@@ -1,11 +1,11 @@
-<div class="card" [ngStyle]="{ 'background-color': color }">
-  <div class="card-header">
-    <h3>{{name}}</h3>
+<div class="container" [ngStyle]="{ 'background-color': color }">
+  <div class="wrapper">
+    <div class="banner-image"></div>
+    <h1>{{ name }}</h1>
+    <p>{{ details }}</p>
   </div>
-
-  <div class="card-content">
-    <h6>{{details}}</h6>
-    <div class="button-container">
-    </div>
+  <div class="button-wrapper">
+    <button class="btn outline" (click)="view()">VIEW</button>
+    <button class="btn fill" (click)="delete()">DELETE</button>
   </div>
 </div>

@@ -21,35 +21,11 @@
     <div class="order">
       <div class="head">
         <h3>CheckOut</h3>
-        <i class="bx bx-search"></i>
-        <i class="bx bx-filter"></i>
       </div>
-      <form action="">
-          <!-- Input 1 -->
+      <form [formGroup]="checkout" (ngSubmit)="checkOut()">
           <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              placeholder="Enter Username"
-            />
-          </div>
-
-          <!-- Input 2 -->
-          <div class="mb-3">
-            <label for="code" class="form-label">Code</label>
-            <input
-              type="number"
-              class="form-control"
-              id="code"
-              placeholder="Enter code"
-            />
-          </div>
-          <!-- Input 3 -->
-          <div class="mb-3">
-            <label for="intime" class="form-label">CheckOut</label>
-            <input type="time" class="form-control" id="intime" />
+            <label for="time" class="form-label">CheckOut</label>
+            <input type="datetime-local" class="form-control" id="time" formControlName="time" />
           </div>
           <div class="d-flex justify-content-center">
             <button type="submit" class="add-project-sidebar btn btn-primary">Submit</button>

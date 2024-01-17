@@ -59,7 +59,7 @@ const routes: Routes = [
   {
     path: 'employee/:employeeId',
     component: UserComponent,
-    canActivate:[AuthGuard, EmployeeRoleGuard],
+    canActivate:[AuthGuard, ],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'claims', component: UserClaimsComponent },

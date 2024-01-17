@@ -14,43 +14,25 @@
     </div>
     <a href="#" class="btn-download">
       <i class="bx bxs-cloud-download"></i>
-      <span class="text">Download PDF</span>
+      <span class="text">My Claims</span>
     </a>
   </div>
   <div class="table-data">
     <div class="order">
       <div class="head">
         <h3>Claims</h3>
-        <i class="bx bx-search"></i>
-        <i class="bx bx-filter"></i>
       </div>
-      <form class="ml-8 row">
-        <!-- Input 2 -->
+      <form [formGroup]="claimsForm" (ngSubmit)="submit()" class="ml-8 row">
         <div class="mb-3 form-group col-md-5">
-          <label for="code" class="form-label">Code</label>
-          <input
-            type="number"
-            class="form-control"
-            id="code"
-            placeholder="Enter code"
-          />
-        </div>
-        <!-- Input 1 -->
-        <div class="mb-3 form-group col-md-5">
-          <label for="username" class="form-label">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username"
-            placeholder="Enter Username"
-          />
-        </div>
-        <!-- Input 3 -->
-        <div class="mb-3 form-group col-md-5">
-          <label for="problem" class="form-label">Problem</label>
+          <label
+            for="reclamation"
+            class="form-label"
+            >Problem</label
+          >
           <textarea
-            id="problem"
+            id="reclamation"
             cols="90"
+            formControlName="reclamation"
             placeholder="Your Problem"
           ></textarea>
         </div>

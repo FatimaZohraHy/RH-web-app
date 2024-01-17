@@ -13,8 +13,11 @@
         </li>
       </ul>
     </div>
-    <a [routerLink]="['/admin',adminId,'show-departments']" class="btn-download">
-      <i class="bx bxs-cloud-download"></i>
+    <a
+      [routerLink]="['/admin', adminId, 'show-departments']"
+      class="btn-download"
+    >
+      <i class='bx bxs-show'></i>
       <span class="text">Show Departments</span>
     </a>
   </div>
@@ -23,8 +26,6 @@
     <div class="order">
       <div class="head">
         <h3>Add Department</h3>
-        <i class="bx bx-search"></i>
-        <i class="bx bx-filter"></i>
       </div>
       <form [formGroup]="departForm" (ngSubmit)="onSubmit()">
         <div class="row">
@@ -32,7 +33,7 @@
             <label for="departName">Department Name</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control mt-3"
               id="departName"
               placeholder="Enter department name"
               formControlName="departName"
@@ -41,14 +42,16 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="departDetails">Department Details</label>
-            <input
-              type="text"
-              class="form-control"
+            <textarea
+              class="form-control mt-3"
+              name="departDetails"
               id="departDetails"
-              placeholder="Enter department details"
+              cols="64"
+              rows="1"
               formControlName="departDetails"
+              placeholder="Enter department details"
               required
-            />
+            ></textarea>
           </div>
         </div>
         <button class="btn btn-primary d-flex m-auto" type="submit">Add</button>

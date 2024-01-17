@@ -5,6 +5,7 @@ import { Observable, debounceTime, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { DepartmentService } from 'src/app/service/department.service';
 import { EmployeesDataService } from 'src/app/service/employees-data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-employee',
@@ -18,9 +19,9 @@ export class AddEmployeeComponent implements OnInit {
   private readonly FORM_CONTROLS = {
     FIRST_NAME: 'firstName',
     LAST_NAME: 'lastName',
-    POST: 'post',
+    POSITION: 'position',
     EMAIL: 'email',
-    PHONE: 'phone',
+    PHONENUMBER: 'phoneNumber',
     BDATE: 'bdate',
     ADDRESS: 'address',
     CITY: 'city',
@@ -44,16 +45,16 @@ export class AddEmployeeComponent implements OnInit {
     this.addEmployeeForm = this.fb.group({
       [this.FORM_CONTROLS.FIRST_NAME]: ['', Validators.required],
       [this.FORM_CONTROLS.LAST_NAME]: ['', Validators.required],
-      [this.FORM_CONTROLS.POST]: ['', Validators.required],
+      [this.FORM_CONTROLS.POSITION]: ['', Validators.required],
       [this.FORM_CONTROLS.EMAIL]: ['', [Validators.required, Validators.email]],
-      [this.FORM_CONTROLS.PHONE]: ['', Validators.required],
+      [this.FORM_CONTROLS.PHONENUMBER]: ['', Validators.required],
       [this.FORM_CONTROLS.BDATE]: ['', Validators.required],
       [this.FORM_CONTROLS.ADDRESS]: ['', Validators.required],
       [this.FORM_CONTROLS.CITY]: ['', Validators.required],
       [this.FORM_CONTROLS.GENDER]:['',Validators.required],
       [this.FORM_CONTROLS.DEPARTMENT]: ['', Validators.required],
       [this.FORM_CONTROLS.JDATE]: ['', Validators.required],
-      [this.FORM_CONTROLS.IS_ACTIVE]: ['', Validators.required],
+      [this.FORM_CONTROLS.IS_ACTIVE]: ['false', Validators.required],
       [this.FORM_CONTROLS.PASSWORD]: [
         '',
         [Validators.required, Validators.minLength(8)],
@@ -80,9 +81,9 @@ export class AddEmployeeComponent implements OnInit {
     const payload = {
       firstName: employeeData[this.FORM_CONTROLS.FIRST_NAME],
       lastName: employeeData[this.FORM_CONTROLS.LAST_NAME],
-      post: employeeData[this.FORM_CONTROLS.POST],
+      position: employeeData[this.FORM_CONTROLS.POSITION],
       email: employeeData[this.FORM_CONTROLS.EMAIL],
-      phone: employeeData[this.FORM_CONTROLS.PHONE],
+      phoneNumber: employeeData[this.FORM_CONTROLS.PHONENUMBER],
       bdate: employeeData[this.FORM_CONTROLS.BDATE],
       address: employeeData[this.FORM_CONTROLS.ADDRESS],
       city: employeeData[this.FORM_CONTROLS.CITY],
@@ -99,12 +100,20 @@ export class AddEmployeeComponent implements OnInit {
     this.employeesData.addEmployee(this.adminId, deptId, payload).subscribe(
       (response) => {
         console.log('Employee added successfully:', response);
-        alert('Employee Added successfully');
+        Swal.fire({
+          icon: 'success',
+          title: 'Employee added successfuly',
+          timer:1500,
+        })
         this.addEmployeeForm.reset();
       },
       (error) => {
         console.error('Error adding employee:', error);
-        alert('Error adding employee');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error adding employee',
+          timer: 1000,
+        })
       }
     );
   }
@@ -113,6 +122,7 @@ export class AddEmployeeComponent implements OnInit {
     this.deptService.getDepartments(this.adminId).subscribe(
       (departments) => {
         this.departments = departments;
+        console.log(departments);
       },
       (error) => {
         console.error('Error fetching departments:', error);

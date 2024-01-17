@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 @Document(collection = "employees")
 public class Employee implements UserDetails {
     @Id
-    private String _id =new ObjectId().toString();;
+    private String _id = new ObjectId().toString();
+    ;
     private String firstName;
     private String lastName;
     private String position;
@@ -32,6 +33,8 @@ public class Employee implements UserDetails {
     private boolean isActive;
     private String gender;
     private String password;
+    @DBRef
+    private Attendance attendance;
     @JsonIgnore
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
@@ -287,5 +290,14 @@ public class Employee implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
     }
 }

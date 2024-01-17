@@ -19,12 +19,8 @@ export class DepartmentService {
     return this.http.get<any[]>(url);
   }
   deleteDepartment(adminId: string, departmentId: string): Observable<any> {
-    const url = `${this.apiUrl}/${adminId}/departemet/delete/${departmentId}`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // Add any other required headers here
-    });
-    return this.http.delete(url, { headers });
+    const url = `${this.apiUrl}/${adminId}/departement/delete/${departmentId}`;
+    return this.http.delete(url);
   }
   showdepartEmployees(adminId: string, departmentId: string): Observable<any> {
     const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/getALL`;
