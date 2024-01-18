@@ -1,3 +1,8 @@
 .logout{
     cursor: pointer;
 }
+
+.brand img {
+  width: 200px;
+  height: auto;
+}

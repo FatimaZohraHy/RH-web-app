@@ -26,6 +26,15 @@ export class DepartmentService {
     const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/getALL`;
     return this.http.get<any[]>(url);
   }
+  editEmployee(adminId: string, departmentId: string, emplId: string, newdata: any): Observable<any> {
+    const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/edit/${emplId}`;
+    return this.http.put(url,newdata).pipe(
+      catchError((error) => {
+        console.error('Error updating employee:', error);
+        return throwError(error);
+      })
+    );
+  }
   deleteEmployee(adminId: string, departmentId: string, emplId: string): Observable<any> {
     const url = `${this.apiUrl}/${adminId}/departement/${departmentId}/employee/delete/${emplId}`;
     return this.http.delete(url).pipe(

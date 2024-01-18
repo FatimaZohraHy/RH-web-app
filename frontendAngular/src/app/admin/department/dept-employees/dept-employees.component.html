@@ -3,33 +3,29 @@
     <div class="order">
       <div class="head">
         <h3>Employees List</h3>
-        <i class="bx bx-search"></i>
-        <i class="bx bx-filter"></i>
       </div>
-      <div class="employees-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Employees</th>
-              <th>Position</th>
-              <th>Email</th>
-              <th>phone number</th>
-              <th>Address</th>
-              <th>Action</th>
-            </tr>
-            <tr *ngFor="let employee of employees">
-              <td>{{ employee.firstName + " " + employee.lastName }}</td>
-              <td>{{ employee.position }}</td>
-              <td>{{ employee.email }}</td>
-              <td>{{ employee.phoneNumber}}</td>
-              <th>{{employee.address}}</th>
-              <td>
-                <button class="btn btn-primary"><i class='bx bxs-edit'></i></button>
-                <button class="btn btn-danger m-2" (click)="deleteEmployee(employee._id)"><i class='bx bxs-trash'></i></button>
-              </td>
-            </tr>
-          </thead>
-        </table>
+      <div class="container">
+        <ul class="responsive-table" >
+          <li class="table-header">
+            <div class="col col-1">Employee</div>
+            <div class="col col-2">Position</div>
+            <div class="col col-3">Email</div>
+            <div class="col col-2">Phone</div>
+            <div class="col col-5">Address</div>
+            <div class="col col-4">Action</div>
+          </li>
+          <li class="table-row" *ngFor="let employee of employees">
+            <div class="col col-1" >{{employee.firstName + " " + employee.lastName}}</div>
+            <div class="col col-2" >{{ employee.position }}</div>
+            <div class="col col-3" >{{ employee.email }}</div>
+            <div class="col col-2" >{{ employee.phoneNumber}}</div>
+            <div class="col col-5" >{{employee.address}}</div>
+            <div class="col col-4">
+              <button class="btn btn-primary" (click)="openEditForm(employee._id,employee)"><i class='bx bxs-edit'></i></button>
+              <button class="btn btn-danger" (click)="deleteEmployee(employee._id)"><i class='bx bxs-trash'></i></button>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
