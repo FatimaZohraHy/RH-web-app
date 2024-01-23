@@ -15,6 +15,16 @@
   border-radius: 8px;
   margin-left: calc(-10% - 150px);
 }
+.brand-logo {
+  height: 100px;
+  width: 100px;
+  background: url("https://img.icons8.com/color/100/000000/user--v2.png");
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+  margin-bottom: 5px;
+}
 
 h2 {
   color: #333;
@@ -24,20 +34,36 @@ h2 {
   margin-bottom: 20px;
 }
 
-label {
+button {
+  color: white;
+  margin-top: 20px;
+  background: #1DA1F2;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
   display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
-  color: #555;
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box
+}
+
+input::placeholder {
+  color: gray;
 }
 
 input {
-  width: 100%;
+  background: #ecf0f3;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
 
 .error-message {
@@ -47,17 +73,13 @@ input {
   margin-top: 4px;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .btn-primary:disabled {
   background-color: #b2d4f1;
   cursor: not-allowed;
+}
+
+.fp{
+  font-size: small;
+  color: #1DA1F2;
+  cursor: pointer;
 }

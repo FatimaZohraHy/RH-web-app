@@ -24,16 +24,23 @@ public class ReclamationService {
     @Autowired
     private HRadminRepo adminRepo;
 
-    public Map<String,List<Reclamation>> getAllReclamations(String id){
+    public Map<String,Reclamation> getAllReclamations(String id){
         HRadmin hRadmin = adminRepo.findById(id).orElse(null);
         if(hRadmin== null)
             return null;
         if(hRadmin.getEmployees()==null)
             return null;
-        Map<String,List<Reclamation>> reclamationMap = new HashMap<>();
-        for(Employee emp : hRadmin.getEmployees()){
-            reclamationMap.put(emp.getFirstName(),emp.getReclamation());
+        Map<String,Reclamation> reclamationMap = new HashMap<>();
+        String name ;
+        for (Employee e : hRadmin.getEmployees()){
+            if(e.getReclamation()!=null){
+            for (Reclamation r : e.getReclamation()){
+                name = e.getFirstName()+" "+e.getLastName();
+                reclamationMap.put(name,r);
+            }}
         }
+
+
         return reclamationMap;
 
     }

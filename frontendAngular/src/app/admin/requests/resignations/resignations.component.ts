@@ -1,10 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RequestsService } from 'src/app/service/requests.service';
 
 @Component({
   selector: 'app-resignations',
   templateUrl: './resignations.component.html',
-  styleUrls: ['./resignations.component.css']
+  styleUrls: ['./resignations.component.css'],
 })
-export class ResignationsComponent {
+export class ResignationsComponent implements OnInit {
+  requests: any[] = [];
+  approvedEmployees: Set<string> = new Set();
 
+  constructor(private requestService: RequestsService) {}
+
+  ngOnInit(): void {
+    this.resigns();
+  }
+  resigns() {
+    this.requestService.getResignations().subscribe(
+      (response) => {
+        console.log(response);
+        this.requests = response;
+        console.log(this.requests);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  approveRequest(requestId: string): void {
+    
+  }
+
+  rejectRequest(requestId: string): void {
+    
+  }
 }

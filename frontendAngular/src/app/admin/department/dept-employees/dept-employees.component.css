@@ -1,93 +1,90 @@
-body {
-  font-family: 'lato', sans-serif;
-}
-.container {
-
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+.employee-cards {
+  display: flex;
+  justify-content: center;
 }
 
-h2 {
-  font-size: 26px;
-  margin: 20px 0;
-  text-align: center;
-  small {
-    font-size: 0.5em;
-  }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between cards as needed */
 }
+
+.employee-card {
+  width: 500px;
+  height: 180px;
+  display: flex;
+  border: 1px solid #ccc; /* Add border for card styling */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; /* Add position relative for absolute positioning of buttons and status circle */
+}
+
+.employee-photo {
+  width: 150px; /* Adjust the width as needed */
+  height: 100%; /* Take full height of the card */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  border-radius: 8px 0 0 8px; /* Rounded corners on the left side */
+}
+
+.employee-details {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.employee-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.employee-position {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.employee-info {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.employee-address {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.employee-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
 .btn {
-  width: 30px; /* Set your desired width */
-  height: 30px; /* Set your desired height */
-  border-radius: 50%; /* Make it a circle */
-  display:inline-flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  margin: auto;
-  padding: auto;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Adjust the top and right spacing as needed */
+  border: 2px solid #fff; /* White border for contrast */
 }
 
-.responsive-table {
-  li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
-  .table-header {
-    background-color: #95A5A6;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  .table-row {
-    background-color: #ffffff;
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-  }
-  .col-1 {
-    flex-basis: 19%;
-  }
-  .col-2 {
-    flex-basis: 15%;
-  }
-  .col-3 {
-    flex-basis: 25%;
-  }
-  .col-4 {
-    flex-basis: 9%;
-  }
-  .col-5{
-    flex-basis: 20%;
-  }
-  
-  @media all and (max-width: 767px) {
-    .table-header {
-      display: none;
-    }
-    .table-row{
-      
-    }
-    li {
-      display: block;
-    }
-    .col {
-      
-      flex-basis: 100%;
-      
-    }
-    .col {
-      display: flex;
-      padding: 10px 0;
-      &:before {
-        color: #6C7A89;
-        padding-right: 10px;
-        content: attr(data-label);
-        flex-basis: 50%;
-        text-align: right;
-      }
-    }
-  }
+.status-circle.active {
+  background-color: #4caf50; /* Green color for active status */
+}
+
+.status-circle.inactive {
+  background-color: #ff9800; /* Orange color for inactive status */
 }

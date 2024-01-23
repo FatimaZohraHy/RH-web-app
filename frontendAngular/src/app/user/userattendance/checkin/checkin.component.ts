@@ -23,7 +23,6 @@ export class CheckinComponent implements OnInit {
   checkIn() {
     this.userService.checkIn(this.employeeId, this.checkin.value).subscribe(
       (response) => {
-        
         console.log('Checkin submitted successfully:', response);
         Swal.fire({
           icon: 'success',

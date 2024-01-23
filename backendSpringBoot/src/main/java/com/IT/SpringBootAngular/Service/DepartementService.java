@@ -3,7 +3,6 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.Departement;
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.HRadmin;
-import com.IT.SpringBootAngular.Entitys.Response;
 import com.IT.SpringBootAngular.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class DepartementService {
 
 
 
-    public Response addDepartement(String id,Departement departement){
+    public String addDepartement(String id,Departement departement){
         HRadmin admin = adminRepo.findById(id).orElse(null);
         if(admin==null)
             return null;
@@ -37,7 +36,7 @@ public class DepartementService {
         departementRepo.save(departement);
         admin.addDepartement(departement);
         adminRepo.save(admin);
-        return new Response("departement ",departement.getDepartName()," has been saved");
+        return "departement "+departement.getDepartName()+" has been saved";
     }
 
     public List<Departement> getAllDepartements(String id){
@@ -47,13 +46,13 @@ public class DepartementService {
 
 
 
-    public Response deleteDepartement(String admin_id, String departement_id) {
+    public String deleteDepartement(String admin_id, String departement_id) {
         HRadmin admin = adminRepo.findById(admin_id).orElse(null);
         if (admin == null)
-            return new Response("admin not found");
+            return "admin not found";
         Departement departement = departementRepo.findById(departement_id).orElse(null);
         if (departement == null)
-            return new Response("departement not found");
+            return "departement not found";
 
         admin.removeDepartement(departement);
         adminRepo.save(admin);
@@ -67,7 +66,7 @@ public class DepartementService {
         }
         departementRepo.delete(departement);
 
-        return new Response(departement.getDepartName()," has been removed");
+        return departement.getDepartName() + " has been removed";
     }
 
     //---------------------------------

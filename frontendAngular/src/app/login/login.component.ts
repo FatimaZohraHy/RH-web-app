@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         } else if (decodedToken.roles.includes('ROLE_USER')) {
           // Employee login
           console.log('Employee ID:', userId);
-          this.router.navigateByUrl(`/employee/${userId}/home`);
+          this.router.navigateByUrl(`/employee/${userId}/homepage`);
         }
 
         // const adminId = decodedToken.userId;

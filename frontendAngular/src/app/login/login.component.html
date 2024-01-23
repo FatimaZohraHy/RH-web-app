@@ -1,7 +1,7 @@
 <!-- login.component.html -->
 <div class="login">
   <div class="login-box">
-    <h2>Login</h2>
+    <div class="brand-logo"></div>
     <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
       <div class="form-group">
         <label for="email">Email</label>
@@ -32,6 +32,7 @@
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           <small class="error-message" *ngIf="loginForm.get('password')?.hasError('required')">Password is required</small>
         </div>
+        <p class="fp">Forget password?</p>
       </div>
 
       <button

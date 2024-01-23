@@ -35,6 +35,9 @@ import { UserLeaveComponent } from './user/user-requests/user-leave/user-leave.c
 import { UserResignComponent } from './user/user-requests/user-resign/user-resign.component';
 import { ShowDepartsComponent } from './admin/department/show-departs/show-departs.component';
 import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-employees.component';
+import { HomepageComponent } from './user/homepage/homepage.component';
+import { CommonModule } from '@angular/common';
+import { ResignationsComponent } from './admin/requests/resignations/resignations.component';
 
 
 
@@ -70,12 +73,15 @@ import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-e
     UserResignComponent,
     ShowDepartsComponent,
     DeptEmployeesComponent,
+    HomepageComponent,
+    ResignationsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -23,4 +23,16 @@ export class UserviceService {
     const url = `${this.apiUrl}/${employeeId}/attendance/checkout`;
     return this.http.put(url, checkoutData);
   }
+  getinfo(employeeId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/getinfo`;
+    return this.http.get(url);
+  }
+  Resign(employeeId: string, resignData: any): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/requests/resignations/resign`;
+    return this.http.post(url, resignData);
+  }
+  leave(employeeId: string,leaveData: any): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/requests/leave/add`;
+    return this.http.post(url, leaveData);
+  }
 }

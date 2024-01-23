@@ -1,13 +1,7 @@
 package com.IT.SpringBootAngular.Controllers;
 
-import com.IT.SpringBootAngular.Entitys.Attendance;
-import com.IT.SpringBootAngular.Entitys.Employee;
-import com.IT.SpringBootAngular.Entitys.Reclamation;
-import com.IT.SpringBootAngular.Entitys.Response;
-import com.IT.SpringBootAngular.Service.AttendanceService;
-import com.IT.SpringBootAngular.Service.EmpService;
-import com.IT.SpringBootAngular.Service.ReclamationService;
-import com.IT.SpringBootAngular.Service.SalireService;
+import com.IT.SpringBootAngular.Entitys.*;
+import com.IT.SpringBootAngular.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +18,12 @@ public class EmployeeController {
     private ReclamationService reclamationService;
     @Autowired
     private AttendanceService attendanceService;
+    @Autowired
+    private DemandeService demandeService;
+
 
     //get employee by id
-    @GetMapping()
+    @GetMapping("getinfo")
     public ResponseEntity<Employee> getEmployeeByID(@PathVariable String id){
         Employee message = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(message);
@@ -56,18 +53,51 @@ public class EmployeeController {
         return ResponseEntity.ok(message);
     }
     //-------demandes part---------------
+        //resign
+    @PostMapping("requests/resignations/resign")
+    public ResponseEntity<Response> addResingRequest(@PathVariable (name = "id") String id , @RequestBody Demande demande){
+        Response message = demandeService.SaveDemand(id,demande);
+        return ResponseEntity.ok(message);
+    }
+    @DeleteMapping("/request/resign/delete/{r_id}")
+    public  ResponseEntity<String> deleteResingRequest(@PathVariable (name = "id") String e_id,@PathVariable (name = "r_id") String r_id){
+        String message = demandeService.deleteDemande(e_id,r_id);
+        return ResponseEntity.ok(message);
+    }
+    @GetMapping("/request/resign/")
+    public  ResponseEntity<List<Demande>> getresingDemands(@PathVariable String id){
+        List<Demande> message = demandeService.getresingdemands(id);
+        return ResponseEntity.ok(message);
+    }
 
+      //conge
+    @PostMapping("requests/leave/add")
+    public ResponseEntity<Response> addvacationrequest(@PathVariable String id , @RequestBody DemandeConge demandeConge){
+        Response message = demandeService.SaveDemandConge(id,demandeConge);
+        return ResponseEntity.ok(message);
+    }
 
+    @DeleteMapping("request/leave/delete/{r_id}")
+    public ResponseEntity<String> deletevacationrequest(@PathVariable (name = "id") String id , @PathVariable (name = "r_id") String request_id){
+        String message = demandeService.deleteDemandeConge(id,request_id);
+        return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/requests/leaves")
+    public  ResponseEntity<List<DemandeConge>> getVocationDemands(@PathVariable String id){
+        List<DemandeConge> message = demandeService.getvocationdemands(id);
+        return ResponseEntity.ok(message);
+    }
 
     //--------------attendance part-----------------
     @PutMapping("/attendance/checkin")
-    public ResponseEntity<Response> checkin(@PathVariable (name = "id") String id, @RequestBody Attendance attendance){
-        Response message = attendanceService.checkin(id,attendance);
+    public ResponseEntity<String> checkin(@PathVariable (name = "id") String id, @RequestBody Attendance attendance){
+        String message = attendanceService.checkin(id,attendance);
         return ResponseEntity.ok(message);
     }
     @PutMapping("/attendance/checkout")
-    public ResponseEntity<Response> checkout(@PathVariable (name = "id") String id , @RequestBody Attendance attendance){
-        Response message = attendanceService.checkout(id,attendance);
+    public ResponseEntity<String> chackout(@PathVariable (name = "id") String id , @RequestBody Attendance attendance){
+        String message = attendanceService.checkout(id,attendance);
         return ResponseEntity.ok(message);
     }
 

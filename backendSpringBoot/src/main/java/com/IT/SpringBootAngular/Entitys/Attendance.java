@@ -17,6 +17,9 @@ public class Attendance {
 
     private LocalDateTime time;
 
+
+
+
     public Attendance(){
 
     }

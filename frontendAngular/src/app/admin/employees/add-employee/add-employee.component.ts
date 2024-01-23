@@ -56,7 +56,7 @@ export class AddEmployeeComponent implements OnInit {
       [this.FORM_CONTROLS.JDATE]: ['', Validators.required],
       [this.FORM_CONTROLS.IS_ACTIVE]: ['false', Validators.required],
       [this.FORM_CONTROLS.PASSWORD]: [
-        '',
+        'HRMS2024',
         [Validators.required, Validators.minLength(8)],
       ],
       [this.FORM_CONTROLS.SALAIRE]: ['', Validators.required],

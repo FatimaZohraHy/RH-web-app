@@ -27,6 +27,7 @@ import { ShowDepartsComponent } from './admin/department/show-departs/show-depar
 import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-employees.component';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { EmployeeRoleGuard } from './guards/employee-role.guard';
+import { HomepageComponent } from './user/homepage/homepage.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
     canActivate:[AuthGuard, ],
     children: [
       { path: 'home', component: HomeComponent },
+      { path:'homepage',component:HomepageComponent},
       { path: 'claims', component: UserClaimsComponent },
       { path: 'payroll', component: UserPayrollComponent },
       { path: 'checkin', component: CheckinComponent },

@@ -1,12 +1,12 @@
 package com.IT.SpringBootAngular.Controllers;
 
-import com.IT.SpringBootAngular.Entitys.Employee;
-import com.IT.SpringBootAngular.Entitys.HRadmin;
-import com.IT.SpringBootAngular.Entitys.Reclamation;
+import com.IT.SpringBootAngular.Entitys.*;
+import com.IT.SpringBootAngular.Service.DemandeService;
 import com.IT.SpringBootAngular.Service.EmpService;
 import com.IT.SpringBootAngular.Service.HRadminService;
 import com.IT.SpringBootAngular.Service.ReclamationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.VariableOperators;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -24,6 +24,8 @@ public class HRadminController {
     private EmpService employeeService;
     @Autowired
     private ReclamationService reclamationService;
+    @Autowired
+    private DemandeService demandeService;
     //handle admin profile
     @GetMapping("/get")
     public ResponseEntity<HRadmin> getAdminById(@PathVariable String id){
@@ -44,10 +46,36 @@ public class HRadminController {
 
     //get all reclamation by employee name
     @GetMapping("/reclamations")
-    public ResponseEntity<Map<String,List<Reclamation>>> getAllReclamations(@PathVariable String id){
-      Map<String,List<Reclamation>> message = reclamationService.getAllReclamations(id);
+    public ResponseEntity<Map<String,Reclamation>> getAllReclamations(@PathVariable String id){
+      Map<String,Reclamation> message = reclamationService.getAllReclamations(id);
       return ResponseEntity.ok(message);
     }
+    //---------------------------------------------------------------------------
+    //get all resign demand by employee name
+    @GetMapping("/requests/resignations/getAll")
+    public ResponseEntity<Map<String, Demande>> getAllResignRequests(@PathVariable String id){
+        Map<String,Demande> message = demandeService.getAllResignationDemands(id);
+        return ResponseEntity.ok(message);
+    }
+    //accept
+    @PutMapping("request/resign/accept/{r_id}")
+    public void acceptResignDemande(@PathVariable (name = "id") String id , @PathVariable (name = "r_id") String r_id){
 
-    //get all demandes by employee name
-}
+    }
+    //refuse
+    @PutMapping("request/resign/refuse/{r_id}")
+    public void refuseResignDemande(@PathVariable (name = "id") String id , @PathVariable (name = "r_id") String r_id){}
+
+
+    //get all vacation demands of employees
+    @GetMapping("/request/vacation/")
+    public ResponseEntity<Map<String, DemandeConge>> getAllVacationDemands(@PathVariable String id){
+        return null;
+    }
+
+    //accept
+
+
+    //refuse
+
+    }

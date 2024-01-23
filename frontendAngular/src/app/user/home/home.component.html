@@ -1,45 +1,14 @@
 <!-- SIDEBAR -->
 <section id="sidebar">
   <a class="brand mt-2 m-2">
-    <img src="../../../assets/logo2.png" alt="brand">
+    <img src="../../../assets/connect.png" alt="brand">
   </a>
   <ul class="side-menu top">
     <li [routerLinkActive]="'active'">
-      <a [routerLink]="['/employee', employeeId, 'home']">
+      <a [routerLink]="['/employee', employeeId, 'homepage']">
         <i class="bx bxs-dashboard"></i>
         <span class="text">Home</span>
       </a>
-    </li>
-    <li [routerLinkActive]="'active'">
-      <a routerLink="/admin/department">
-        <i class="bx bxs-buildings"></i>
-        <span class="text">Departments</span>
-      </a>
-    </li>
-    <li
-      class="dropdown"
-      (click)="toggleEmployeesDropdown()"
-      [routerLinkActive]="'active'"
-    >
-      <a>
-        <i class="bx bxs-user"></i>
-        <span class="text">Employees</span>
-        <i class="bx bx-caret-down"></i>
-      </a>
-      <ul class="submenu" *ngIf="isEmployeesDropdownOpen">
-        <li>
-          <a routerLink="/admin/employees/add-employee">
-            <i class="bx bx-plus-circle"></i>
-            <span class="nav-text">Add Employee</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/admin/employees/archive-employee">
-            <i class="bx bx-minus-circle"></i>
-            <span class="nav-text">Archive Employee</span>
-          </a>
-        </li>
-      </ul>
     </li>
     <li class="dropdown" (click)="toggleAttendanceDropdown()">
       <a>

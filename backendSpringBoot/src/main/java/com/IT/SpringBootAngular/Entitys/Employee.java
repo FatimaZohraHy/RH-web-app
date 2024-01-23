@@ -48,6 +48,13 @@ public class Employee implements UserDetails {
     @DBRef
     @JsonIgnore
     private Departement departement;
+    @DBRef
+    @JsonIgnore
+    private  List<Demande> demandeList;
+
+    @DBRef
+    @JsonIgnore
+    private List<DemandeConge> demandeCongeList;
 
     public Employee() {
 
@@ -230,6 +237,25 @@ public class Employee implements UserDetails {
         }
         this.reclamation.add(r);
     }
+    public void adddemande(Demande d){
+        if(this.demandeList == null){
+            this.demandeList = new ArrayList<>();
+        }
+        this.demandeList.add(d);
+    }
+    public void adddemandeConge(DemandeConge d){
+        if(this.demandeCongeList == null){
+            this.demandeCongeList = new ArrayList<>();
+        }
+        this.demandeCongeList.add(d);
+    }
+    public void removeDemandeConge(DemandeConge d){
+        this.demandeCongeList.remove(d);
+    }
+
+    public void removeDemande(Demande d){
+        this.demandeList.remove(d);
+    }
     public void removeReclamation(Reclamation r){
         this.reclamation.remove(r);
     }
@@ -250,7 +276,21 @@ public class Employee implements UserDetails {
         this.departement = departement;
     }
 
+    public List<Demande> getDemandeList() {
+        return demandeList;
+    }
 
+    public void setDemandeList(List<Demande> demandeList) {
+        this.demandeList = demandeList;
+    }
+
+    public List<DemandeConge> getDemandeCongeList() {
+        return demandeCongeList;
+    }
+
+    public void setDemandeCongeList(List<DemandeConge> demandeCongeList) {
+        this.demandeCongeList = demandeCongeList;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
