@@ -35,3 +35,8 @@ A class diagram is a visual tool used in software engineering to represent the s
 
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/c6ca085e-2a87-4bc8-b8bf-9c9991bb9075)
 Angular is an open source framework written in JavaScript that allows the creation of web applications, particularly so-called "single page applications". A web application accessible from a single web page. This optimizes the user experience and avoids loading the page with each new action. The framework is based on MVC architecture, allowing you to separate data, images and actions to better manage responsibilities. Extensively proven architecture that enables high maintainability and improved collaboration.
+# Application overview
+- __Authentication interface :__
+The following figure shows the authentication interface, from which the user can
+access your admin or employee space
+
