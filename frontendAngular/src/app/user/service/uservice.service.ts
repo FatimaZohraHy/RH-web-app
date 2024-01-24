@@ -28,7 +28,7 @@ export class UserviceService {
     return this.http.get(url);
   }
   Resign(employeeId: string, resignData: any): Observable<any> {
-    const url = `${this.apiUrl}/${employeeId}/requests/resignations/resign`;
+    const url = `${this.apiUrl}/${employeeId}/request/resign/add`;
     return this.http.post(url, resignData);
   }
   leave(employeeId: string,leaveData: any): Observable<any> {

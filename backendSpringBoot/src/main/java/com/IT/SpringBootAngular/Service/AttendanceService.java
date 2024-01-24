@@ -2,12 +2,17 @@ package com.IT.SpringBootAngular.Service;
 
 import com.IT.SpringBootAngular.Entitys.Attendance;
 import com.IT.SpringBootAngular.Entitys.Employee;
+import com.IT.SpringBootAngular.Entitys.HRadmin;
 import com.IT.SpringBootAngular.Repo.EmployeeRepo;
+import com.IT.SpringBootAngular.Repo.HRadminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.IT.SpringBootAngular.Repo.AttendanceRepo;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,6 +22,9 @@ public class AttendanceService {
     private AttendanceRepo attendanceRepo;
     @Autowired
     private EmployeeRepo employeeRepo;
+
+    @Autowired
+    private HRadminRepo hRadminRepo;
 
     public String checkin(String id , Attendance attendance){
         attendanceRepo.save(attendance);
@@ -39,5 +47,21 @@ public class AttendanceService {
             return "you are out";
         }
         return "no employee";
+    }
+
+    //get attendance by the admin
+    public Map<String, LocalDateTime> getAttendance(String admin_id){
+        HRadmin admin = hRadminRepo.findById(admin_id).orElse(null);
+        if(admin==null)
+            return null;
+        if(admin.getEmployees()==null)
+            return null;
+        Map<String , LocalDateTime> attendanceMap = new HashMap<>();
+        for(Employee emp : admin.getEmployees()){
+            String name = emp.getFirstName()+" "+emp.getLastName();
+            if (emp.getAttendance()!=null)
+                attendanceMap.put(name,emp.getAttendance().getTime());
+        }
+        return attendanceMap;
     }
 }

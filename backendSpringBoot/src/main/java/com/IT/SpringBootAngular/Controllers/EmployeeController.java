@@ -23,7 +23,7 @@ public class EmployeeController {
 
 
     //get employee by id
-    @GetMapping("getinfo")
+    @GetMapping()
     public ResponseEntity<Employee> getEmployeeByID(@PathVariable String id){
         Employee message = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(message);
@@ -53,8 +53,8 @@ public class EmployeeController {
         return ResponseEntity.ok(message);
     }
     //-------demandes part---------------
-        //resign
-    @PostMapping("requests/resignations/resign")
+    //resign
+    @PostMapping("request/resign/add")
     public ResponseEntity<Response> addResingRequest(@PathVariable (name = "id") String id , @RequestBody Demande demande){
         Response message = demandeService.SaveDemand(id,demande);
         return ResponseEntity.ok(message);
@@ -70,20 +70,21 @@ public class EmployeeController {
         return ResponseEntity.ok(message);
     }
 
-      //conge
+    //conge
     @PostMapping("requests/leave/add")
     public ResponseEntity<Response> addvacationrequest(@PathVariable String id , @RequestBody DemandeConge demandeConge){
         Response message = demandeService.SaveDemandConge(id,demandeConge);
         return ResponseEntity.ok(message);
     }
 
-    @DeleteMapping("request/leave/delete/{r_id}")
+    @DeleteMapping("request/vacation/delete/{r_id}")
     public ResponseEntity<String> deletevacationrequest(@PathVariable (name = "id") String id , @PathVariable (name = "r_id") String request_id){
         String message = demandeService.deleteDemandeConge(id,request_id);
         return ResponseEntity.ok(message);
     }
 
-    @GetMapping("/requests/leaves")
+
+    @GetMapping("/request/vocation/")
     public  ResponseEntity<List<DemandeConge>> getVocationDemands(@PathVariable String id){
         List<DemandeConge> message = demandeService.getvocationdemands(id);
         return ResponseEntity.ok(message);
@@ -95,7 +96,7 @@ public class EmployeeController {
         String message = attendanceService.checkin(id,attendance);
         return ResponseEntity.ok(message);
     }
-    @PutMapping("/attendance/checkout")
+    @PutMapping("/attendance/chackout")
     public ResponseEntity<String> chackout(@PathVariable (name = "id") String id , @RequestBody Attendance attendance){
         String message = attendanceService.checkout(id,attendance);
         return ResponseEntity.ok(message);

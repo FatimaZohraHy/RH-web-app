@@ -14,7 +14,6 @@ public class Demande {
     private String state = "No action";
     private Date request_date;
     private Date resign_date;
-
     public Demande() {
     }
 
@@ -23,7 +22,7 @@ public class Demande {
         this.reason = reason;
         this.state = state;
         this.request_date = request_date;
-        this.resign_date= resign_date;
+        this.resign_date = resign_date;
     }
 
     public String getId() {

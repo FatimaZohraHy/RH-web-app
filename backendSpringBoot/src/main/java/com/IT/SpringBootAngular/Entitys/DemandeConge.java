@@ -8,18 +8,18 @@ import  java.util.Date;
 public class DemandeConge {
     @Id
     private String id = new ObjectId().toString();
+    private String description;
     private Date startDate;
     private Date endDate;
-    private String descrepsion;
-    private  String state = "No action yet";
+    private  String state = "No action";
     public DemandeConge() {
     }
 
-    public DemandeConge(String id, String descrepsion, Date startDate, Date endDate) {
+    public DemandeConge(String id, String description, Date startDate, Date endDate) {
         this.id = id;
+        this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.descrepsion = descrepsion;
     }
 
     public Date getStartDate() {
@@ -46,11 +46,19 @@ public class DemandeConge {
         this.id = id;
     }
 
-    public String getDescrepsion() {
-        return descrepsion;
+    public String getState() {
+        return state;
     }
 
-    public void setDescrepsion(String descrepsion) {
-        this.descrepsion = descrepsion;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

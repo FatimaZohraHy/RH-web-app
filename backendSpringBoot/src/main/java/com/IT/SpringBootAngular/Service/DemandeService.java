@@ -48,14 +48,14 @@ public class DemandeService {
         employeeRepo.save(employee);
         return "demande removed";
     }
- public List<Demande> getresingdemands(String employee_id){
+    public List<Demande> getresingdemands(String employee_id){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         if(employee == null)
             return null;
         if(employee.getDemandeList() != null)
             return null;
         return employee.getDemandeList();
- }
+    }
     // //vacation demand for employee
     public Response SaveDemandConge(String employee_id, DemandeConge demande){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
@@ -97,7 +97,8 @@ public class DemandeService {
     }
 
     //admin handles
-    public Map<String, Demande> getAllResignationDemands(String id) {
+    //resing
+    public Map<String, Demande> getAllResingDemands(String id) {
         Optional<HRadmin> hrAdminOptional = adminRepo.findById(id);
 
         if (hrAdminOptional.isEmpty() || hrAdminOptional.get().getEmployees() == null) {
@@ -122,11 +123,89 @@ public class DemandeService {
 
         return demandsMap;
     }
-
-
     //accept demand
-    public String acceptresingDemand(String admin_id , String demande_id){
-        return null;
+    public Response acceptresingDemand(String admin_id , String demande_id){
+        HRadmin hRadmin = adminRepo.findById(admin_id).orElse(null);
+        if(hRadmin == null)
+            return new Response("admin not found");
+        Demande demande = demandeRepo.findById(demande_id).orElse(null);
+        if(demande==null){
+            return new Response("demand not found");
+        }
+        demande.setState("accepted");
+        return new Response("demand accepted");
+
+
+    }
+    public Response refuseresingDemande(String admin_id , String demande_id){
+        HRadmin hRadmin = adminRepo.findById(admin_id).orElse(null);
+        if(hRadmin == null)
+            return new Response("admin not found");
+        Demande demande = demandeRepo.findById(demande_id).orElse(null);
+        if (demande == null)
+            return new Response("demande not found");
+
+        demande.setState("refused");
+        demandeRepo.save(demande);
+        return new Response("demand refused");
     }
 
+
+
+    //vacation
+    public Map<String,DemandeConge> getAllVacationDemands(String id){
+        HRadmin hRadmin = adminRepo.findById(id).orElse(null);
+        if(hRadmin== null)
+            return null;
+        if(hRadmin.getEmployees()==null)
+            return null;
+        Map<String,DemandeConge> demandsMap = new HashMap<>();
+        String name;
+        for(Employee e : hRadmin.getEmployees()){
+            if(e.getDemandeCongeList()!=null) {
+                for (DemandeConge d : e.getDemandeCongeList()) {
+                    if(Objects.equals(d.getState(), "No action")){
+                        name = e.getFirstName()+" "+e.getLastName();
+                        demandsMap.put(name,d);
+                    }
+                }
+            }
+
+        }
+        return demandsMap;
+    }
+
+
+    //accept
+    public Response acceptvacationDemand(String admin_id , String demande_id){
+        HRadmin hRadmin = adminRepo.findById(admin_id).orElse(null);
+        if(hRadmin == null)
+            return new Response("admin not found");
+        DemandeConge demande = demandeCongeRepo.findById(demande_id).orElse(null);
+        if(demande == null){
+            return new Response("demand not found");
+        }
+        demande.setState("accepted");
+        demandeCongeRepo.save(demande);
+        return new Response("demand accepted");
+
+
+    }
+
+
+    public Response refusevacationDemand(String admin_id , String demande_id){
+        HRadmin hRadmin = adminRepo.findById(admin_id).orElse(null);
+        if(hRadmin == null)
+            return new Response("admin not found");
+        DemandeConge demande = demandeCongeRepo.findById(demande_id).orElse(null);
+        if(demande == null){
+            return new Response("demand not found");
+        }
+
+        demande.setState("refused");
+        demandeCongeRepo.save(demande);
+        return new Response("demand refused");
+
+
+    }
 }

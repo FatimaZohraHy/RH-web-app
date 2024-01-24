@@ -21,10 +21,28 @@
     <div class="order">
       <div class="head">
         <h3>Claims List</h3>
-        <i class="bx bx-search"></i>
         <i class="bx bx-filter"></i>
       </div>
-      
+      <table>
+        <thead>
+          <tr>
+            <th class="col-md-3">Employee</th>
+            <th class="col-md-8">Claim</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let claim of claims | keyvalue">
+            <td>{{ claim.key }}</td>
+            <td>{{ claim.value.reclamation }}</td>
+            <td>
+              <a class="delete big-red-icon">
+                <i class="bx bxs-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>

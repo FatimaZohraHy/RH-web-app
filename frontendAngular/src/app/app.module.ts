@@ -38,6 +38,7 @@ import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-e
 import { HomepageComponent } from './user/homepage/homepage.component';
 import { CommonModule } from '@angular/common';
 import { ResignationsComponent } from './admin/requests/resignations/resignations.component';
+import { LeavesComponent } from './admin/requests/leaves/leaves.component';
 
 
 
@@ -75,6 +76,7 @@ import { ResignationsComponent } from './admin/requests/resignations/resignation
     DeptEmployeesComponent,
     HomepageComponent,
     ResignationsComponent,
+    LeavesComponent,
   ],
   imports: [
     BrowserModule,

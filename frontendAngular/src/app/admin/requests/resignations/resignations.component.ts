@@ -28,10 +28,25 @@ export class ResignationsComponent implements OnInit {
     );
   }
   approveRequest(requestId: string): void {
-    
+    this.requestService.approve(requestId).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   rejectRequest(requestId: string): void {
-    
+    this.requestService.reject(requestId).subscribe(
+      (response) => {
+        console.log(response);
+        
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 }
