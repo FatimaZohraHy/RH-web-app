@@ -1,4 +1,4 @@
-<u><p align="center"><strong>Final Project</strong></p></u>
+<u><h2 align="center"><strong>Final Project</strong></h2></u>
  
 
 1. [Introduction](#introduction)
