@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginForm.value).subscribe((response) => {
       console.log(response);
       if (response.jwToken != null) {
-        alert('Hello, Your token is ' + response.jwToken);
         const jwtToken = response.jwToken;
         localStorage.setItem('jwt', jwtToken);
 

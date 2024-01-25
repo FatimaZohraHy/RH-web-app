@@ -23,7 +23,7 @@ public class EmployeeController {
 
 
     //get employee by id
-    @GetMapping()
+    @GetMapping("/getinfo")
     public ResponseEntity<Employee> getEmployeeByID(@PathVariable String id){
         Employee message = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(message);

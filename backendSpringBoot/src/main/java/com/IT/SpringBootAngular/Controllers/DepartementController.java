@@ -31,8 +31,8 @@ public class DepartementController {
     //---------------------------------------
 
     @PostMapping("/add")
-    public ResponseEntity<String> addDepartement(@PathVariable String id, @RequestBody Departement departement){
-         String message = departementService.addDepartement(id,departement);
+    public ResponseEntity<Response> addDepartement(@PathVariable String id, @RequestBody Departement departement){
+         Response message = departementService.addDepartement(id,departement);
          return  ResponseEntity.ok(message);
     }
 
@@ -45,9 +45,9 @@ public class DepartementController {
     //--------------------------------------
 
     @DeleteMapping("/delete/{d_id}")
-    public ResponseEntity<String> deleteDepartement(@PathVariable (name="id") String  admin_id ,
+    public ResponseEntity<Response> deleteDepartement(@PathVariable (name="id") String  admin_id ,
                                          @PathVariable (name = "d_id") String departement_id ){
-        String message =  departementService.deleteDepartement(admin_id,departement_id);
+        Response message =  departementService.deleteDepartement(admin_id,departement_id);
         return ResponseEntity.ok(message);
     }
     //Still
