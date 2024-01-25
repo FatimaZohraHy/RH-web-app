@@ -63,6 +63,7 @@ un contrôleur Spring Boot est généralement une classe Java annotée avec @Con
 
 - __spring security :__<br>
 
+Spring Security est un module puissant et hautement configurable de Spring Framework qui fournit une infrastructure complète de sécurité pour les applications Java. Il simplifie la gestion de la sécurité au sein des applications en proposant des fonctionnalités telles que l'authentification, l'autorisation, la protection contre les attaques, la gestion des sessions, et bien d'autres.<br>
 
 
 # Frontend-development
