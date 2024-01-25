@@ -31,8 +31,32 @@ export class UserviceService {
     const url = `${this.apiUrl}/${employeeId}/request/resign/add`;
     return this.http.post(url, resignData);
   }
-  leave(employeeId: string,leaveData: any): Observable<any> {
+  leave(employeeId: string, leaveData: any): Observable<any> {
     const url = `${this.apiUrl}/${employeeId}/requests/leave/add`;
     return this.http.post(url, leaveData);
+  }
+  getClaims(employeeId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/claims/getAll`;
+    return this.http.get(url);
+  }
+  deleteClaim(employeeId: string, claimId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/claims/delete/${claimId}`;
+    return this.http.delete(url);
+  }
+  getLeaves(employeeId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/request/leaves`;
+    return this.http.get(url);
+  }
+  deleteLeave(employeeId: string, leaveId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}request/leaves/delete/${leaveId}`;
+    return this.http.delete(url);
+  }
+  getResigns(employeeId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/request/resigns`;
+    return this.http.get(url);
+  }
+  deleteResign(employeeId: string, resignId: string): Observable<any> {
+    const url = `${this.apiUrl}/${employeeId}/request/resign/delete/${resignId}`;
+    return this.http.delete(url);
   }
 }

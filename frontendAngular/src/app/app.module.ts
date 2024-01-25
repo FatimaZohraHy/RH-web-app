@@ -39,6 +39,9 @@ import { HomepageComponent } from './user/homepage/homepage.component';
 import { CommonModule } from '@angular/common';
 import { ResignationsComponent } from './admin/requests/resignations/resignations.component';
 import { LeavesComponent } from './admin/requests/leaves/leaves.component';
+import { MyClaimsComponent } from './user/user-claims/my-claims/my-claims.component';
+import { MyLeavesComponent } from './user/user-requests/user-leave/my-leaves/my-leaves.component';
+import { MyResignsComponent } from './user/user-requests/user-resign/my-resigns/my-resigns.component';
 
 
 
@@ -77,6 +80,10 @@ import { LeavesComponent } from './admin/requests/leaves/leaves.component';
     HomepageComponent,
     ResignationsComponent,
     LeavesComponent,
+    AttendanceComponent,
+    MyClaimsComponent,
+    MyLeavesComponent,
+    MyResignsComponent,
   ],
   imports: [
     BrowserModule,

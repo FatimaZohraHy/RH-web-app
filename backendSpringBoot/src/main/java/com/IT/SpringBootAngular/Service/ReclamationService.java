@@ -3,6 +3,7 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.HRadmin;
 import com.IT.SpringBootAngular.Entitys.Reclamation;
+import com.IT.SpringBootAngular.Entitys.Response;
 import com.IT.SpringBootAngular.Repo.EmployeeRepo;
 import com.IT.SpringBootAngular.Repo.HRadminRepo;
 import com.IT.SpringBootAngular.Repo.ReclamationRepo;
@@ -48,15 +49,15 @@ public class ReclamationService {
         return reclamationRepo.findById(id).orElse(null);
     }
 
-    public String saveReclamation(String employee_id, Reclamation reclamation) {
+    public Response saveReclamation(String employee_id, Reclamation reclamation) {
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         if (employee != null) {
             employee.addReclamation(reclamation);
             employeeRepo.save(employee);
             reclamationRepo.save(reclamation);
-            return "Reclamation saved successfully";
+            return new Response("Reclamation saved successfully");
         } else {
-            return "Employee not found";
+            return new Response("Employee not found");
         }
     }
 
@@ -68,16 +69,16 @@ public class ReclamationService {
     }
 
 
-    public String deleteReclamationByEmployee(String  employee_id, String reclamation_id){
+    public Response deleteReclamationByEmployee(String  employee_id, String reclamation_id){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         Reclamation removedReclamation = reclamationRepo.findById(reclamation_id).orElse(null);
         if (employee == null || removedReclamation == null) {
-            return "Employee or Reclamation not found";
+            return new Response("Employee or Reclamation not found");
         }
         employee.removeReclamation(removedReclamation);
         reclamationRepo.deleteById(reclamation_id);
         employeeRepo.save(employee);
-        return "reclamation "+reclamation_id+ " of "+employee_id+" : deleted";
+        return new Response("reclamation "+reclamation_id+ " of "+employee_id+" : deleted");
     }
 
 

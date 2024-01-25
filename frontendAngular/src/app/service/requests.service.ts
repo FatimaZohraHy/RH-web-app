@@ -44,4 +44,8 @@ export class RequestsService {
     const url = `${this.apiUrl}/${this.adminId}/reclamations`;
     return this.http.get(url);
   }
+  getAttandences(): Observable<any>{
+    const url = `${this.apiUrl}/${this.adminId}/attendances`;
+    return this.http.get(url);
+  }
 }

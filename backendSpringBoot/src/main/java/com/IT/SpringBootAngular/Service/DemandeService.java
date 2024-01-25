@@ -37,25 +37,29 @@ public class DemandeService {
 
     }
 
-    public String deleteDemande(String employee_id , String demande_id){
+    public Response deleteDemande(String employee_id , String demande_id){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         Demande demande = demandeRepo.findById(demande_id).orElse(null);
         if (employee == null || demande == null){
-            return "employee or demande not found";
+            return new Response("employee or demande not found");
         }
         employee.removeDemande(demande);
         demandeRepo.deleteById(demande_id);
         employeeRepo.save(employee);
-        return "demande removed";
+        return new Response("demande removed");
     }
-    public List<Demande> getresingdemands(String employee_id){
+    public List<Demande> getresingdemands(String employee_id) {
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
-        if(employee == null)
+        if (employee == null) {
             return null;
-        if(employee.getDemandeList() != null)
+        }
+        List<Demande> demandeList = employee.getDemandeList();
+        if (demandeList == null || demandeList.isEmpty()) {
             return null;
-        return employee.getDemandeList();
+        }
+        return demandeList;
     }
+
     // //vacation demand for employee
     public Response SaveDemandConge(String employee_id, DemandeConge demande){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
@@ -71,30 +75,34 @@ public class DemandeService {
 
     }
 
-    public String deleteDemandeConge(String employee_id , String demande_id){
+    public Response deleteDemandeConge(String employee_id , String demande_id){
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
         DemandeConge demande = demandeCongeRepo.findById(demande_id).orElse(null);
         if (employee == null ){
-            return "employee not found";
+            return new Response("employee not found");
         }
         if( demande == null){
-            return "demand null";
+            return new Response("demand null");
         }
         employee.removeDemandeConge(demande);
         demandeRepo.deleteById(demande_id);
         employeeRepo.save(employee);
 
-        return "demand removed";
+        return new Response("demand removed");
     }
 
-    public List<DemandeConge> getvocationdemands(String employee_id){
+    public List<DemandeConge> getvocationdemands(String employee_id) {
         Employee employee = employeeRepo.findById(employee_id).orElse(null);
-        if(employee == null)
+        if (employee == null) {
             return null;
-        if(employee.getDemandeCongeList() != null)
+        }
+        List<DemandeConge> demandeCongeList = employee.getDemandeCongeList();
+        if (demandeCongeList == null || demandeCongeList.isEmpty()) {
             return null;
-        return employee.getDemandeCongeList();
+        }
+        return demandeCongeList;
     }
+
 
     //admin handles
     //resing

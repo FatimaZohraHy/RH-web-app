@@ -28,6 +28,9 @@ import { DeptEmployeesComponent } from './admin/department/dept-employees/dept-e
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { EmployeeRoleGuard } from './guards/employee-role.guard';
 import { HomepageComponent } from './user/homepage/homepage.component';
+import { MyClaimsComponent } from './user/user-claims/my-claims/my-claims.component';
+import { MyLeavesComponent } from './user/user-requests/user-leave/my-leaves/my-leaves.component';
+import { MyResignsComponent } from './user/user-requests/user-resign/my-resigns/my-resigns.component';
 
 
 const routes: Routes = [
@@ -65,12 +68,16 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path:'homepage',component:HomepageComponent},
       { path: 'claims', component: UserClaimsComponent },
+      { path: 'my-claims', component: MyClaimsComponent },
       { path: 'payroll', component: UserPayrollComponent },
       { path: 'checkin', component: CheckinComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'profile', component: ProfilComponent },
       { path: 'requests/leave', component: UserLeaveComponent },
+      { path: 'requests/leave/my-leaves', component: MyLeavesComponent },
       { path: 'requests/resign', component: UserResignComponent },
+      { path: 'requests/resign/my-resign', component: MyResignsComponent },
+      { path: '**', redirectTo: 'homepage' },
     ],
   },
   { path: 'login', component: LoginComponent },

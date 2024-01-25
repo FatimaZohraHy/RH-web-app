@@ -3,6 +3,7 @@ package com.IT.SpringBootAngular.Service;
 import com.IT.SpringBootAngular.Entitys.Attendance;
 import com.IT.SpringBootAngular.Entitys.Employee;
 import com.IT.SpringBootAngular.Entitys.HRadmin;
+import com.IT.SpringBootAngular.Entitys.Response;
 import com.IT.SpringBootAngular.Repo.EmployeeRepo;
 import com.IT.SpringBootAngular.Repo.HRadminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,27 +27,27 @@ public class AttendanceService {
     @Autowired
     private HRadminRepo hRadminRepo;
 
-    public String checkin(String id , Attendance attendance){
+    public Response checkin(String id , Attendance attendance){
         attendanceRepo.save(attendance);
         Employee emp = employeeRepo.findById(id).orElse(null);
         if(emp !=null){
             emp.setAttendance(attendance);
             emp.setActive(true);
             employeeRepo.save(emp);
-            return "you are in";
+            return new Response("you are in");
         }
-        return "no employee";
+        return new Response("no employee");
     }
-    public String checkout(String id , Attendance attendance){
+    public Response checkout(String id , Attendance attendance){
         attendanceRepo.save(attendance);
         Employee emp = employeeRepo.findById(id).orElse(null);
         if(emp!=null){
             emp.setAttendance(attendance);
             emp.setActive(false);
             employeeRepo.save(emp);
-            return "you are out";
+            return new Response("you are out");
         }
-        return "no employee";
+        return new Response("no employee");
     }
 
     //get attendance by the admin

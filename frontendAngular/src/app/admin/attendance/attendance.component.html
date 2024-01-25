@@ -12,18 +12,29 @@
         </li>
       </ul>
     </div>
-    <a href="#" class="btn-download">
-      <i class="bx bxs-cloud-download"></i>
-      <span class="text">Download PDF</span>
-    </a>
   </div>
   <div class="table-data">
     <div class="order">
       <div class="head">
         <h3>Attendances</h3>
-        <i class="bx bx-search"></i>
         <i class="bx bx-filter"></i>
       </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attendance of attandences|keyvalue">
+            <td>{{attendance.key}}</td>
+            <td>{{attendance.value.split('T')[0]}}</td>
+            <td>{{attendance.value.split('T')[1]}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>
