@@ -71,7 +71,17 @@ Spring Security is a powerful and highly configurable module of the Spring Frame
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/c6ca085e-2a87-4bc8-b8bf-9c9991bb9075)
 Angular is an open source framework written in JavaScript that allows the creation of web applications, particularly so-called "single page applications". A web application accessible from a single web page. This optimizes the user experience and avoids loading the page with each new action. The framework is based on MVC architecture, allowing you to separate data, images and actions to better manage responsibilities. Extensively proven architecture that enables high maintainability and improved collaboration.
 # Application overview
+## Admin part :
 - __Authentication interface :__
 The following figure shows the authentication interface, from which the user can
 access your admin or employee space
+This is the login interface. After the admin enters their email and password, a token will be generated. This token allows access to the admin's account.<br>
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/9deabbf5-3cf5-4ac1-ad35-c4b5f5983ac1)<br>
+and this is an admin token after the login :<br>
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/b0b11add-65d8-469e-a7e5-b40f46977dce)
+And he can simply logout from here : <img width="188" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/e05b46bf-5811-44c2-8259-78cbaa36be5b"><br>
+- __Departements :__<br>
+
+
+
 
