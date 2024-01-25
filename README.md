@@ -5,11 +5,7 @@
 2. [Conception](#conception)
 3. [Backend Development](#backend-development)
 4. [Frontend Development](#frontend-development)
-5. [Usage](#usage)
-6. [Installation](#installation)
-7. [Configuration](#configuration)
-8. [Contributing](#contributing)
-9. [License](#license)
+5. [Conclusion](#CONCLUSION)
 
 # Introduction
 The human resource department in any organisation plays a crucial role in managing their employees and their management. It caters to large set of activities in simultaneous mode and for this reason, the functioning of HR department is not easy. HR Department has to go through several challenges and various measures to make the company self-sufficient, robust and independent in bringing more profit and revenue.
