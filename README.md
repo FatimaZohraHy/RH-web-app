@@ -64,6 +64,26 @@ A Spring Boot controller is typically a Java class annotated with @Controller or
 
 Spring Security is a powerful and highly configurable module of the Spring Framework that provides a comprehensive security infrastructure for Java applications. It simplifies security management within applications by offering features such as authentication, authorization, protection against attacks, session management, and more.
 
+__Security implemented rules :__
+- JSON Web Token (JWT) and Spring Security for authentication and authorization:
+  This powerful security module ensures that only authenticated and authorized users gain access to specific resources,  
+  employing role-based access control to give permissions.
+  when a user authenticate successfully, it generate a web token, this token containe some security keys such as, role, userId, token creation time and expiration.
+  <img width="749" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/d9ba4dbd-a981-4c97-8bec-3d8c57b68554"> <br>
+  The tocken and the userId are stored in the locale storage of the browser:
+  <img width="389" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/1d9aeecd-23a5-4a5b-a132-1f185dda3283">
+
+__Security headers :__
+These headers play a crucial role in mitigating risks associated with prevalent threats such as Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF), for that we have implemented a stringent security filter chain that includes the configuration of robust security headers.
+<img width="669" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/0543baa3-4592-48a8-9717-273ea73c5ad5"> <br> <img width="690" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/cafbba44-7afe-4861-a3dd-80f0a2527eee">
+
+__Strong passwords :__
+Reinforce the use of strong passwords and unique accounts for user.
+
+__2FA authentication :__
+Implementation of two-factor authentication (2FA) for added security.
+<img width="311" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/8a2b0b73-eb2d-4513-8f9c-8338542bb283">
+
 
 # Frontend-development
 - __Development environment :__
