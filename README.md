@@ -1,4 +1,4 @@
-<u><p align="center"><strong>Projet de fin de module</strong></p></u>
+<u><p align="center"><strong>Final Project</strong></p></u>
  
 
 1. [Introduction](#introduction)
