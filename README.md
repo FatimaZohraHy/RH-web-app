@@ -5,7 +5,7 @@
 2. [Conception](#conception)
 3. [Backend Development](#backend-development)
 4. [Frontend Development](#frontend-development)
-5. [Docker](#Docker)
+5. [Dockerization of the web app](#Dockerization-of-the-web-app)
 6. [Application overview](#Application-overview)
 7. [Conclusion](#Conclusion)
 
@@ -89,7 +89,17 @@ Implementation of two-factor authentication (2FA) for added security.<br>
  
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/c6ca085e-2a87-4bc8-b8bf-9c9991bb9075)<br>
 Angular is an open source framework written in JavaScript that allows the creation of web applications, particularly so-called "single page applications". A web application accessible from a single web page. This optimizes the user experience and avoids loading the page with each new action. The framework is based on MVC architecture, allowing you to separate data, images and actions to better manage responsibilities. Extensively proven architecture that enables high maintainability and improved collaboration.
-# Docker:
+# Dockerization of the web app:
+Docker est une plateforme logicielle qui facilite le déploiement, la gestion et l'exécution d'applications dans des conteneurs légers. Les conteneurs Docker encapsulent une application et ses dépendances, assurant une portabilité et une isolation cohérentes entre les environnements de développement et de production. Cette approche permet une gestion efficace des ressources système, une scalabilité simplifiée et une configuration reproductible des applications, contribuant ainsi à la facilité de déploiement et à la gestion des infrastructures logicielles<br>
+## images :<br>
+we created 3 docker images of each<br>
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/5dcad816-9f30-473a-b9ed-7f7e73a490ab)<br><br>
+<img width="839" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/b75802bc-e7f7-41a8-9c11-452f95e9a8c5"><br><br>
+## containers :<br>
+then we built these images itnto docker containers<br>
+<img width="837" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/8c8f352b-0e91-4fd1-81f3-c97ebb3070fe"><br><br>
+
+
 
 # Application overview
 
