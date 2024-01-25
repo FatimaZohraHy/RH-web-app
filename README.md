@@ -1,5 +1,5 @@
 # RH-web-app
-=======
+
 <u><h2 align="center"><strong>Final Project</strong></h2></u>
  
 
@@ -155,9 +155,3 @@ and finally the employee can send claims and request to the admin :<br><br>
 # Conclusion:
 in summary, the application we created using Spring Boot for the backend, Angular for the frontend, and MongoDB as the database, offers a comprehensive system for administrators. They can effortlessly manage departments, add employees, and authenticate users through a secure login interface. The system ensures accuracy by requiring essential information such as department affiliation during employee creation.
 
-
-
-
-
-
->>>>>>> HRMS-web-app
