@@ -21,7 +21,6 @@ The development of conceptual models of an information system requires the use o
 
 - __USE CASE DIAGRAM :__
 A use case diagram is a modeling tool to better understand and describe the functional requirements of the system. It is the first UML step for designing a system.
-![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/175cfa4f-14a3-4c54-a0aa-65bf7a68b508)
 
 
 - __SEQUENCE DIAGRAMS :__
