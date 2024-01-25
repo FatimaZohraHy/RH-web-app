@@ -5,8 +5,9 @@
 2. [Conception](#conception)
 3. [Backend Development](#backend-development)
 4. [Frontend Development](#frontend-development)
-5. [Application overview](#Application-overview)
-6. [Conclusion](#Conclusion)
+5. [Docker](#Docker)
+6. [Application overview](#Application-overview)
+7. [Conclusion](#Conclusion)
 
 # Introduction
 The human resource department in any organisation plays a crucial role in managing their employees and their management. It caters to large set of activities in simultaneous mode and for this reason, the functioning of HR department is not easy. HR Department has to go through several challenges and various measures to make the company self-sufficient, robust and independent in bringing more profit and revenue.
@@ -88,6 +89,8 @@ Implementation of two-factor authentication (2FA) for added security.<br>
  
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/118858857/c6ca085e-2a87-4bc8-b8bf-9c9991bb9075)<br>
 Angular is an open source framework written in JavaScript that allows the creation of web applications, particularly so-called "single page applications". A web application accessible from a single web page. This optimizes the user experience and avoids loading the page with each new action. The framework is based on MVC architecture, allowing you to separate data, images and actions to better manage responsibilities. Extensively proven architecture that enables high maintainability and improved collaboration.
+# Docker:
+
 # Application overview
 
 ## Admin part :
