@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # RH-web-app
 =======
 <u><h2 align="center"><strong>Final Project</strong></h2></u>
