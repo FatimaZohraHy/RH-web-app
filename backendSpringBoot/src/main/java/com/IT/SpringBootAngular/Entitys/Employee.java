@@ -1,4 +1,5 @@
 package com.IT.SpringBootAngular.Entitys;
+<<<<<<< HEAD
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,6 +10,28 @@ import java.util.Date;
 public class Employee {
     @Id
     private String _id;
+=======
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.util.stream.Collectors;
+
+@Document(collection = "employees")
+public class Employee implements UserDetails {
+    @Id
+    private String _id = new ObjectId().toString();
+    ;
+>>>>>>> HRMS-web-app
     private String firstName;
     private String lastName;
     private String position;
@@ -20,11 +43,49 @@ public class Employee {
     private String state;
     private String department;
     private Date hireDate;
+<<<<<<< HEAD
     private double salary;
     private boolean isActive;
 
     public Employee(String _id, String firstName, String lastName, String position, String email, String phoneNumber, Date birthDate, String address, String city, String state, String department, Date hireDate, double salary, boolean isActive) {
         this._id = _id;
+=======
+    private boolean isActive;
+    private String gender;
+    private String password;
+    @DBRef
+    private Attendance attendance;
+    @JsonIgnore
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+    @DBRef
+    private Salaire salaire;
+    @DBRef
+    private List<Reclamation> reclamation;
+    @DBRef
+    @JsonIgnore
+    private HRadmin admin;
+    @DBRef
+    @JsonIgnore
+    private Departement departement;
+    @DBRef
+    @JsonIgnore
+    private  List<Demande> demandeList;
+
+    @DBRef
+    @JsonIgnore
+    private List<DemandeConge> demandeCongeList;
+
+    public Employee() {
+
+    }
+    public Employee(String firstName, String lastName, String position, String email,
+                    String phoneNumber, Date birthDate, String address, String city,
+                    String state, String department, Date hireDate,  boolean isActive,
+                    Salaire salaire , String gender, List<Reclamation> reclamation ,Departement departement ,
+                    HRadmin admin, String password, Set<Role> roles) {
+
+>>>>>>> HRMS-web-app
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -33,11 +94,33 @@ public class Employee {
         this.birthDate = birthDate;
         this.address = address;
         this.city = city;
+<<<<<<< HEAD
         this.state = state;
         this.department = department;
         this.hireDate = hireDate;
         this.salary = salary;
         this.isActive = isActive;
+=======
+        this.department = department;
+        this.hireDate = hireDate;
+        this.isActive = isActive;
+        this.gender = gender;
+        this.salaire = salaire;
+        this.reclamation = reclamation;
+        this.admin = admin;
+        this.departement = departement;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public Employee(String email, String password, Set<GrantedAuthority> authorities, String id) {
+        this.email = email;
+        this.password = password;
+        this.roles = authorities.stream()
+                .map(role-> Role.valueOf(role.getAuthority().replace("ROLE_","")))
+                .collect(Collectors.toSet());
+        this._id = id;
+>>>>>>> HRMS-web-app
     }
 
     public String get_id() {
@@ -56,6 +139,17 @@ public class Employee {
         this.firstName = firstName;
     }
 
+<<<<<<< HEAD
+=======
+    public List<Reclamation> getReclamation() {
+        return reclamation;
+    }
+
+    public void setReclamation(List<Reclamation> reclamation) {
+        this.reclamation = reclamation;
+    }
+
+>>>>>>> HRMS-web-app
     public String getLastName() {
         return lastName;
     }
@@ -136,6 +230,7 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
+<<<<<<< HEAD
     public double getSalary() {
         return salary;
     }
@@ -143,6 +238,8 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+=======
+>>>>>>> HRMS-web-app
 
     public boolean isActive() {
         return isActive;
@@ -151,4 +248,142 @@ public class Employee {
     public void setActive(boolean active) {
         isActive = active;
     }
+<<<<<<< HEAD
 }
+=======
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Salaire getSalaire() {
+        return salaire;
+    }
+
+    public void setSalaire(Salaire salaire) {
+        this.salaire = salaire;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addReclamation(Reclamation r){
+        if (this.reclamation == null) {
+            this.reclamation = new ArrayList<>();
+        }
+        this.reclamation.add(r);
+    }
+    public void adddemande(Demande d){
+        if(this.demandeList == null){
+            this.demandeList = new ArrayList<>();
+        }
+        this.demandeList.add(d);
+    }
+    public void adddemandeConge(DemandeConge d){
+        if(this.demandeCongeList == null){
+            this.demandeCongeList = new ArrayList<>();
+        }
+        this.demandeCongeList.add(d);
+    }
+    public void removeDemandeConge(DemandeConge d){
+        this.demandeCongeList.remove(d);
+    }
+
+    public void removeDemande(Demande d){
+        this.demandeList.remove(d);
+    }
+    public void removeReclamation(Reclamation r){
+        this.reclamation.remove(r);
+    }
+
+    public HRadmin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(HRadmin admin) {
+        this.admin = admin;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+
+    public List<Demande> getDemandeList() {
+        return demandeList;
+    }
+
+    public void setDemandeList(List<Demande> demandeList) {
+        this.demandeList = demandeList;
+    }
+
+    public List<DemandeConge> getDemandeCongeList() {
+        return demandeCongeList;
+    }
+
+    public void setDemandeCongeList(List<DemandeConge> demandeCongeList) {
+        this.demandeCongeList = demandeCongeList;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role->new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .collect(Collectors.toList());
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
+    }
+}
+>>>>>>> HRMS-web-app
