@@ -48,6 +48,23 @@ Les données sont enregistrées sous forme de fichiers JSON, et pour représente
 Comme il a déjà été mentionné dans le diagramme de classe, on constate qu'il existe une association entre HRadmin et Employee, où un HRadmin peut avoir plusieurs Employee. Ainsi, MongoDB crée des références pour chaque objet employé en relation avec HRadmin.<br>
 
 - __spring boot :__<br>
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/9c4cc74c-5c67-4fca-b2eb-780004b374e6)<br>
+Spring Boot est un framework de développement d'applications Java basé sur le framework Spring. Il simplifie le processus de création d'applications Java en fournissant des conventions par défaut, des configurations automatiques et un ensemble d'outils prêts à l'emploi. L'objectif principal de Spring Boot est de rendre le développement d'applications Java plus rapide et plus simple en réduisant la configuration boilerplate. Il intègre également bien d'autres projets Spring tels que Spring MVC, Spring Data, et Spring Security, facilitant ainsi le développement d'applications robustes et évolutives. Spring Boot est souvent utilisé pour créer des applications web, microservices et des API RESTful.
+- __services :__<br>
+Les services dans Spring Boot font référence à des composants logiques qui encapsulent la logique métier de votre application. Un service est généralement utilisé pour traiter des opérations métier spécifiques, déléguant ainsi la logique de traitement depuis les contrôleurs ou les autres composants. Ces services sont généralement annotés avec @Service pour indiquer à Spring qu'ils doivent être gérés comme des composants de service.<br>
+Les services que nous avons utilisés dans le backend sont :<br>
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/03868505-769b-4cc4-89d8-360ddba45c1d)<br>
+On prend par exemple EmpService :
+On trouve bien qu'il y a des annotations @Autowired , Est ce dernier est utilisé pour effectuer l'injection de dépendances automatique. Elle indique à Spring de rechercher un bean correspondant au type spécifié et de l'injecter automatiquement dans la classe où l'annotation est utilisée. Cela permet d'éviter la création manuelle d'instances de dépendances, simplifiant ainsi la configuration et la gestion des dépendances au sein de l'application.
+et pour les fonctions dans les services représentent la logique métier de l'application.<br>
+
+- __controllers :__<br>
+un contrôleur Spring Boot est généralement une classe Java annotée avec @Controller ou @RestController. Les méthodes de cette classe, également appelées actions ou endpoints, sont annotées avec des annotations telles que @RequestMapping, @GetMapping, @PostMapping, etc., pour spécifier les URL auxquelles elles répondent et le type de requêtes HTTP qu'elles gèrent, il sont donc une interface entre les requêtes HTTP entrantes et la logique métier de l'application. Ils traitent les demandes des clients, déclenchent les opérations appropriées dans les services, et renvoient généralement une réponse au client, souvent sous forme de données JSON dans le contexte des API RESTful.
+
+- __spring security :__<br>
+
+
+
 # Frontend-development
 - __Development environment :__
  
