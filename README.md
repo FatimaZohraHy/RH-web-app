@@ -39,31 +39,31 @@ A class diagram is a visual tool used in software engineering to represent the s
 # Backend-development
 - __MongoDB :__<br>
   ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/3cf82906-6a33-4c9c-9838-77752edba38b) <br>
-MongoDB est une base de données NoSQL (Not Only SQL) orientée document, conçue pour stocker, interroger et gérer des données de manière flexible et évolutive. Au lieu d'utiliser des tables et des lignes comme dans les bases de données relationnelles, MongoDB stocke les données sous forme de documents JSON (BSON, en réalité) dans des collections. Cette approche permet une modélisation de données plus dynamique et évolutive, ce qui est particulièrement utile pour les applications nécessitant une évolutivité horizontale et des schémas de données flexibles.<br>
+MongoDB is a document-oriented NoSQL (Not Only SQL) database designed to store, query, and manage data in a flexible and scalable manner. Instead of using tables and rows as in relational databases, MongoDB stores data in the form of JSON documents (actually BSON) within collections. This approach allows for a more dynamic and scalable data modeling, particularly beneficial for applications requiring horizontal scalability and flexible data schemas.<br>
   - __MongoDB Collections:__<br>
-    Les collections que nous avons utilisées pour enregistrer les données dans la base de données MongoDB sont les suivantes :<br>
+    The collections we used to record data in the MongoDB database are the following :<br>
     ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/6ba80dff-54e2-4b3a-960a-2841d4afbb15)<br>
-Les données sont enregistrées sous forme de fichiers JSON, et pour représenter les relations entre les classes, MongoDB utilise des références, exemple :<br>
+The data is stored in the form of JSON files, and to represent relationships between classes, MongoDB uses references. For example : <br>
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/d31cbdc9-bf13-457c-8986-a35fa2e3e803)<br>
-Comme il a déjà été mentionné dans le diagramme de classe, on constate qu'il existe une association entre HRadmin et Employee, où un HRadmin peut avoir plusieurs Employee. Ainsi, MongoDB crée des références pour chaque objet employé en relation avec HRadmin.<br>
+As previously mentioned in the class diagram, it is observed that there is an association between HRadmin and Employee, where an HRadmin can have multiple Employees. Thus, MongoDB creates references for each employee object in relation to HRadmin.<br>
 
 - __spring boot :__<br>
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/9c4cc74c-5c67-4fca-b2eb-780004b374e6)<br>
-Spring Boot est un framework de développement d'applications Java basé sur le framework Spring. Il simplifie le processus de création d'applications Java en fournissant des conventions par défaut, des configurations automatiques et un ensemble d'outils prêts à l'emploi. L'objectif principal de Spring Boot est de rendre le développement d'applications Java plus rapide et plus simple en réduisant la configuration boilerplate. Il intègre également bien d'autres projets Spring tels que Spring MVC, Spring Data, et Spring Security, facilitant ainsi le développement d'applications robustes et évolutives. Spring Boot est souvent utilisé pour créer des applications web, microservices et des API RESTful.
+Spring Boot is a Java application development framework based on the Spring framework. It simplifies the process of creating Java applications by providing default conventions, automatic configurations, and a set of ready-to-use tools. The primary goal of Spring Boot is to make Java application development faster and simpler by reducing boilerplate configuration. It also integrates well with other Spring projects such as Spring MVC, Spring Data, and Spring Security, making it easier to develop robust and scalable applications. Spring Boot is commonly used for building web applications, microservices, and RESTful APIs.
 - __services :__<br>
-Les services dans Spring Boot font référence à des composants logiques qui encapsulent la logique métier de votre application. Un service est généralement utilisé pour traiter des opérations métier spécifiques, déléguant ainsi la logique de traitement depuis les contrôleurs ou les autres composants. Ces services sont généralement annotés avec @Service pour indiquer à Spring qu'ils doivent être gérés comme des composants de service.<br>
-Les services que nous avons utilisés dans le backend sont :<br>
+"Services in Spring Boot refer to logical components that encapsulate the business logic of your application. A service is typically used to handle specific business operations, thereby delegating the processing logic away from controllers or other components. These services are usually annotated with @Service to inform Spring that they should be managed as service components.<br>
+
+The services we utilized in the backend include:"<br>
 ![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/03868505-769b-4cc4-89d8-360ddba45c1d)<br>
-On prend par exemple EmpService :
-On trouve bien qu'il y a des annotations @Autowired , Est ce dernier est utilisé pour effectuer l'injection de dépendances automatique. Elle indique à Spring de rechercher un bean correspondant au type spécifié et de l'injecter automatiquement dans la classe où l'annotation est utilisée. Cela permet d'éviter la création manuelle d'instances de dépendances, simplifiant ainsi la configuration et la gestion des dépendances au sein de l'application.
-et pour les fonctions dans les services représentent la logique métier de l'application.<br>
+We take, for example, EmpService:<br>
+there are @Autowired annotations. The latter is used for automatic dependency injection. It instructs Spring to look for a bean matching the specified type and inject it automatically into the class where the annotation is used. This avoids the manual creation of dependency instances, simplifying the configuration and management of dependencies within the application. Additionally, the functions in the services represent the business logic of the application.<br>
 
 - __controllers :__<br>
-un contrôleur Spring Boot est généralement une classe Java annotée avec @Controller ou @RestController. Les méthodes de cette classe, également appelées actions ou endpoints, sont annotées avec des annotations telles que @RequestMapping, @GetMapping, @PostMapping, etc., pour spécifier les URL auxquelles elles répondent et le type de requêtes HTTP qu'elles gèrent, il sont donc une interface entre les requêtes HTTP entrantes et la logique métier de l'application. Ils traitent les demandes des clients, déclenchent les opérations appropriées dans les services, et renvoient généralement une réponse au client, souvent sous forme de données JSON dans le contexte des API RESTful.
+A Spring Boot controller is typically a Java class annotated with @Controller or @RestController. The methods in this class, also referred to as actions or endpoints, are annotated with annotations such as @RequestMapping, @GetMapping, @PostMapping, etc., to specify the URLs they respond to and the type of HTTP requests they handle. They serve as an interface between incoming HTTP requests and the business logic of the application. Controllers handle client requests, trigger appropriate operations in services, and typically return a response to the client, often in the form of JSON data in the context of RESTful APIs.
 
 - __spring security :__<br>
 
-Spring Security est un module puissant et hautement configurable de Spring Framework qui fournit une infrastructure complète de sécurité pour les applications Java. Il simplifie la gestion de la sécurité au sein des applications en proposant des fonctionnalités telles que l'authentification, l'autorisation, la protection contre les attaques, la gestion des sessions, et bien d'autres.<br>
+Spring Security is a powerful and highly configurable module of the Spring Framework that provides a comprehensive security infrastructure for Java applications. It simplifies security management within applications by offering features such as authentication, authorization, protection against attacks, session management, and more.
 
 
 # Frontend-development
