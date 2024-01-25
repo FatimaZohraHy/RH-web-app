@@ -138,7 +138,7 @@ and finally the employee can send claims and request to the admin :<br><br>
 <img width="377" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/e3c814fb-1386-42b3-947c-0556d2be9ef0"><br><br>
 <img width="960" alt="image" src="https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/b2085fd1-40ba-4bed-a735-86835fce3ad3"><br><br>
 # Conclusion:
-n summary, the application I created using Spring Boot for the backend, Angular for the frontend, and MongoDB as the database, offers a comprehensive system for administrators. They can effortlessly manage departments, add employees, and authenticate users through a secure login interface. The system ensures accuracy by requiring essential information such as department affiliation during employee creation. The seamless integration of these technologies provides an efficient platform where admins can perform various transactions, fostering a user-friendly and robust management environment.
+in summary, the application we created using Spring Boot for the backend, Angular for the frontend, and MongoDB as the database, offers a comprehensive system for administrators. They can effortlessly manage departments, add employees, and authenticate users through a secure login interface. The system ensures accuracy by requiring essential information such as department affiliation during employee creation.
 
 
 
