@@ -21,13 +21,14 @@ The development of conceptual models of an information system requires the use o
 
 - __USE CASE DIAGRAM :__
 A use case diagram is a modeling tool to better understand and describe the functional requirements of the system. It is the first UML step for designing a system.
-![image](https://imgur.com/WVlIVFf)
+
+
 - __SEQUENCE DIAGRAM :__
 A sequence diagram is a type of interaction diagram that describes the sequence of actions that occur between different objects or actors in a system. It shows how different objects or actors interact with each other by exchanging messages in an ordered sequence.
 
 - __CLASS DIAGRAM :__
 A class diagram is a visual tool used in software engineering to represent the structure and relationships between classes in a system. It shows classes, their attributes and operations using rectangles divided into three sections. Classes are linked together by lines to indicate associations, inheritances, or dependencies between them.
-
+![image](https://github.com/FatimaZohraHy/RH-web-app/assets/128602766/b5a2bc40-e740-48e2-b627-7e0657ab1f6a)
 # Backend-development
 
 # Frontend-development
